@@ -1,0 +1,77 @@
+/* =================== Base ================== */
+
+* {
+	&,
+	&::before,
+	&::after {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-webkit-box-sizing: border-box;
+	}
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	font-size: 62.5% !important; //1rem = 10px
+
+	@include respond(land-phone) {
+		font-size: 50% !important; //1rem = 8px
+	}
+
+	@include respond(only-tablet) {
+		font-size: 56.25% !important; //1rem = 9px
+	}
+
+	@include respond(large-desktop) {
+		font-size: 75% !important; //1rem= 12px
+	}
+}
+
+body {
+	width: 100%;
+	max-width: 100%;
+	min-height: 100vh;
+	position: relative;
+	overflow-x: hidden;
+
+	padding: 3rem;
+	background: linear-gradient(
+		to right bottom,
+		rgba($color-primary, 1),
+		rgba($color-primary-light, 1)
+	);
+}
+
+a,
+a:link,
+a:visited {
+	text-decoration: none;
+}
+
+ul {
+	list-style: none;
+}
+
+img {
+	display: inline-block;
+	width: 100%;
+	max-width: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
+::-webkit-scrollbar {
+	width: 0;
+}
+
+::-moz-selection {
+	background: $color-primary; /* Gecko Browsers */
+	color: $color-white;
+}
+
+::selection {
+	background: $color-primary; /* WebKit/Blink Browsers */
+	color: $color-white;
+}

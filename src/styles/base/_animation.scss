@@ -1,0 +1,40 @@
+/* ================ Animations =============== */
+.animation-blur {
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		display: block;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+
+		background-color: $color-white;
+
+		animation: blur 1.5s infinite;
+	}
+
+	&:hover {
+		&::after {
+			z-index: -1;
+			animation: none;
+		}
+	}
+
+	@keyframes blur {
+		from {
+			transform: scale(1);
+			z-index: -1;
+		}
+
+		to {
+			transform: scale(2);
+			opacity: 0;
+			z-index: 1;
+		}
+	}
+}

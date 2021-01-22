@@ -1,0 +1,85 @@
+// =================== MEDIA QUERY MANAGE =================== //
+
+// ========================================================== //
+// 	 0 - 576px: Extra small devices (port-phone)
+// 	 576px - 768px: Small devices (land-phone)
+// 	 768px - 992px: Medium devices (tablet)
+// 	 992px - 1200px: Large devices (desktop)
+// 	 1200px - 1400px: Where our normal style apply (big desktop, laptop)
+// 	 1400px: Extra large devices (large-desktop)
+// ========================================================== //
+
+@mixin respond($breakpoint) {
+	@if $breakpoint == port-phone {
+		@media only screen and (max-width: 575.98px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == land-phone {
+		@media only screen and (max-width: 767.98px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == only-tablet {
+		@media only screen and (min-width: 768px) and (max-width: 991.98px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == tablet {
+		@media only screen and (max-width: 991.98px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == only-desktop {
+		@media only screen and (min-width: 992px) and (max-width: 1199.98px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == desktop {
+		@media only screen and (max-width: 1199.98px) {
+			@content;
+		}
+	}
+
+	@if $breakpoint == large-desktop {
+		@media only screen and (min-width: 1400px) {
+			@content;
+		}
+	}
+}
+
+@mixin two-device {
+	@media only screen and (max-width: 37.5em) {
+		@content;
+	}
+	@media only screen and (max-width: 56.25em) {
+		@content;
+	}
+}
+
+@mixin clearfix() {
+	&::after {
+		display: block;
+		clear: both;
+		content: "";
+	}
+}
+
+@mixin bg-darken($bgImg) {
+	background-size: cover;
+	background-image: linear-gradient(
+			rgba($color-black, 0.5),
+			rgba($color-black, 0.5)
+		),
+		url($bgImg);
+	position: relative;
+}
+
+// @include bg-darken(
+//	 "https://download.unsplash.com/photo-1428604467652-115d9d71a7f1"
+// );

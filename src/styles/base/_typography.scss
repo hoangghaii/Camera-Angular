@@ -1,0 +1,157 @@
+/* ================ Typography =============== */
+
+//  Lato  //
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap");
+//  Montserrat  //
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
+//  Open Sans  //
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
+//  Raleway  //
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap");
+//  Poppins  //
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+$font-lato: "Lato", sans-serif;
+$font-montserrat: "Montserrat", sans-serif;
+$font-opensans: "Open Sans", sans-serif;
+$font-raleway: "Raleway", sans-serif;
+$font-poppins: "Poppins", sans-serif;
+
+body {
+	font-family: $font-opensans;
+	font-size: 1.6rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: $color-font;
+	scroll-behavior: smooth;
+}
+
+%heading {
+	display: inline-block;
+
+	font-family: $font-montserrat;
+	color: $color-heading;
+
+	cursor: default;
+}
+
+.heading-1 {
+	@extend %heading;
+
+	color: $color-white;
+	text-transform: uppercase;
+
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	&--main {
+		@extend .heading-1;
+
+		display: block;
+		font-size: 6rem;
+		font-weight: 400;
+		letter-spacing: 3.5rem;
+		// -webkit-animation: moveInLeft 1s linear;
+		// animation: moveInLeft 1s linear;
+
+		@include respond(land-phone) {
+			letter-spacing: 1rem;
+			font-size: 5rem;
+		}
+	}
+
+	&--sub {
+		@extend .heading-1;
+
+		display: block;
+		font-size: 2rem;
+		font-weight: 700;
+		letter-spacing: 1.74rem;
+		// -webkit-animation: moveInRight 1s linear;
+		// animation: moveInRight 1s linear;
+
+		margin-bottom: 6rem;
+
+		@include respond(land-phone) {
+			letter-spacing: 0.5rem;
+		}
+	}
+}
+
+.heading-2 {
+	@extend %heading;
+
+	display: inline-block;
+
+	font-size: 3.5rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.2rem;
+
+	background-image: linear-gradient(
+		to right,
+		$color-primary-light,
+		$color-primary-dark
+	);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+
+	transition: all 0.25s;
+
+	@include respond(only-tablet) {
+		font-size: 3rem;
+	}
+
+	@include respond(land-phone) {
+		font-size: 2.5rem;
+		padding: 0 1rem;
+	}
+
+	&:hover {
+		transform: skewY(2deg) skewX(15deg) scale(1.1);
+		text-shadow: 0.5rem 1rem 2rem rgba($color: $color-black, $alpha: 0.2);
+	}
+}
+
+.heading-3 {
+	@extend %heading;
+
+	font-size: 1.6rem;
+	font-weight: 700;
+	text-transform: uppercase;
+
+	margin-top: 1rem;
+	margin-left: 5rem;
+	margin-bottom: 2rem;
+
+	position: relative;
+
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		transform: translateX(-50%);
+
+		display: inline-block;
+		width: 40%;
+		height: 2px;
+		background-color: $color-heading;
+
+		transition: $transition-cubic-2;
+	}
+
+	&:hover::after {
+		width: 100%;
+	}
+}
+
+.paragraph {
+	font-size: 1.6rem;
+	font-weight: 400;
+
+	&:not(:last-child) {
+		margin-bottom: 3rem;
+	}
+}

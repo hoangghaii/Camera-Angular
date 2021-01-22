@@ -1,0 +1,51 @@
+/* =================== Form ================== */
+.form {
+	display: block;
+	text-align: center;
+
+	&__group {
+		display: flex;
+		align-items: center;
+
+		&:not(:last-child) {
+			margin-bottom: 4rem;
+		}
+	}
+
+	&__label {
+		font-family: $font-montserrat;
+		font-size: 1.6rem;
+		font-weight: 600;
+
+		width: 20%;
+
+		span {
+			color: #ee5253;
+		}
+	}
+	&__input {
+		font-size: 1.6rem;
+		font-family: $font-opensans;
+		border-radius: 1.1rem;
+		border: 1px solid $color-grey-light-4;
+
+		padding: 1rem 1.5rem;
+
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&__area {
+		font-size: 1.6rem;
+		font-family: $font-opensans;
+		border-radius: 1.1rem;
+		border: 1px solid $color-grey-light-4;
+
+		padding: 1rem 1.5rem;
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

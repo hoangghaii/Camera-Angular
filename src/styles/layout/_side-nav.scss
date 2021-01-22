@@ -1,0 +1,105 @@
+/* =================== Side-Nav ================== */
+.side-nav {
+  margin-top: 2.5rem;
+
+  &__item {
+    position: relative;
+    z-index: 1;
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      height: 100%;
+      width: 3px;
+      background-color: $color-primary;
+      z-index: -1;
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform 0.25s, width 0.25s cubic-bezier(1, 0, 0, 1) 0.25s,
+        background-color 0.1s;
+    }
+    &:hover::before,
+    &--active::before {
+      width: 100%;
+      transform: scaleY(1);
+    }
+    &:active::before {
+      background-color: $color-primary-light;
+    }
+    // @media only screen and (max-width: $bp-medium) {
+    // 	flex: 1;
+    // 	&:not(:last-child) {
+    // 		margin-bottom: 0;
+    // 	}
+    // 	&::before {
+    // 		height: 3px;
+    // 		width: 100%;
+    // 		transform: scaleX(0);
+    // 		transition: transform 0.25s,
+    // 			height 0.25s cubic-bezier(1, 0, 0, 1) 0.25s,
+    // 			background-color 0.1s;
+    // 	}
+    // 	&:hover::before,
+    // 	&--active::before {
+    // 		height: 100%;
+    // 		transform: scaleX(1);
+    // 	}
+    // }
+  }
+  &__link:link,
+  &__link:visited {
+    color: $color-grey-light-1;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    padding: 1.5rem 3rem;
+    display: flex;
+    align-items: center;
+    // @media only screen and (max-width: $bp-medium) {
+    // 	justify-content: center;
+    // 	padding: 2rem;
+    // }
+    // @media only screen and (max-width: $bp-small) {
+    // 	flex-direction: column;
+    // 	padding: 1.5rem 0.5rem;
+    // }
+  }
+  &__icon {
+    width: 1.75rem;
+    height: 1.75rem;
+    margin-right: 1rem;
+    fill: currentColor;
+    // @media only screen and (max-width: $bp-small) {
+    // 	margin-right: 0;
+    // 	margin-bottom: 0.7rem;
+    // 	width: 1.5rem;
+    // 	height: 1.5rem;
+    // }
+  }
+
+  &__heading {
+    font-size: 1.4rem;
+  }
+  // @media only screen and (max-width: $bp-medium) {
+  // 	margin-top: 0;
+  // 	display: flex;
+  // }
+}
+
+.legal {
+  font-size: 1.4rem;
+  color: $color-grey-light-4;
+  text-align: center;
+  padding: 2.5rem;
+  // @media only screen and (max-width: $bp-medium) {
+  // 	display: none;
+  // }
+  span {
+    display: block;
+  }
+}
