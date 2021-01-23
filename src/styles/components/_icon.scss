@@ -1,0 +1,53 @@
+/* =================== Icon ================== */
+%default-icon {
+	padding: 0.3rem 0.8rem;
+	cursor: pointer;
+	border-radius: 5px;
+
+	transition: all 0.25s;
+
+	i {
+		font-weight: 500;
+	}
+}
+
+.plus-icon {
+	@extend %default-icon;
+
+	border: 2px solid $color-grey-dark-3;
+
+	background-color: transparent;
+	color: currentColor;
+
+	&:hover {
+		transform: translateY(-3px);
+		border-color: transparent;
+		background-color: $color-primary;
+		color: $color-white;
+		box-shadow: $shadow-dark-2;
+	}
+}
+
+.times-icon {
+	cursor: pointer;
+
+	i {
+		font-weight: 500;
+	}
+
+	&:hover {
+		color: $color-primary;
+	}
+}
+
+.times-icon-2 {
+	@extend %default-icon;
+
+	border: 2px solid $color-grey-dark-3;
+
+	&:hover {
+		border-color: transparent;
+		background-color: $color-primary;
+		color: $color-white;
+	}
+}

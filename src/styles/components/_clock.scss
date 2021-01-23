@@ -1,0 +1,35 @@
+/* ================== Header ================= */
+.clock {
+	width: 360px;
+	position: relative;
+	background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+	border-radius: 1rem;
+	cursor: default;
+	animation: animate 4s linear infinite;
+
+	&__display {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+
+		z-index: 1;
+		height: 80%;
+		width: 96%;
+		background: #444444;
+		border-radius: 6px;
+		text-align: center;
+
+		#time {
+			color: $color-white;
+			font-size: 3rem;
+			font-weight: 600;
+			letter-spacing: 1px;
+			background: linear-gradient(135deg, #14ffe9, #ffeb3b, #ff00e0);
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			animation: animate 4s linear infinite;
+		}
+	}
+}

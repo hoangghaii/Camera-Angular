@@ -1,0 +1,29 @@
+<section class="product">
+  <div class="product__heading">
+    <a
+      class="product__heading--item"
+      data-id="product"
+      [routerLink]="'product'"
+      routerLinkActive="active"
+      (click)="changeBg1()"
+      [ngClass]="this.isToogle1 ? 'product__heading--item-active' : ''"
+    >
+      <i class="fal fa-camera-retro"></i>
+      <span>Sản phẩm</span>
+    </a>
+
+    <a
+      class="product__heading--item"
+      data-id="filter"
+      [routerLink]="'filter'"
+      routerLinkActive="active"
+      (click)="changeBg2()"
+      [ngClass]="this.isToogle2 ? 'product__heading--item-active' : ''"
+    >
+      <i class="fal fa-filter"></i>
+      <span>Bộ lọc</span>
+    </a>
+  </div>
+
+  <router-outlet></router-outlet>
+</section>

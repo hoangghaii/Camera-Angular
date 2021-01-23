@@ -1,0 +1,132 @@
+/* =================== Table ================== */
+.table {
+  width: 90%;
+  margin: 2rem auto;
+
+  &-header {
+    background-color: $color-primary-light;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  &-heading__list,
+  &-content__list {
+    padding: 0 1rem;
+
+    display: flex;
+  }
+
+  &-heading__item {
+    color: $color-white;
+    font-family: $font-montserrat;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+
+    &:not(:last-child) {
+      border-right: 2px solid $color-white;
+    }
+  }
+
+  &-body {
+    border: 2px solid $color-primary-light;
+  }
+
+  &-content__list {
+    &:not(:last-child) {
+      border-bottom: 2px solid $color-primary-light;
+    }
+  }
+
+  &-content__item {
+    text-align: center;
+
+    &:not(:last-child) {
+      border-right: 2px solid $color-primary-light;
+    }
+  }
+
+  &-heading__item,
+  &-content__item {
+    padding: 8px 5px;
+    display: block;
+  }
+
+  &-1 {
+    .table {
+      &-heading__item:first-child,
+      &-content__item:first-child {
+        width: 10%;
+      }
+
+      &-heading__item:nth-child(2),
+      &-content__item:nth-child(2) {
+        width: 25%;
+      }
+
+      &-heading__item:nth-child(3),
+      &-content__item:nth-child(3) {
+        width: 15%;
+      }
+
+      &-heading__item:nth-child(4),
+      &-content__item:nth-child(4) {
+        width: 18%;
+      }
+
+      &-heading__item:nth-child(5),
+      &-content__item:nth-child(5) {
+        width: 18%;
+      }
+
+      &-heading__item:last-child,
+      &-content__item:last-child {
+        width: 15%;
+      }
+    }
+  }
+
+  &-2 {
+    .table {
+      &-heading__item:first-child,
+      &-content__item:first-child {
+        width: 10%;
+      }
+
+      &-heading__item:nth-child(2),
+      &-content__item:nth-child(2) {
+        width: 30%;
+      }
+
+      &-heading__item:nth-child(3),
+      &-content__item:nth-child(3) {
+        width: 20%;
+      }
+
+      &-heading__item:nth-child(4),
+      &-content__item:nth-child(4) {
+        width: 20%;
+      }
+
+      &-heading__item:last-child,
+      &-content__item:last-child {
+        width: 20%;
+      }
+    }
+  }
+
+  &-content__link {
+    color: $color-primary;
+    font-weight: 500;
+    text-decoration: underline !important;
+
+    display: inline-block;
+
+    transition: all 0.25s;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      transform: translateY(-3px);
+    }
+  }
+}
