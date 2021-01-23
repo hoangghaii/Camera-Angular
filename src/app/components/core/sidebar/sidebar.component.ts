@@ -18,11 +18,13 @@ export class SidebarComponent implements OnInit {
     if (this.isToogle2) {
       this.isToogle2 = !this.isToogle2;
     }
+    this.isToogle1 = true;
   }
   changeBg2() {
     this.isToogle2 = !this.isToogle2;
     if (this.isToogle1) {
       this.isToogle1 = !this.isToogle1;
     }
+    this.isToogle2 = true;
   }
 }
