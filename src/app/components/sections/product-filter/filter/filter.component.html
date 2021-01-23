@@ -3,7 +3,7 @@
     <div class="heading-group">
       <h3 class="heading-3">Danh sách loại bộ lọc</h3>
 
-      <span class="plus-icon" data-modal="add-modal">
+      <span class="plus-icon" (click)="openModal('create', 'modalType')">
         <i class="fal fa-plus"></i>
       </span>
     </div>
@@ -42,7 +42,7 @@
     <div class="heading-group">
       <h3 class="heading-3">Danh sách bộ lọc</h3>
 
-      <span class="plus-icon" data-modal="product-modal">
+      <span class="plus-icon" (click)="openModal('create', 'modalAdd')">
         <i class="fal fa-plus"></i>
       </span>
     </div>
@@ -130,3 +130,17 @@
     </div>
   </div>
 </div>
+
+<app-modal-filter
+  [open]="isOpen"
+  [typeModal]="typeModal"
+  [selectCurrent]="selectCurrent"
+  (confirm)="closeModal($event)"
+></app-modal-filter>
+
+<app-modal-filter-type
+  [open]="isOpen"
+  [typeModal]="typeModal"
+  [selectCurrent]="selectCurrent"
+  (confirm)="closeModal($event)"
+></app-modal-filter-type>

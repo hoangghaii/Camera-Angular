@@ -1,0 +1,27 @@
+<div class="modal" [ngClass]="open && typeModal == 'modalType' ? 'show' : ''">
+  <div class="add-modal" [ngClass]="typeModal == 'modalType' ? 'show' : ''">
+    <span
+      class="times-icon close-modal"
+      (click)="closeModal()"
+      [ngClass]="typeModal == 'modalType' ? 'show' : ''"
+    >
+      <i class="fal fa-times"></i>
+    </span>
+
+    <h4 class="heading-4">Thêm/sửa loại sản phẩm</h4>
+
+    <form action="#0" class="form">
+      <div class="form__group">
+        <label class="form__label"> Tên loại:<span>(*)</span> </label>
+        <input type="text" class="form__input" required />
+      </div>
+
+      <div class="form__group">
+        <label class="form__label"> Ghi chú: </label>
+        <textarea name="" cols="30" rows="3" class="form__area"></textarea>
+      </div>
+
+      <button class="btn btn-add">Thêm</button>
+    </form>
+  </div>
+</div>

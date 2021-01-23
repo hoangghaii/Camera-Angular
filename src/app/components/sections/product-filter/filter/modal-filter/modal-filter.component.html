@@ -1,0 +1,36 @@
+<div class="modal" [ngClass]="open && typeModal == 'modalAdd' ? 'show' : ''">
+  <div
+    class="add-product-modal"
+    [ngClass]="typeModal == 'modalAdd' ? 'show' : ''"
+  >
+    <span class="times-icon close-modal" (click)="closeModal()">
+      <i class="fal fa-times"></i>
+    </span>
+
+    <h4 class="heading-4">Thêm/sửa bộ lọc</h4>
+
+    <form action="#0" class="form">
+      <div class="form__group">
+        <label class="form__label"> Loại bộ lọc:<span>(*)</span> </label>
+        <select name="" class="form__select" required>
+          <option value="lbl1">Loại bộ lọc 1</option>
+          <option value="lbl2">Loại bộ lọc 2</option>
+          <option value="lbl3">Loại bộ lọc 3</option>
+          <option value="lbl4">Loại bộ lọc 4</option>
+        </select>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label"> Tên bộ lọc:<span>(*)</span> </label>
+        <input type="text" class="form__input" required />
+      </div>
+
+      <div class="form__group">
+        <label class="form__label"> Ghi chú: </label>
+        <textarea name="" cols="30" rows="3" class="form__area"></textarea>
+      </div>
+
+      <button class="btn btn-add">Thêm</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,69 @@
+<div class="modal" [ngClass]="open && typeModal == 'modalAdd' ? 'show' : ''">
+  <div
+    class="add-product-modal"
+    [ngClass]="typeModal == 'modalAdd' ? 'show' : ''"
+  >
+    <span class="times-icon close-modal" (click)="closeModal()">
+      <i class="fal fa-times"></i>
+    </span>
+
+    <h4 class="heading-4">Thêm/sửa sản phẩm</h4>
+
+    <form action="#0" class="form">
+      <div class="form__group-big">
+        <div class="form__group">
+          <label class="form__label"> Mã sản phẩm: </label>
+          <input type="text" class="form__input" />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
+          <select name="" class="form__select" required>
+            <option value="lsp1">Loại sản phẩm 1</option>
+            <option value="lsp2">Loại sản phẩm 2</option>
+            <option value="lsp3">Loại sản phẩm 3</option>
+            <option value="lsp4">Loại sản phẩm 4</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form__group-big">
+        <div class="form__group">
+          <label class="form__label"> Tên sản phẩm:<span>(*)</span> </label>
+          <input type="text" class="form__input" required />
+        </div>
+
+        <div class="form__group">
+          <label class="form__label"> Giá sản phẩm:<span>(*)</span> </label>
+          <input type="text" class="form__input" required />
+        </div>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label"> Ghi chú: </label>
+        <textarea name="" cols="30" rows="3" class="form__area"></textarea>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label"> Hình ảnh:<span>(*)</span> </label>
+        <div class="form__group-file">
+          <span class="form__input--heading"> Chọn ảnh (100x100) </span>
+          <input
+            type="file"
+            class="form__input-file"
+            accept="image/*"
+            required
+          />
+        </div>
+      </div>
+      <div class="file-placeholder"></div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-cancel" data-modal="product-modal">
+          Hủy
+        </button>
+        <button class="btn btn-add">Thêm</button>
+      </div>
+    </form>
+  </div>
+</div>

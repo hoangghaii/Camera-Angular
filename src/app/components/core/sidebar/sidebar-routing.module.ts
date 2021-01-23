@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductSettingComponent } from '../../sections/product-setting/product-setting.component';
 
 const routes: Routes = [
   {

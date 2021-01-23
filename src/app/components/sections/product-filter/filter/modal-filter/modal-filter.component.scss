@@ -1,0 +1,9 @@
+.form__group:not(:last-child) {
+  margin-bottom: 2rem !important;
+}
+
+.add-product-modal {
+  &.show {
+    width: 50rem !important;
+  }
+}

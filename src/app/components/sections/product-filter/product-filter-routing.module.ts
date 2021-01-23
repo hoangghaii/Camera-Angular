@@ -24,15 +24,6 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: 'product',
-  //   component: ProductComponent,
-  // },
-  // {
-  //   path: 'filter',
-  //   component: FilterComponent,
-  // },
-  // { path: '', redirectTo: 'product', pathMatch: 'full' },
 ];
 
 @NgModule({
