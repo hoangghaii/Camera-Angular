@@ -9,20 +9,30 @@
 
     <h4 class="heading-4">Thêm/sửa bộ lọc</h4>
 
-    <form action="#0" class="form">
+    <form action="#0" class="form" [formGroup]="filterForm">
       <div class="form__group">
         <label class="form__label"> Loại bộ lọc:<span>(*)</span> </label>
-        <select name="" class="form__select" required>
+        <select name="" class="form__select" formControlName="filterType">
           <option value="lbl1">Loại bộ lọc 1</option>
           <option value="lbl2">Loại bộ lọc 2</option>
           <option value="lbl3">Loại bộ lọc 3</option>
           <option value="lbl4">Loại bộ lọc 4</option>
         </select>
       </div>
+      <div *ngIf="submitted && f.filterType.errors" class="invalid">
+        <div *ngIf="f.filterType.errors.required">
+          <span>⚠</span> Loại bộ lọc cần được chọn
+        </div>
+      </div>
 
       <div class="form__group">
         <label class="form__label"> Tên bộ lọc:<span>(*)</span> </label>
-        <input type="text" class="form__input" required />
+        <input type="text" class="form__input" rformControlName="filterName" />
+      </div>
+      <div *ngIf="submitted && f.filterName.errors" class="invalid">
+        <div *ngIf="f.filterName.errors.required">
+          <span>⚠</span> Tên bộ lọc không được để trống
+        </div>
       </div>
 
       <div class="form__group">
@@ -30,7 +40,19 @@
         <textarea name="" cols="30" rows="3" class="form__area"></textarea>
       </div>
 
-      <button class="btn btn-add">Thêm</button>
+      <button
+        class="btn btn-add"
+        type="submit"
+        *ngIf="selectCurrent; else btnCreate"
+        (click)="handleUpdate()"
+      >
+        Cập nhật
+      </button>
+      <ng-template #btnCreate>
+        <button type="submit" class="btn btn-add" (click)="handleCreate()">
+          Thêm
+        </button>
+      </ng-template>
     </form>
   </div>
 </div>

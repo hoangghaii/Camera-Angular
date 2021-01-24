@@ -15,6 +15,12 @@
   padding: 2.5rem 3rem;
 }
 
+%show {
+  height: auto;
+  opacity: 1;
+  z-index: 9;
+}
+
 .modal {
   @extend %absCenter;
 
@@ -45,9 +51,8 @@
 
   &.show {
     width: 50rem;
-    height: auto;
-    opacity: 1;
-    z-index: 9;
+
+    @extend %show;
   }
 }
 
@@ -60,17 +65,31 @@
   opacity: 0;
   z-index: -2;
 
-  .form__group {
-    &:not(:last-child) {
-      margin-bottom: 0;
-    }
+  &.show {
+    width: 80rem;
+
+    @extend %show;
+  }
+}
+
+.msg-modal {
+  @extend %absCenter;
+  @extend %modal;
+
+  width: 35rem;
+
+  &__content {
+    color: $color-font;
+    font-size: 1.6rem;
+    word-break: break-word;
+
+    margin-bottom: 1.5rem;
   }
 
   &.show {
-    width: 80rem;
-    height: auto;
-    opacity: 1;
-    z-index: 9;
+    width: 35rem;
+
+    @extend %show;
   }
 }
 

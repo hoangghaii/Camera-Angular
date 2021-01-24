@@ -25,7 +25,7 @@ export class ModalProductTypeComponent implements OnInit {
   @Input() open!: boolean;
   @Input() typeModal!: string;
   @Input() selectCurrent: any;
-  @Output() confirm: EventEmitter<object> = new EventEmitter<object>();
+  @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
   constructor(private fb: FormBuilder) {}
 
@@ -55,12 +55,19 @@ export class ModalProductTypeComponent implements OnInit {
     this.confirm.emit({ open: false });
   }
 
-  // handleCreate(): void {
-  //   this.submitted = true;
-  //   if (!this.productForm.valid) {
-  //     return;
-  //   }
-  // }
+  handleCreate() {
+    this.submitted = true;
+    if (!this.productTypeForm.valid) {
+      return;
+    }
+  }
+
+  handleUpdate() {
+    this.submitted = true;
+    if (!this.productTypeForm.valid) {
+      return;
+    }
+  }
 
   parserObj(obj: any): object {
     return {

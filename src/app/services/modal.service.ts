@@ -16,25 +16,10 @@ export class ModalService {
     this.modals = this.modals.splice(1, 1);
   }
 
-  open(msg?: any, opt?: any): void {
+  open(msg?: any): void {
     const modal: any = this.modals[0];
     if (msg) {
       modal.msg = msg;
-    }
-
-    if (opt) {
-      let optStyle = {};
-      if (opt && opt.hasOwnProperty('width') && opt.width !== '') {
-        optStyle = { ...optStyle, ...{ width: opt.width } };
-      }
-
-      if (opt && opt.hasOwnProperty('height') && opt.height !== '') {
-        optStyle = { ...optStyle, ...{ height: opt.height } };
-      }
-
-      if (optStyle) {
-        modal.optStyle = optStyle;
-      }
     }
     modal.open();
   }

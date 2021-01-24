@@ -9,16 +9,16 @@
 
     <h4 class="heading-4">Thêm/sửa sản phẩm</h4>
 
-    <form action="#0" class="form">
+    <form action="#0" class="form" [formGroup]="productForm">
       <div class="form__group-big">
         <div class="form__group">
           <label class="form__label"> Mã sản phẩm: </label>
-          <input type="text" class="form__input" />
+          <input type="text" class="form__input" formControlName="id" />
         </div>
 
         <div class="form__group">
           <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
-          <select name="" class="form__select" required>
+          <select name="" class="form__select" formControlName="productType">
             <option value="lsp1">Loại sản phẩm 1</option>
             <option value="lsp2">Loại sản phẩm 2</option>
             <option value="lsp3">Loại sản phẩm 3</option>
@@ -26,43 +26,101 @@
           </select>
         </div>
       </div>
+      <div class="form__group-error" *ngIf="submitted">
+        <div></div>
+
+        <div *ngIf="submitted && f.productType.errors" class="invalid">
+          <div *ngIf="f.productType.errors.required">
+            <span>⚠</span> Loại sản phẩm cần được chọn
+          </div>
+        </div>
+      </div>
 
       <div class="form__group-big">
         <div class="form__group">
           <label class="form__label"> Tên sản phẩm:<span>(*)</span> </label>
-          <input type="text" class="form__input" required />
+          <input
+            type="text"
+            class="form__input"
+            formControlName="productName"
+          />
         </div>
 
         <div class="form__group">
           <label class="form__label"> Giá sản phẩm:<span>(*)</span> </label>
-          <input type="text" class="form__input" required />
+          <input
+            type="text"
+            class="form__input"
+            formControlName="productPrice"
+          />
+        </div>
+      </div>
+      <div class="form__group-error" *ngIf="submitted">
+        <div *ngIf="submitted && f.productName.errors" class="invalid">
+          <div *ngIf="f.productName.errors.required">
+            <span>⚠</span> Tên sản phẩm không được để trống
+          </div>
+        </div>
+
+        <div *ngIf="submitted && f.productPrice.errors" class="invalid">
+          <div *ngIf="f.productPrice.errors.required">
+            <span>⚠</span> Giá sản phẩm không được để trống
+          </div>
+          <div *ngIf="f.productPrice.errors.isNumber">
+            <span>⚠</span> Giá sản phẩm phải là số
+          </div>
         </div>
       </div>
 
-      <div class="form__group">
+      <div class="form__group-big">
         <label class="form__label"> Ghi chú: </label>
-        <textarea name="" cols="30" rows="3" class="form__area"></textarea>
+        <textarea
+          name=""
+          cols="30"
+          rows="3"
+          class="form__area"
+          formControlName="productNote"
+        ></textarea>
       </div>
 
       <div class="form__group">
         <label class="form__label"> Hình ảnh:<span>(*)</span> </label>
         <div class="form__group-file">
-          <span class="form__input--heading"> Chọn ảnh (100x100) </span>
+          <span class="form__input--heading"> Chọn ảnh </span>
           <input
             type="file"
             class="form__input-file"
             accept="image/*"
+            formControlName="productImage"
+            (change)="uploadFile($event)"
             required
           />
         </div>
       </div>
-      <div class="file-placeholder"></div>
+      <div *ngIf="submitted && f.productImage.errors" class="invalid">
+        <div *ngIf="f.productImage.errors.required">
+          <span>⚠</span> Hình ảnh không được để trống
+        </div>
+      </div>
+      <img [src]="imagesUrl" class="file-placeholder" />
 
       <div class="btn-group">
         <button type="button" class="btn btn-cancel" data-modal="product-modal">
           Hủy
         </button>
-        <button class="btn btn-add">Thêm</button>
+        <button
+          class="btn btn-add"
+          type="submit"
+          *ngIf="selectCurrent; else btnCreate"
+          (click)="handleUpdate()"
+        >
+          Cập nhật
+        </button>
+        <ng-template #btnCreate>
+          <button type="submit" class="btn btn-add" (click)="handleCreate()">
+            Thêm
+          </button>
+        </ng-template>
       </div>
     </form>
   </div>

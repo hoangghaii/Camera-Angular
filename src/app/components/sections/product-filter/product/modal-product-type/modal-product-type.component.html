@@ -10,10 +10,19 @@
 
     <h4 class="heading-4">Thêm/sửa loại sản phẩm</h4>
 
-    <form action="#0" class="form">
+    <form action="#0" class="form" [formGroup]="productTypeForm">
       <div class="form__group">
         <label class="form__label"> Tên loại:<span>(*)</span> </label>
-        <input type="text" class="form__input" required />
+        <input
+          type="text"
+          class="form__input"
+          formControlName="productTypeName"
+        />
+      </div>
+      <div *ngIf="submitted && f.productTypeName.errors" class="invalid">
+        <div *ngIf="f.productTypeName.errors.required">
+          <span>⚠</span> Tên sản phẩm không được để trống
+        </div>
       </div>
 
       <div class="form__group">
@@ -21,7 +30,19 @@
         <textarea name="" cols="30" rows="3" class="form__area"></textarea>
       </div>
 
-      <button class="btn btn-add">Thêm</button>
+      <button
+        class="btn btn-add"
+        type="submit"
+        *ngIf="selectCurrent; else btnCreate"
+        (click)="handleUpdate()"
+      >
+        Cập nhật
+      </button>
+      <ng-template #btnCreate>
+        <button type="submit" class="btn btn-add" (click)="handleCreate()">
+          Thêm
+        </button>
+      </ng-template>
     </form>
   </div>
 </div>

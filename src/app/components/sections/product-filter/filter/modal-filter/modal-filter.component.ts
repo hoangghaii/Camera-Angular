@@ -25,7 +25,7 @@ export class ModalFilterComponent implements OnInit {
   @Input() open!: boolean;
   @Input() typeModal!: string;
   @Input() selectCurrent: any;
-  @Output() confirm: EventEmitter<object> = new EventEmitter<object>();
+  @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
   constructor(private fb: FormBuilder) {}
 
@@ -56,12 +56,19 @@ export class ModalFilterComponent implements OnInit {
     this.confirm.emit({ open: false });
   }
 
-  // handleCreate(): void {
-  //   this.submitted = true;
-  //   if (!this.filterForm.valid) {
-  //     return;
-  //   }
-  // }
+  handleCreate() {
+    this.submitted = true;
+    if (!this.filterForm.valid) {
+      return;
+    }
+  }
+
+  handleUpdate() {
+    this.submitted = true;
+    if (!this.filterForm.valid) {
+      return;
+    }
+  }
 
   parserObj(obj: any): object {
     return {

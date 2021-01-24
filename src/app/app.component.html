@@ -1,11 +1,15 @@
 <div class="container">
-  <app-header></app-header>
+  <div class="wrapper">
+    <app-header></app-header>
 
-  <div class="content">
-    <app-sidebar></app-sidebar>
+    <div class="content">
+      <app-sidebar></app-sidebar>
 
-    <main class="main">
-      <router-outlet></router-outlet>
-    </main>
+      <main class="main">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   </div>
 </div>
+
+<app-loading></app-loading>

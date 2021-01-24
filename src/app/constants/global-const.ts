@@ -1,13 +1,13 @@
-// export namespace GlobalConst {
-//   export namespace LocalStorageKeyMapping {
-//     export const token = 'TOKEN';
-//     export const currentUser = 'CURRENT-USER';
-//   }
-// }
+export namespace GlobalConst {
+  export namespace LocalStorageKeyMapping {
+    export const token = 'TOKEN';
+    export const currentUser = 'CURRENT-USER';
+  }
+}
 
-// export namespace SystemSetting {
-//   export const imageUrl = './assets/images/435x300.png';
-// }
+export namespace ImageHolder {
+  export const imageUrl = './assets/images/200x200.png';
+}
 
 export namespace RegexValidator {
   export const datePattern = /^[2-9][0-9]\d{2}-(0[1-9]|1[012])-(0[1-9]|[1-2][0-9]|3[01])$/;

@@ -7,10 +7,11 @@ import {
   OnChanges,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ImageHolder } from 'src/app/constants/global-const';
 import { Product } from 'src/app/models';
 import { ModalService } from 'src/app/services';
-import { ValidatorService } from 'src/app/services';
+import { UploadService, ValidatorService } from 'src/app/services';
 
 @Component({
   selector: 'app-modal-product',
@@ -21,16 +22,22 @@ export class ModalProductComponent implements OnInit {
   public productForm!: FormGroup;
   public product: Product[] = [];
   public submitted: boolean = false;
+  public imagesUrl!: string;
+  // public imageSource: any;
 
   @Input() open!: boolean;
   @Input() typeModal!: string;
   @Input() selectCurrent: any;
-  @Output() confirm: EventEmitter<object> = new EventEmitter<object>();
+  @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private uploadService: UploadService) {}
 
   async ngOnInit(): Promise<void> {
     this.initForm();
+  }
+
+  ngOnChanges(): void {
+    this.imagesUrl = ImageHolder.imageUrl;
   }
 
   initForm(): void {
@@ -67,6 +74,40 @@ export class ModalProductComponent implements OnInit {
   //     return;
   //   }
   // }
+
+  uploadFile(event: any): void {
+    const reader = new FileReader();
+
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      // console.log(reader.readAsDataURL(file));
+
+      reader.onload = () => {
+        this.imagesUrl = reader.result as string;
+        // console.log(this.productForm(reader.result).value);
+        // this.imageSource = reader.result;
+
+        this.productForm.patchValue({
+          productImage: reader.result,
+        });
+      };
+    }
+  }
+
+  handleCreate() {
+    this.submitted = true;
+    if (!this.productForm.valid) {
+      return;
+    }
+  }
+
+  handleUpdate() {
+    this.submitted = true;
+    if (!this.productForm.valid) {
+      return;
+    }
+  }
 
   parserObj(obj: any): object {
     return {

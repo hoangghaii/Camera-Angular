@@ -1,72 +1,91 @@
 /* ================= Buttons ================= */
 
 .btn {
-	&,
-	&:link,
-	&:visited {
-		appearance: none;
-		text-decoration: none;
-		padding: 1.5rem 4rem;
-		display: inline-block;
-		cursor: pointer;
-		transition: all 0.25s;
+  &,
+  &:link,
+  &:visited {
+    appearance: none;
+    text-decoration: none;
+    padding: 1.5rem 4rem;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 1rem;
+    transition: all 0.25s;
 
-		position: relative;
+    position: relative;
 
-		//Change for the <button> element
-		border: none;
-	}
+    //Change for the <button> element
+    border: none;
+  }
 
-	&:hover,
-	&:focus {
-		outline: none;
-		box-shadow: 0 0.6rem 2rem rgba($color-black, 0.3);
-		transform: translateY(-0.5rem);
-	}
+  &:hover,
+  &:focus {
+    outline: none;
+    box-shadow: 0 0.6rem 2rem rgba($color-black, 0.3);
+    transform: translateY(-0.5rem);
+  }
 
-	&:active {
-		box-shadow: 0 0.8rem 1.5rem rgba($color-black, 0.2);
-		transform: translateY(0.5rem);
-	}
+  &:active {
+    box-shadow: 0 0.8rem 1.5rem rgba($color-black, 0.2);
+    transform: translateY(0.5rem);
+  }
 
-	&-group {
-		display: flex;
-		justify-content: center;
+  &-group {
+    display: flex;
+    justify-content: center;
 
-		& > *:first-child {
-			margin-right: 3rem;
-		}
-		& > *:last-child {
-			margin-left: 3rem;
-		}
-	}
+    & > *:first-child {
+      margin-right: 3rem;
+    }
+    & > *:last-child {
+      margin-left: 3rem;
+    }
+  }
 
-	&-add {
-		padding: 1.3rem 6rem;
-		color: $color-white;
-		background-color: $color-primary;
-		border-radius: 1rem;
+  &-add {
+    padding: 1.3rem 6rem;
+    color: $color-white;
+    background-color: $color-primary;
 
-		margin-top: 1rem;
-	}
-	&-cancel {
-		padding: 1.3rem 6.3rem;
-		color: $color-white;
-		background-color: $color-grey-light-4;
-		border-radius: 1rem;
+    margin-top: 2.5rem;
+  }
 
-		margin-top: 1rem;
+  &-cancel {
+    padding: 1.3rem 6.3rem;
+    color: $color-white;
+    background-color: $color-grey-light-4;
 
-		&:hover,
-		&:focus {
-			outline: none;
-			box-shadow: $shadow-dark-2;
-			transform: translateY(0);
-		}
+    margin-top: 1rem;
 
-		&:active {
-			box-shadow: transparent;
-			transform: translateY(0);
-		}
-	}
+    &:hover,
+    &:focus {
+      outline: none;
+      box-shadow: $shadow-dark-2;
+      transform: translateY(0);
+    }
+
+    &:active {
+      box-shadow: transparent;
+      transform: translateY(0);
+    }
+  }
+
+  &-success {
+    background-color: $color-primary;
+    color: $color-white;
+    font-size: 1.6rem;
+    font-weight: 600;
+  }
+
+  &-login {
+    width: 100%;
+    padding: 1.5rem 3rem;
+    background-color: $color-blue;
+    color: $color-white;
+    font-size: 1.4rem;
+    font-weight: 600;
+    border-radius: 1rem;
+
+    margin: 3rem 0 0;
+  }
 }
