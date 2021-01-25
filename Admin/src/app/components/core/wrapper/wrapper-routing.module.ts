@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductSettingComponent } from '../../sections/product-setting/product-setting.component';
+import { ConfigurationSettingsComponent } from '../../sections/configuration-settings/configuration-settings.component';
 import { WrapperComponent } from './wrapper.component';
 
 const routes: Routes = [
@@ -9,8 +9,8 @@ const routes: Routes = [
     component: WrapperComponent,
     children: [
       {
-        path: 'product-setting',
-        component: ProductSettingComponent,
+        path: 'configuration-settings',
+        component: ConfigurationSettingsComponent,
       },
       {
         path: 'product-manage',

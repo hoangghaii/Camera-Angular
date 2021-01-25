@@ -10,11 +10,11 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'product-setting',
+    path: 'configuration-settings',
     loadChildren: () =>
-      import(`../../sections/product-setting/product-setting.module`).then(
-        (m) => m.ProductSettingModule
-      ),
+      import(
+        `../../sections/configuration-settings/configuration-settings-routing.module`
+      ).then((m) => m.ConfigurationSettingsRoutingModule),
   },
   {
     path: '',
