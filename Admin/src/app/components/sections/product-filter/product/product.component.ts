@@ -1,4 +1,7 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { Product } from 'src/app/models';
+import { ProductService } from 'src/app/services/apis';
+import { Helper } from 'src/app/utils/helper';
 
 @Component({
   selector: 'app-product',
@@ -6,22 +9,21 @@ import { Component, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  @Output() pageSize = 5;
-
   public selectCurrent: any;
   public typeModal: any;
   public isOpen!: boolean;
+  public helper = Helper;
 
   public pageOfItems!: Array<any>;
-  items: any;
+  public items: any;
+  public product!: Product[];
+  public productList: any;
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {
-    // an example array of 150 items to be paged
-    this.items = Array(20)
-      .fill(0)
-      .map((x, i) => ({ id: i + 1, name: `Item ${i + 1}` }));
+  async ngOnInit(): Promise<void> {
+    this.productList = await this.getProductList();
+    console.log(this.productList);
   }
 
   openModal(status?: string, type?: string): void {
@@ -41,6 +43,10 @@ export class ProductComponent implements OnInit {
   //   }
   //   this.isOpen = event.isOpen;
   // }
+
+  async getProductList(): Promise<any[]> {
+    return await this.productService.getProductList().toPromise();
+  }
 
   /**
    * Pagiantion

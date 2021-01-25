@@ -54,16 +54,20 @@
       </div>
 
       <div class="table-body">
-        <div class="table-content__list" *ngFor="let item of pageOfItems">
-          <span class="table-content__item"> {{ item.name }} </span>
+        <div class="table-content__list" *ngFor="let item of productList">
+          <span class="table-content__item"> {{ item.id }} </span>
           <span class="table-content__item">
-            <a href="#0" class="table-content__link" data-modal="product-modal">
-              Sản phẩm 1
+            <a href="#0" class="table-content__link">
+              {{ item.name }}
             </a>
           </span>
-          <span class="table-content__item"> 1.000.000 </span>
-          <span class="table-content__item"> Loại 1 </span>
-          <span class="table-content__item"> 21/12/2021 </span>
+          <span class="table-content__item"> {{ item.price }} </span>
+          <span class="table-content__item">
+            {{ item.category_product["name"] }}
+          </span>
+          <span class="table-content__item">
+            {{ helper.formatDate(item.created_at) }}
+          </span>
           <span class="table-content__item">
             <span class="times-icon times-icon-2">
               <i class="fal fa-times"></i>
@@ -73,10 +77,10 @@
       </div>
     </div>
 
-    <app-pagination
+    <!-- <app-pagination
       [items]="items"
       (changePage)="onChangePage($event)"
-    ></app-pagination>
+    ></app-pagination> -->
   </div>
 </div>
 

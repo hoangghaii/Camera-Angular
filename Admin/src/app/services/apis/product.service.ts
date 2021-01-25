@@ -20,14 +20,11 @@ export class ProductService extends HttpService {
 
   /**
    *
-   * @param shopId
    * @param categoryCd
    */
-  getProductList(shopId: string, categoryCd: string): Observable<Product[]> {
-    const url = this.apiUrl + `shops/${shopId}/skills`;
-    const params = new HttpParams().set('category_cd', categoryCd);
-    const options = { params };
-    return this.http.get<Product[]>(url, options).pipe(
+  getProductList(): Observable<Product[]> {
+    const url = this.apiUrl + `product`;
+    return this.http.get<Product[]>(url).pipe(
       map((res: any) => {
         if (res) {
           return res;
