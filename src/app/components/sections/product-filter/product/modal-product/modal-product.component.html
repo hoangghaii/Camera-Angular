@@ -29,7 +29,11 @@
       <div class="form__group-error" *ngIf="submitted">
         <div></div>
 
-        <div *ngIf="submitted && f.productType.errors" class="invalid">
+        <div
+          *ngIf="submitted && f.productType.errors"
+          class="invalid"
+          style="margin-left: 25rem"
+        >
           <div *ngIf="f.productType.errors.required">
             <span>⚠</span> Loại sản phẩm cần được chọn
           </div>
@@ -105,9 +109,7 @@
       <img [src]="imagesUrl" class="file-placeholder" />
 
       <div class="btn-group">
-        <button type="button" class="btn btn-cancel" data-modal="product-modal">
-          Hủy
-        </button>
+        <button class="btn btn-cancel">Hủy</button>
         <button
           class="btn btn-add"
           type="submit"

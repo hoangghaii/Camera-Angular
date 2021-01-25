@@ -10,14 +10,32 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/core/header/header.component';
-import { SidebarComponent } from './components/core/sidebar/sidebar.component';
 import { SharedModule } from './shared.module';
+import { LoaderInterceptor, RequestInterceptor } from './interceptors';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, SidebarComponent],
-  imports: [BrowserModule, AppRoutingModule, SharedModule],
-  providers: [],
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    AppRoutingModule,
+    SharedModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

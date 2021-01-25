@@ -1,9 +1,16 @@
 .add-product-modal {
+  .form__group:not(:first-child) {
+    margin-top: 0 !important;
+  }
   .form__group-big:not(:last-child) {
     margin-bottom: 0;
   }
 
   .form__group-big {
     margin-top: 2rem;
+  }
+
+  .heading-4 {
+    margin-bottom: 0 !important;
   }
 }

@@ -17,7 +17,7 @@ import { LoadingComponent } from './components/core/loading/loading.component';
     HttpClientModule,
     RouterModule,
   ],
-  exports: [ErrorComponent, LoadingComponent],
+  exports: [ErrorComponent, LoadingComponent, ModalComponent],
   entryComponents: [ModalComponent],
   providers: [],
 })

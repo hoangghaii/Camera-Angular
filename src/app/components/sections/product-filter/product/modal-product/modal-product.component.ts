@@ -85,8 +85,7 @@ export class ModalProductComponent implements OnInit {
 
       reader.onload = () => {
         this.imagesUrl = reader.result as string;
-        // console.log(this.productForm(reader.result).value);
-        // this.imageSource = reader.result;
+        console.log(reader.result);
 
         this.productForm.patchValue({
           productImage: reader.result,

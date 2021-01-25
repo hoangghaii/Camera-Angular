@@ -6,7 +6,7 @@ export namespace GlobalConst {
 }
 
 export namespace ImageHolder {
-  export const imageUrl = './assets/images/200x200.png';
+  export const imageUrl = './assets/images/150x150.png';
 }
 
 export namespace RegexValidator {

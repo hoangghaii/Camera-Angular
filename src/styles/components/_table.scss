@@ -66,6 +66,10 @@
       &-heading__item:nth-child(3),
       &-content__item:nth-child(3) {
         width: 15%;
+
+        @include respond(table) {
+          width: 20%;
+        }
       }
 
       &-heading__item:nth-child(4),
@@ -76,6 +80,10 @@
       &-heading__item:nth-child(5),
       &-content__item:nth-child(5) {
         width: 18%;
+
+        @include respond(table) {
+          width: 20%;
+        }
       }
 
       &-heading__item:last-child,

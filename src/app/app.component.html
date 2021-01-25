@@ -1,15 +1,6 @@
 <div class="container">
-  <div class="wrapper">
-    <app-header></app-header>
-
-    <div class="content">
-      <app-sidebar></app-sidebar>
-
-      <main class="main">
-        <router-outlet></router-outlet>
-      </main>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 </div>
 
 <app-loading></app-loading>
+<app-error-modal></app-error-modal>

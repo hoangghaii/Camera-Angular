@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SharedModule } from 'src/app/shared.module';
 import { ProductFilterRoutingModule } from './product-filter-routing.module';
+
 import { ProductComponent } from './product/product.component';
 import { FilterComponent } from './filter/filter.component';
 import { ProductFilterComponent } from './product-filter.component';
@@ -26,6 +27,7 @@ import { ModalFilterTypeComponent } from './filter/modal-filter-type/modal-filte
     ReactiveFormsModule,
     FormsModule,
     ProductFilterRoutingModule,
+    SharedModule,
   ],
 })
 export class ProductFilterModule {}

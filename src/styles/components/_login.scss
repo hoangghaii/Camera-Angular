@@ -81,28 +81,27 @@
     }
 
     &__input {
-      width: 100%;
-      border: 2px solid $color-border;
-      padding: 1rem 1rem;
-      border-radius: 1rem;
+      font-family: $font-opensans;
+      font-size: 1.6rem;
       color: $color-font;
+
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      border: 2px solid;
+      border-color: $color-border;
+      border-radius: 1.1rem;
 
       &:focus {
         outline: none;
       }
 
       &:invalid {
-        border: 2px solid #eb4d4b;
+        border-color: #eb4d4b;
       }
 
       &:valid {
-        border: 2px solid $color-border;
+        border-color: $color-border;
       }
-    }
-
-    &__option {
-      display: flex;
-      justify-content: space-between;
     }
   }
 }

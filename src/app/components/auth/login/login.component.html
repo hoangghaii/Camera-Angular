@@ -3,16 +3,26 @@
     <div class="login__heading">
       <img src="./assets/images/logo.jpg" alt="logo" class="login__img" />
     </div>
-    <form action="" class="login-form">
+    <form action="" class="login-form" [formGroup]="loginForm">
       <div class="login-form__group">
         <label for="email" class="login-form__label"> Email </label>
         <input
           type="email"
           name="email"
           id="email"
+          autocomplete="off"
           class="login-form__input"
           placeholder="Enter your email"
+          formControlName="email"
         />
+      </div>
+      <div *ngIf="submitted && f.email.errors" class="invalid">
+        <div *ngIf="f.email.errors.required">
+          <span>⚠</span> Email không được để trống
+        </div>
+        <div *ngIf="f.email.errors.email">
+          <span>⚠</span> Email không đúng định dạng
+        </div>
       </div>
 
       <div class="login-form__group">
@@ -21,12 +31,21 @@
           type="password"
           name="password"
           id="password"
+          autocomplete="off"
           class="login-form__input"
           placeholder="Password"
+          formControlName="password"
         />
       </div>
+      <div *ngIf="submitted && f.password.errors" class="invalid">
+        <div *ngIf="f.password.errors.required">
+          <span>⚠</span> Mật khẩu không được để trống
+        </div>
+      </div>
 
-      <button class="btn btn-login" type="button">Log in</button>
+      <button class="btn btn-login" type="submit" (click)="handleLogin()">
+        Log in
+      </button>
     </form>
   </div>
   <div class="login-right">

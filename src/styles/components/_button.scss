@@ -12,6 +12,9 @@
     border-radius: 1rem;
     transition: all 0.25s;
 
+    font-family: $font-montserrat;
+    font-size: 1.5rem;
+
     position: relative;
 
     //Change for the <button> element
@@ -30,18 +33,6 @@
     transform: translateY(0.5rem);
   }
 
-  &-group {
-    display: flex;
-    justify-content: center;
-
-    & > *:first-child {
-      margin-right: 3rem;
-    }
-    & > *:last-child {
-      margin-left: 3rem;
-    }
-  }
-
   &-add {
     padding: 1.3rem 6rem;
     color: $color-white;
@@ -55,8 +46,6 @@
     color: $color-white;
     background-color: $color-grey-light-4;
 
-    margin-top: 1rem;
-
     &:hover,
     &:focus {
       outline: none;
@@ -65,8 +54,22 @@
     }
 
     &:active {
-      box-shadow: transparent;
+      box-shadow: $shadow-dark-1;
       transform: translateY(0);
+    }
+  }
+
+  &-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > *:first-child {
+      margin-right: 3rem;
+    }
+    & > *:last-child {
+      margin-top: 0;
+      margin-left: 3rem;
     }
   }
 
