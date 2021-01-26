@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'product-filter',
+    path: 'product-manage',
     loadChildren: () =>
       import(`../../sections/product-filter/product-filter.module`).then(
         (m) => m.ProductFilterModule
@@ -18,7 +18,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'product-filter',
+    redirectTo: 'product-manage',
     pathMatch: 'full',
   },
 ];

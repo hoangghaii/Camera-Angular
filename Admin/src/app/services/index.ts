@@ -5,4 +5,5 @@ export * from './http.service';
 export * from './loader.service';
 export * from './local-storage.service';
 export * from './modal.service';
+export * from './token.service';
 export * from './validator.service';

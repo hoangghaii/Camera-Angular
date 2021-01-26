@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/services';
 
 declare const fnClock: any;
 
@@ -8,9 +9,12 @@ declare const fnClock: any;
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  constructor() {}
+  public currentUser: any;
+
+  constructor(private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     fnClock();
+    this.currentUser = this.localStorageService.getItem('getUser')['name'];
   }
 }

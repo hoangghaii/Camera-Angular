@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
-import { LocalStorageService, ModalService } from '../services';
+import { LocalStorageService, ModalService, TokenService } from '../services';
 import { GlobalConst } from 'src/app/constants/global-const';
 import { catchError, map } from 'rxjs/operators';
 
@@ -16,6 +16,7 @@ import { catchError, map } from 'rxjs/operators';
 export class RequestInterceptor implements HttpInterceptor {
   constructor(
     private localStorageService: LocalStorageService,
+    private token: TokenService,
     private modalService: ModalService
   ) {}
 
@@ -23,13 +24,13 @@ export class RequestInterceptor implements HttpInterceptor {
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const token: string = this.localStorageService.getItem(
+    const token: string = this.token.getWithExpiry(
       GlobalConst.LocalStorageKeyMapping.token
     );
     const isApiUrl = request.url.startsWith(env.BASE_URL);
 
     request = request.clone({
-      setHeaders: token && isApiUrl ? { Authorization: `Bearer ${token}` } : {},
+      setHeaders: token && isApiUrl ? { Authorization: ` ${token}` } : {},
     });
 
     return next.handle(request).pipe(

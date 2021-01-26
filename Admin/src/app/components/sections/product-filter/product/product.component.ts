@@ -15,7 +15,6 @@ export class ProductComponent implements OnInit {
   public helper = Helper;
 
   public pageOfItems!: Array<any>;
-  public items: any;
   public product!: Product[];
   public productList: any;
 

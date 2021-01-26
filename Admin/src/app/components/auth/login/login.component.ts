@@ -7,6 +7,7 @@ import {
   ModalService,
   AuthService,
   ValidatorService,
+  TokenService,
 } from 'src/app/services';
 import { GlobalConst } from 'src/app/constants/global-const';
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private modalService: ModalService,
-    private router: Router
+    private router: Router,
+    private token: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -53,13 +55,14 @@ export class LoginComponent implements OnInit {
     this.authService.logIn(this.loginForm.getRawValue()).subscribe(
       (res) => {
         if (res.token) {
-          this.localStorageService.setItem(
+          this.token.setWithExpiry(
             GlobalConst.LocalStorageKeyMapping.token,
-            res.token
+            res.token,
+            2
           );
           this.authService.getCurrentUser().subscribe((user) => {
             localStorage.setItem('getUser', JSON.stringify(user));
-            this.router.navigateByUrl('/top');
+            this.router.navigateByUrl('/product-manage');
           });
         }
       },
