@@ -11,11 +11,11 @@ const routes: Routes = [
         (m) => m.WrapperModule
       ),
   },
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import('./components/auth/auth.module').then((m) => m.AuthModule),
-  // },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./components/auth/auth.module').then((m) => m.AuthModule),
+  },
   {
     path: '',
     loadChildren: () =>

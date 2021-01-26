@@ -13,13 +13,17 @@
       <span class="header__cart-number">1</span>
     </div>
 
-    <div class="header__nav-user">
+    <a
+      [routerLink]="'/login'"
+      routerLinkActive="active"
+      class="header__nav-user"
+    >
       <img
         src="./assets/images/user.jpg"
         alt="user logo"
         class="header__nav-user--photo"
       />
       <span class="header__nav-user--name">{{ currentUser }}</span>
-    </div>
+    </a>
   </nav>
 </header>
