@@ -33,7 +33,7 @@
       display: block;
       height: 100%;
       width: 3px;
-      background-color: $color-primary;
+      background-color: $admin-color-primary;
       z-index: -1;
       transform: scaleY(0);
       transform-origin: center;
@@ -48,7 +48,7 @@
     }
 
     &:active::before {
-      background-color: $color-primary-light;
+      background-color: $admin-color-primary-light;
     }
   }
 

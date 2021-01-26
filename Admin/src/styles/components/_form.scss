@@ -2,6 +2,7 @@
 .form {
   display: block;
   text-align: center;
+  color: $color-font;
 
   &__group {
     display: flex;
@@ -30,7 +31,7 @@
   }
 
   &__label {
-    font-family: $font-montserrat;
+    font-family: $sourceSerif;
     font-size: 1.5rem;
     font-weight: 500;
     text-align: left;
@@ -45,9 +46,10 @@
 
   &__input {
     font-size: 1.6rem;
-    font-family: $font-opensans;
+    font-family: $poppins;
     border-radius: 1.1rem;
     border: 1px solid $color-grey-light-4;
+    color: inherit;
 
     width: 100%;
     padding: 1rem 1.5rem;
@@ -60,7 +62,8 @@
   &__area {
     width: 100%;
     font-size: 1.6rem;
-    font-family: $font-opensans;
+    font-family: $poppins;
+    color: inherit;
     border-radius: 1.1rem;
     border: 1px solid $color-grey-light-4;
 
@@ -76,6 +79,7 @@
     padding: 0.8rem 3.3rem;
     border: 1px solid $color-grey-light-4;
     border-radius: 1.1rem;
+    color: inherit;
 
     &:focus {
       outline: none;
@@ -105,6 +109,54 @@
     z-index: 0;
   }
 
+  &__number {
+    margin: auto;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    width: 20rem;
+
+    .arrow-minus,
+    .arrow-plus {
+      border: none;
+      outline: none;
+      background-color: $color-grey-light-4;
+      border-radius: 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: $color-font;
+      padding: 0.5rem 1.2rem;
+      cursor: pointer;
+
+      transition: all 0.25s;
+
+      &:hover {
+        color: $color-white;
+        background-color: $customer-color-primary;
+        box-shadow: $shadow-dark-1;
+      }
+    }
+
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      margin: 0;
+    }
+    input[type="number"] {
+      -moz-appearance: textfield;
+      outline: none;
+      border: 1px solid $color-grey-light-4;
+      font-size: 1.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      width: 100%;
+      margin: 0 1rem;
+      color: inherit;
+    }
+  }
+
   &__input-file {
     position: absolute;
     top: 50%;
@@ -125,5 +177,13 @@
     height: 15rem;
     margin: 1rem auto;
     background-color: $color-grey-light-3;
+  }
+}
+
+.invalid {
+  color: #ee5253;
+
+  span {
+    color: #eb2f64;
   }
 }

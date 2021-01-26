@@ -9,9 +9,29 @@
   min-height: 100vh;
   background: linear-gradient(
     to right bottom,
-    $color-primary-dark,
-    $color-primary-light
+    $admin-color-primary-dark,
+    $admin-color-primary-light
   );
+
+  &-admin {
+    background: linear-gradient(
+      to right bottom,
+      $admin-color-primary-dark,
+      $admin-color-primary-light
+    );
+  }
+
+  &-customer {
+    background: linear-gradient(
+      to right,
+      $customer-color-primary-dark,
+      $customer-color-primary
+    );
+  }
+
+  @include respond(desktop) {
+    padding: 2rem;
+  }
 
   @include respond(desktop) {
     padding: 2rem;

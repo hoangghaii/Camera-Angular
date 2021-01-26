@@ -1,11 +1,8 @@
-<div class="wrapper">
+<div
+  class="wrapper"
+  [ngClass]="{ 'wrapper-admin': currentUser, 'wrapper-customer': !currentUser }"
+>
   <app-header></app-header>
 
-  <div class="content">
-    <app-sidebar></app-sidebar>
-
-    <main class="main">
-      <router-outlet></router-outlet>
-    </main>
-  </div>
+  <router-outlet></router-outlet>
 </div>

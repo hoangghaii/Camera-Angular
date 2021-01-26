@@ -1,94 +1,132 @@
 /* ================= Buttons ================= */
 
 .btn {
-  &,
-  &:link,
-  &:visited {
-    appearance: none;
-    text-decoration: none;
-    padding: 1.5rem 4rem;
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 1rem;
-    transition: all 0.25s;
+	&,
+	&:link,
+	&:visited {
+		appearance: none;
+		text-decoration: none;
+		padding: 1.5rem 4rem;
+		display: inline-block;
+		cursor: pointer;
+		border-radius: 1rem;
+		transition: all 0.25s;
 
-    font-family: $font-montserrat;
-    font-size: 1.5rem;
+		position: relative;
 
-    position: relative;
+		//Change for the <button> element
+		border: none;
+	}
 
-    //Change for the <button> element
-    border: none;
-  }
+	&:hover,
+	&:focus {
+		outline: none;
+		box-shadow: 0 0.6rem 2rem rgba($color-black, 0.3);
+		transform: translateY(-0.5rem);
+	}
 
-  &:hover,
-  &:focus {
-    outline: none;
-    box-shadow: 0 0.6rem 2rem rgba($color-black, 0.3);
-    transform: translateY(-0.5rem);
-  }
+	&:active {
+		box-shadow: 0 0.8rem 1.5rem rgba($color-black, 0.2);
+		transform: translateY(0.5rem);
+	}
 
-  &:active {
-    box-shadow: 0 0.8rem 1.5rem rgba($color-black, 0.2);
-    transform: translateY(0.5rem);
-  }
+	&-group {
+		display: flex;
+		justify-content: center;
 
-  &-add {
-    padding: 1.3rem 6rem;
-    color: $color-white;
-    background-color: $color-primary;
+		& > *:first-child {
+			margin-right: 3rem;
+		}
+		& > *:last-child {
+			margin-left: 3rem;
+		}
+	}
 
-    margin-top: 2.5rem;
-  }
+	&-add {
+		padding: 1.3rem 6rem;
+		color: $color-white;
+		background-color: $admin-color-primary;
 
-  &-cancel {
-    padding: 1.3rem 6.3rem;
-    color: $color-white;
-    background-color: $color-grey-light-4;
+		margin-top: 1rem;
+	}
 
-    &:hover,
-    &:focus {
-      outline: none;
-      box-shadow: $shadow-dark-2;
-      transform: translateY(0);
-    }
+	&-cancel {
+		padding: 1.3rem 6.3rem;
+		color: $color-white;
+		background-color: $color-grey-light-4;
 
-    &:active {
-      box-shadow: $shadow-dark-1;
-      transform: translateY(0);
-    }
-  }
+		margin-top: 1rem;
 
-  &-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+		&:hover,
+		&:focus {
+			outline: none;
+			box-shadow: $shadow-dark-2;
+			transform: translateY(0);
+		}
 
-    & > *:first-child {
-      margin-right: 3rem;
-    }
-    & > *:last-child {
-      margin-top: 0;
-      margin-left: 3rem;
-    }
-  }
+		&:active {
+			box-shadow: transparent;
+			transform: translateY(0);
+		}
+	}
 
-  &-success {
-    background-color: $color-primary;
-    color: $color-white;
-    font-size: 1.6rem;
-    font-weight: 600;
-  }
+	&-success {
+		background-color: $admin-color-primary;
+		color: $color-white;
+		font-size: 1.6rem;
+		font-weight: 600;
+	}
 
-  &-login {
-    width: 100%;
-    padding: 1.5rem 3rem;
-    background-color: $color-blue;
-    color: $color-white;
-    font-size: 1.4rem;
-    font-weight: 600;
-    border-radius: 1rem;
+	&-login {
+		width: 100%;
+		padding: 1.5rem 3rem;
+		background-color: $color-blue;
+		color: $color-white;
+		font-size: 1.4rem;
+		font-weight: 600;
+		border-radius: 1rem;
 
-    margin: 3rem 0 0;
-  }
+		margin: 3rem 0 0;
+	}
+
+	&-pdf {
+		padding: 1.2rem 3rem;
+		background-color: $color-grey-light-3;
+		font-weight: 500;
+		color: $color-font;
+
+		transition: all 0.25s;
+
+		&:hover {
+			background-color: $customer-color-primary;
+			color: $color-white;
+		}
+	}
+
+	&-accessories {
+		margin-left: auto;
+	}
+
+	&-choose {
+		padding: 1.2rem 4rem;
+
+		color: $color-white;
+		background: linear-gradient(
+			to right,
+			$customer-color-primary,
+			$customer-color-primary-light
+		);
+	}
+
+	&-edit {
+		padding: 1.2rem 4rem;
+		min-width: 12.5rem;
+
+		color: $color-white;
+		background: linear-gradient(
+			to right,
+			$color-grey-light-4,
+			rgba($color-blue, 0.7)
+		);
+	}
 }

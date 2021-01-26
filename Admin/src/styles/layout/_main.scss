@@ -29,14 +29,14 @@
       padding: 0.8rem 2rem;
       min-width: 17rem;
 
-      border: 2px solid $color-primary-light;
+      border: 2px solid $admin-color-primary-light;
       border-bottom-color: $color-white;
       border-radius: 1.5rem 1.5rem 0 0;
-      background-color: $color-primary-light;
+      background-color: $admin-color-primary-light;
       color: $color-white;
 
       text-align: center;
-      font-family: $font-montserrat;
+      font-family: $poppins;
       font-size: 1.5rem;
       font-weight: 600;
 
@@ -78,7 +78,7 @@
     }
 
     &__name {
-      color: $color-primary;
+      color: $admin-color-primary;
       display: inline-block;
       position: relative;
       cursor: pointer;
@@ -93,7 +93,7 @@
         display: inline-block;
         width: 0;
         height: 2px;
-        background-color: $color-primary;
+        background-color: $admin-color-primary;
 
         transition: all 0.25s;
       }
@@ -107,7 +107,7 @@
   &-content {
     margin-top: -4px;
 
-    border: 2px solid $color-primary;
+    border: 2px solid $admin-color-primary;
     border-radius: 1rem 1rem 0 0;
 
     transition: all 0.25s;

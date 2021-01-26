@@ -4,7 +4,7 @@
   margin: 2rem auto;
 
   &-header {
-    background-color: $color-primary-light;
+    background-color: $admin-color-primary-light;
     border-radius: 1rem 1rem 0 0;
   }
 
@@ -17,7 +17,7 @@
 
   &-heading__item {
     color: $color-white;
-    font-family: $font-montserrat;
+    font-family: $poppins;
     font-size: 1.5rem;
     font-weight: 600;
     text-align: center;
@@ -28,12 +28,12 @@
   }
 
   &-body {
-    border: 2px solid $color-primary-light;
+    border: 2px solid $admin-color-primary-light;
   }
 
   &-content__list {
     &:not(:last-child) {
-      border-bottom: 2px solid $color-primary-light;
+      border-bottom: 2px solid $admin-color-primary-light;
     }
   }
 
@@ -41,7 +41,7 @@
     text-align: center;
 
     &:not(:last-child) {
-      border-right: 2px solid $color-primary-light;
+      border-right: 2px solid $admin-color-primary-light;
     }
   }
 
@@ -123,7 +123,7 @@
   }
 
   &-content__link {
-    color: $color-primary;
+    color: $admin-color-primary;
     font-weight: 500;
     text-decoration: underline !important;
 

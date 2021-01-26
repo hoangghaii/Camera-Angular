@@ -60,11 +60,11 @@ img {
 }
 
 ::-moz-selection {
-  background: $color-primary; /* Gecko Browsers */
+  background: $admin-color-primary; /* Gecko Browsers */
   color: $color-white;
 }
 
 ::selection {
-  background: $color-primary; /* WebKit/Blink Browsers */
+  background: $admin-color-primary; /* WebKit/Blink Browsers */
   color: $color-white;
 }

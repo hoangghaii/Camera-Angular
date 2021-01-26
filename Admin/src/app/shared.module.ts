@@ -7,9 +7,15 @@ import { RouterModule } from '@angular/router';
 import { ErrorComponent } from './components/core/error/error.component';
 import { ModalComponent } from './directives/modal.component ';
 import { LoadingComponent } from './components/core/loading/loading.component';
+import { HeaderComponent } from './components/core/header/header.component';
 
 @NgModule({
-  declarations: [ErrorComponent, ModalComponent, LoadingComponent],
+  declarations: [
+    ErrorComponent,
+    ModalComponent,
+    LoadingComponent,
+    HeaderComponent,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -17,7 +23,7 @@ import { LoadingComponent } from './components/core/loading/loading.component';
     HttpClientModule,
     RouterModule,
   ],
-  exports: [ErrorComponent, LoadingComponent, ModalComponent],
+  exports: [ErrorComponent, LoadingComponent, ModalComponent, HeaderComponent],
   entryComponents: [ModalComponent],
   providers: [],
 })

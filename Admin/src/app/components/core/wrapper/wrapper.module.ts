@@ -5,11 +5,9 @@ import { SharedModule } from 'src/app/shared.module';
 
 import { WrapperRoutingModule } from './wrapper-routing.module';
 import { WrapperComponent } from './wrapper.component';
-import { HeaderComponent } from '../header/header.component';
-import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [WrapperComponent, HeaderComponent, SidebarComponent],
+  declarations: [WrapperComponent],
   imports: [
     CommonModule,
     WrapperRoutingModule,

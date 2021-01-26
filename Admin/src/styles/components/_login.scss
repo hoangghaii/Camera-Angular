@@ -71,7 +71,7 @@
 
     &__label {
       display: block;
-      font-family: $font-montserrat;
+      font-family: $poppins;
       color: $color-tertiary;
       font-size: 1.6rem;
       font-weight: 600;
@@ -81,7 +81,7 @@
     }
 
     &__input {
-      font-family: $font-opensans;
+      font-family: $poppins;
       font-size: 1.6rem;
       color: $color-font;
 
@@ -131,7 +131,7 @@
   }
 
   &__author {
-    font-family: $font-montserrat;
+    font-family: $poppins;
     font-size: 1.6rem;
     color: inherit;
 

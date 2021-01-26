@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConfigurationSettingsComponent } from '../../sections/configuration-settings/configuration-settings.component';
 import { WrapperComponent } from './wrapper.component';
 
 const routes: Routes = [
@@ -9,25 +8,18 @@ const routes: Routes = [
     component: WrapperComponent,
     children: [
       {
-        path: 'configuration-settings',
-        component: ConfigurationSettingsComponent,
+        path: 'content',
+        loadChildren: () =>
+          import(`../content/content.module`).then((m) => m.ContentModule),
       },
       {
-        path: 'product-manage',
+        path: '',
         loadChildren: () =>
-          import(`../../sections/product-filter/product-filter.module`).then(
-            (m) => m.ProductFilterModule
-          ),
+          import(`../../sections/user/user.module`).then((m) => m.UserModule),
       },
-      { path: '', redirectTo: 'product-manage', pathMatch: 'full' },
+      { path: '', redirectTo: 'user', pathMatch: 'full' },
     ],
   },
-  // {
-  //   path: '',
-  //   loadChildren: () =>
-  //     import(`../sidebar/sidebar.module`).then((m) => m.SidebarModule),
-  //   // canActivate: [AuthGuard],
-  // },
 ];
 
 @NgModule({
