@@ -1,15 +1,21 @@
 /* =================== Home ================== */
 .container {
   width: 100%;
+  min-height: 100vh;
 }
 
 .wrapper {
   padding: 3rem;
+  min-height: 100vh;
   background: linear-gradient(
     to right bottom,
     $color-primary-dark,
     $color-primary-light
   );
+
+  @include respond(desktop) {
+    padding: 2rem;
+  }
 }
 
 .header {
@@ -27,11 +33,10 @@
 
 .content {
   display: flex;
-  // min-height: 82vh;
-  // height: 81vh;
-  // @media only screen and (max-width: $bp-medium) {
-  // 	flex-direction: column;
-  // }
+
+  @include respond(tablet) {
+    flex-direction: column;
+  }
 }
 
 .sidebar {
