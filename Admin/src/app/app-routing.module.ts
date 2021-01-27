@@ -16,14 +16,14 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/auth/auth.module').then((m) => m.AuthModule),
   },
-  {
-    path: '',
-    loadChildren: () =>
-      import(`./components/core/wrapper/wrapper.module`).then(
-        (m) => m.WrapperModule
-      ),
-    // canActivate: [AuthGuard],
-  },
+  // {
+  //   path: '',
+  //   loadChildren: () =>
+  //     import(`./components/core/wrapper/wrapper.module`).then(
+  //       (m) => m.WrapperModule
+  //     ),
+  //   // canActivate: [AuthGuard],
+  // },
 ];
 
 @NgModule({

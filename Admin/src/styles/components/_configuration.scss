@@ -1,124 +1,160 @@
 /* =================== Configuration ================== */
 .configuration {
-	background-color: $color-white;
-	padding: 3rem;
-	min-height: 80vh;
+  background-color: $color-white;
+  padding: 3rem;
+  min-height: 80vh;
 
-	&__header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
-		margin-bottom: 3rem;
-	}
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid $color-grey-light-3;
+  }
 
-	&__list {
-		display: flex;
-	}
+  &__list {
+    display: flex;
+  }
 
-	&__item {
-		padding: 0.7rem 2rem;
-		background-color: $color-grey-light-3;
-		border-radius: 0.7rem;
-		color: currentColor;
+  &__item {
+    padding: 0.7rem 2rem;
+    background-color: $color-grey-light-3;
+    border-radius: 0.7rem;
+    color: currentColor;
 
-		cursor: pointer;
+    cursor: pointer;
 
-		transition: all 0.25s;
+    transition: all 0.25s;
 
-		&.active {
-			color: $color-white;
-			background: linear-gradient(
-				to right,
-				$customer-color-primary,
-				$customer-color-primary-light
-			);
+    &.active {
+      color: $color-white;
+      background: linear-gradient(
+        to right,
+        $customer-color-primary,
+        $customer-color-primary-light
+      );
 
-			&:hover {
-				background: linear-gradient(
-					to right,
-					$customer-color-primary,
-					$customer-color-primary-light
-				);
-			}
-		}
+      &:hover {
+        background: linear-gradient(
+          to right,
+          $customer-color-primary,
+          $customer-color-primary-light
+        );
+      }
+    }
 
-		&:hover {
-			background: $color-grey-light-4;
-		}
+    &:hover {
+      background: $color-grey-light-4;
+    }
 
-		&:not(:last-child) {
-			margin-right: 2.5rem;
-		}
-	}
+    &:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+  }
 
-	&__pdf {
-		text-align: center;
-		padding: 2rem 3.5rem;
-		border: 1px solid $color-grey-dark-1;
-		border-radius: 0.6rem;
-	}
+  &__pdf {
+    text-align: center;
+    padding: 2rem 3.5rem;
+    border: 1px solid $color-grey-dark-1;
+    border-radius: 0.6rem;
+  }
 
-	&__cost {
-		margin-bottom: 1rem;
+  &__cost {
+    margin-bottom: 1rem;
 
-		&--heading {
-			font-weight: 400;
-		}
+    &--heading {
+      font-weight: 400;
+    }
 
-		&--number {
-			font-weight: 500;
-			color: $admin-color-primary;
-		}
-	}
+    &--number {
+      font-weight: 500;
+      color: $admin-color-primary;
+    }
+  }
 
-	&__contact {
-		margin-top: 1rem;
-	}
+  &__contact {
+    margin-top: 1rem;
+  }
 }
 
 /* =================== Accessories ================== */
 .accessories {
-	display: flex;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-	padding: 1.5rem 2.5rem;
-	background-color: rgba($color-grey-light-1, 0.75);
-	border-radius: 2rem;
+  padding: 1.5rem 2.5rem;
+  border: 1px solid $color-grey-dark-4;
+  background-color: rgba($color-grey-light-1, 0.75);
+  border-radius: 2rem;
 
-	&:not(:last-child) {
-		margin-bottom: 2rem;
-	}
+  &:not(:last-child) {
+    margin-bottom: 2rem;
+  }
 
-	&__heading {
-		font-size: 1.6rem;
-		font-weight: 500;
-	}
+  &__heading {
+    font-size: 1.6rem;
+    font-weight: 500;
+    width: 10rem;
+  }
 
-	&__img {
-		width: 10rem;
-		height: 10rem;
+  &__img {
+    width: 10rem;
+    height: 10rem;
 
-		margin: 0 4rem;
+    margin-left: 4rem;
 
-		img {
-			height: 100%;
-		}
-	}
+    @include respond(only-tablet) {
+      margin-left: 2rem;
+    }
 
-	&__content {
-		display: flex;
-		flex-direction: column;
-		width: 35rem;
+    @include respond(land-phone) {
+      margin-left: 1rem;
+    }
 
-		margin-left: 2rem;
-	}
+    img {
+      height: 100%;
+    }
+  }
 
-	&__price {
-		font-size: 1.7rem;
-		font-weight: 600;
-		color: $admin-color-primary;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    max-width: 35rem;
 
-		// margin-left: auto;
-	}
+    margin-right: auto;
+
+    margin-left: 4rem;
+
+    @include respond(only-tablet) {
+      margin-left: 2rem;
+    }
+
+    @include respond(land-phone) {
+      margin-left: 1rem;
+    }
+  }
+
+  &__group {
+    display: flex;
+    align-items: center;
+  }
+
+  &__price {
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: $admin-color-primary;
+
+    margin: 0 4rem;
+
+    @include respond(only-tablet) {
+      margin: 0 2rem;
+    }
+
+    @include respond(land-phone) {
+      margin: 0 1rem;
+    }
+  }
 }

@@ -10,4 +10,8 @@ export class Helper {
     const yyyy = strDate.substr(0, 4);
     return dd + '/' + mm + '/' + yyyy;
   }
+
+  static formatCurrency(number: number): string {
+    return new Intl.NumberFormat('vi-VN', {}).format(number) + ' VND';
+  }
 }

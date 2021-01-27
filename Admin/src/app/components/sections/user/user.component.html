@@ -24,54 +24,73 @@
   </div>
 
   <div class="accessories">
-    <div class="accessories__heading">Tên loại sản phẩm</div>
-    <div class="accessories__img">
-      <img src="./assets/images/banner09.jpg" alt="accessories image" />
+    <div class="accessories__group">
+      <div class="accessories__heading">Tên loại sản phẩm</div>
+
+      <div class="accessories__img">
+        <img src="./assets/images/banner09.jpg" alt="accessories image" />
+      </div>
     </div>
+
     <div class="accessories__content">
       <span class="accessories__title">Tên sản phẩm</span>
       <span class="accessories__note">Ghi chú</span>
     </div>
-    <div class="form__number">
-      <button class="arrow-minus">-</button>
-      <input type="number" name="" id="" value="1" />
-      <button class="arrow-plus">+</button>
+
+    <div class="accessories__group">
+      <div class="form__number">
+        <button class="arrow-minus" (click)="quantityMinus($event)">-</button>
+        <input type="number" value="{{ valueInputNumber }}" readonly />
+        <button class="arrow-plus" (click)="quantityPlus($event)">+</button>
+      </div>
+
+      <div class="accessories__price">
+        {{ helper.formatCurrency(20000 * valueInputNumber) }}
+      </div>
+
+      <button class="btn btn-accessories btn-edit">Sửa</button>
+    </div>
+  </div>
+
+  <div class="accessories">
+    <div class="accessories__group">
+      <div class="accessories__heading">Tên loại sản phẩm</div>
+
+      <div class="accessories__img">
+        <img src="./assets/images/100x100.png" alt="accessories image" />
+      </div>
     </div>
 
-    <div class="accessories__price">20.000đ</div>
-    <button class="btn btn-accessories btn-edit">Sửa</button>
-  </div>
-
-  <div class="accessories">
-    <div class="accessories__heading">Tên loại sản phẩm</div>
-    <img
-      src="./assets/images/100x100.png"
-      alt="accessories image"
-      class="accessories__img"
-    />
     <div class="accessories__content">Vui lòng chọn sản phẩm</div>
+
     <button class="btn btn-accessories btn-choose">Chọn</button>
   </div>
 
   <div class="accessories">
-    <div class="accessories__heading">Tên loại sản phẩm</div>
-    <img
-      src="./assets/images/100x100.png"
-      alt="accessories image"
-      class="accessories__img"
-    />
+    <div class="accessories__group">
+      <div class="accessories__heading">Tên loại sản phẩm</div>
+
+      <div class="accessories__img">
+        <img src="./assets/images/100x100.png" alt="accessories image" />
+      </div>
+    </div>
+
     <div class="accessories__content">Vui lòng chọn sản phẩm</div>
+
     <button class="btn btn-accessories btn-choose">Chọn</button>
   </div>
 
   <div class="accessories">
-    <div class="accessories__heading">Tên loại sản phẩm</div>
-    <img
-      src="./assets/images/100x100.png"
-      alt="accessories image"
-      class="accessories__img"
-    />
+    <div class="accessories__group">
+      <div class="accessories__heading">Tên loại sản phẩm</div>
+
+      <div class="accessories__img">
+        <img src="./assets/images/100x100.png" alt="accessories image" />
+      </div>
+    </div>
+
     <div class="accessories__content">Vui lòng chọn sản phẩm</div>
+
     <button class="btn btn-accessories btn-choose">Chọn</button>
   </div>
 </div>
