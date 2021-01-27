@@ -7,7 +7,7 @@ import {
   OnChanges,
   ViewChild,
 } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductType } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';

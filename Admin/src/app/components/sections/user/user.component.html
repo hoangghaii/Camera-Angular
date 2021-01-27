@@ -23,7 +23,7 @@
     </div>
   </div>
 
-  <div class="accessories">
+  <div class="accessories" *ngFor="let item of heroes; let i = index">
     <div class="accessories__group">
       <div class="accessories__heading">Tên loại sản phẩm</div>
 
@@ -39,13 +39,25 @@
 
     <div class="accessories__group">
       <div class="form__number">
-        <button class="arrow-minus" (click)="quantityMinus($event)">-</button>
-        <input type="number" value="{{ valueInputNumber }}" readonly />
-        <button class="arrow-plus" (click)="quantityPlus($event)">+</button>
+        <label
+          for="{{ 'inputNumber' + i }}"
+          class="arrow-minus"
+          (click)="quantityMinus(i)"
+        >
+          -
+        </label>
+        <input id="{{ 'inputNumber' + i }}" type="number" value="1" readonly />
+        <label
+          for="{{ 'inputNumber' + i }}"
+          class="arrow-plus"
+          (click)="quantityPlus($event, i)"
+        >
+          +
+        </label>
       </div>
 
       <div class="accessories__price">
-        {{ helper.formatCurrency(20000 * valueInputNumber) }}
+        {{ helper.formatCurrency(this.listPrice[0]) }}
       </div>
 
       <button class="btn btn-accessories btn-edit">Sửa</button>
