@@ -20,11 +20,21 @@ export class UserComponent implements OnInit {
   public listPrice: any[] = HEROES;
   public heroes = HEROES;
 
+  public isOpen!: boolean;
+
   constructor() {}
 
   ngOnInit(): void {}
 
   ngOnChange(): void {}
+
+  openModal(): void {
+    this.isOpen = true;
+  }
+
+  closeModal(event: any): void {
+    this.isOpen = event.isOpen;
+  }
 
   /**
    * Handle minus value input

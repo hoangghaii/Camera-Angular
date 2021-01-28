@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { environment as env } from 'src/environments/environment';
@@ -57,21 +57,27 @@ export class ProductService extends HttpService {
 
   /**
    *
-   * @param shopId
    * @param objProduct
    */
-  createSkill(shopId: string, objProduct: Product): Observable<Product[]> {
-    const url = this.apiUrl + `shops/${shopId}/skills`;
-    return this.http.post<Product[]>(url, objProduct).pipe(
-      map((res: any) => {
-        if (res) {
-          return res;
-        }
-      }),
-      catchError((e) => {
-        return this.handleError(e);
-      })
-    );
+  createProduct(objProduct: Product): Observable<Product[]> {
+    const url = this.apiUrl + `product`;
+    const headers = new HttpHeaders();
+    const formData = new FormData();
+    formData.append('image', objProduct.image);
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    return this.http
+      .post<Product[]>(url, formData, { headers: headers })
+      .pipe(
+        map((res: any) => {
+          if (res) {
+            return res;
+          }
+        }),
+        catchError((e) => {
+          return this.handleError(e);
+        })
+      );
   }
 
   /**

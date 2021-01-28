@@ -1,176 +1,176 @@
 /* ================ Typography =============== */
 
-//  Poppins  //
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+//  Montserrat  //
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap");
 
 // ------------------ Serif ------------------ //
 // Source Serif Pro //
 @import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;0,700;1,600;1,700&display=swap");
 
-$poppins: "Poppins", sans-serif;
+$poppins: "Montserrat", sans-serif;
 $sourceSerif: "Source Serif Pro", serif;
 
 body {
-	font-family: $poppins;
-	font-size: 1.6rem;
-	font-weight: 400;
-	line-height: 1.5;
-	color: $color-font;
-	scroll-behavior: smooth;
+  font-family: $poppins;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: $color-font;
+  scroll-behavior: smooth;
 }
 
 %heading {
-	display: inline-block;
+  display: inline-block;
 
-	font-family: $sourceSerif;
-	color: $color-heading;
+  font-family: $sourceSerif;
+  color: $color-heading;
 
-	cursor: default;
+  cursor: default;
 }
 
 .heading-1 {
-	@extend %heading;
+  @extend %heading;
 
-	color: $color-white;
-	text-transform: uppercase;
+  color: $color-white;
+  text-transform: uppercase;
 
-	-webkit-backface-visibility: hidden;
-	backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 
-	&--main {
-		@extend .heading-1;
+  &--main {
+    @extend .heading-1;
 
-		display: block;
-		font-size: 6rem;
-		font-weight: 400;
-		letter-spacing: 3.5rem;
-		// -webkit-animation: moveInLeft 1s linear;
-		// animation: moveInLeft 1s linear;
+    display: block;
+    font-size: 6rem;
+    font-weight: 400;
+    letter-spacing: 3.6rem;
+    // -webkit-animation: moveInLeft 1s linear;
+    // animation: moveInLeft 1s linear;
 
-		@include respond(land-phone) {
-			letter-spacing: 1rem;
-			font-size: 5rem;
-		}
-	}
+    @include respond(land-phone) {
+      letter-spacing: 1rem;
+      font-size: 5rem;
+    }
+  }
 
-	&--sub {
-		@extend .heading-1;
+  &--sub {
+    @extend .heading-1;
 
-		display: block;
-		font-size: 2rem;
-		font-weight: 700;
-		letter-spacing: 1.74rem;
-		// -webkit-animation: moveInRight 1s linear;
-		// animation: moveInRight 1s linear;
+    display: block;
+    font-size: 2.1rem;
+    font-weight: 700;
+    letter-spacing: 1.74rem;
+    // -webkit-animation: moveInRight 1s linear;
+    // animation: moveInRight 1s linear;
 
-		margin-bottom: 6rem;
+    margin-bottom: 6rem;
 
-		@include respond(land-phone) {
-			letter-spacing: 0.5rem;
-		}
-	}
+    @include respond(land-phone) {
+      letter-spacing: 0.5rem;
+    }
+  }
 }
 
 .heading-2 {
-	@extend %heading;
+  @extend %heading;
 
-	display: inline-block;
+  display: inline-block;
 
-	font-size: 2.3rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	margin-left: 1rem;
-	letter-spacing: 0.2rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 1rem;
+  letter-spacing: 0.2rem;
 
-	background-image: linear-gradient(
-		to right,
-		$customer-color-primary,
-		$customer-color-primary-dark
-	);
-	-webkit-background-clip: text;
-	background-clip: text;
-	color: transparent;
+  background-image: linear-gradient(
+    to right,
+    $customer-color-primary,
+    $customer-color-primary-dark
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 
-	transition: all 0.25s;
+  transition: all 0.25s;
 
-	@include respond(only-tablet) {
-		font-size: 3rem;
-	}
+  @include respond(only-tablet) {
+    font-size: 3rem;
+  }
 
-	@include respond(land-phone) {
-		font-size: 2.5rem;
-		padding: 0 1rem;
-	}
+  @include respond(land-phone) {
+    font-size: 2.5rem;
+    padding: 0 1rem;
+  }
 }
 
 .heading-3 {
-	@extend %heading;
+  @extend %heading;
 
-	font-size: 1.6rem;
-	font-weight: 700;
-	text-transform: uppercase;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
 
-	margin-top: 1rem;
-	margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 
-	position: relative;
+  position: relative;
 
-	&::after {
-		content: "";
-		position: absolute;
-		bottom: 0;
-		left: 50%;
-		transform: translateX(-50%);
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
 
-		display: inline-block;
-		width: 40%;
-		height: 2px;
-		background-color: $color-heading;
+    display: inline-block;
+    width: 40%;
+    height: 2px;
+    background-color: $color-heading;
 
-		transition: $transition-cubic-2;
-	}
+    transition: $transition-cubic-2;
+  }
 
-	&:hover::after {
-		width: 100%;
-	}
+  &:hover::after {
+    width: 100%;
+  }
 }
 
 .heading-4 {
-	@extend %heading;
+  @extend %heading;
 
-	font-size: 1.5rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	color: $admin-color-primary;
-	border-bottom: 2px solid $admin-color-primary;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $admin-color-primary;
+  border-bottom: 2px solid $admin-color-primary;
 
-	margin-bottom: 3rem;
+  margin-bottom: 3rem;
 }
 
 .heading-5 {
-	@extend %heading;
+  @extend %heading;
 
-	font-size: 1.6rem;
-	font-weight: 600;
-	text-transform: uppercase;
-	color: $color-grey-dark-2;
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: $color-grey-dark-2;
 
-	margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .heading-group {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-	padding: 0 3rem;
+  padding: 0 3rem;
 }
 
 .paragraph {
-	font-size: 1.6rem;
-	font-weight: 400;
+  font-size: 1.6rem;
+  font-weight: 400;
 
-	&:not(:last-child) {
-		margin-bottom: 3rem;
-	}
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
 }

@@ -10,7 +10,7 @@
   z-index: 9;
   background-color: $color-white;
   border-radius: 2rem;
-  box-shadow: $shadow-dark-1;
+  box-shadow: $shadow-dark;
   text-align: center;
   padding: 2.5rem 3rem;
 }
@@ -29,9 +29,9 @@
   opacity: 0;
   z-index: -2;
 
-  backdrop-filter: blur(1rem);
+  // backdrop-filter: blur(0.2rem);
 
-  transition: all 0.3s;
+  transition: all 0.1s;
 
   &.show {
     width: 100%;
@@ -89,6 +89,236 @@
     width: 35rem;
 
     @extend %show;
+  }
+}
+
+.configuration-modal {
+  @extend %absCenter;
+  @extend %modal;
+
+  width: 0;
+  height: 0;
+  opacity: 0;
+  z-index: -2;
+
+  &.show {
+    width: 80rem;
+
+    @extend %show;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+
+    margin-bottom: 3rem;
+  }
+
+  &__heading {
+    margin-bottom: 0;
+    margin-right: 3.5rem;
+    font-size: 1.8rem;
+
+    color: rgba($customer-color-primary-dark, 0.7);
+
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -3rem;
+
+      display: inline-block;
+      height: 100%;
+      width: 3px;
+      background-color: rgba($customer-color-primary-dark, 0.7);
+    }
+  }
+
+  &__filter-choose {
+    font-size: 1.4rem;
+
+    padding: 0.5rem 2rem;
+    border: 2px solid rgba($customer-color-primary-dark, 0.8);
+    border-radius: 4rem;
+
+    i {
+      margin-left: 0.5rem;
+    }
+  }
+
+  &__filter {
+    display: flex;
+    flex-wrap: wrap;
+
+    &-list {
+      width: fit-content;
+      display: inline-block;
+
+      margin-bottom: 2.5rem;
+
+      &:not(:last-child) {
+        margin-right: 2rem;
+      }
+
+      &--heading {
+        padding: 0.7rem 2rem;
+        border: 2px solid rgba($customer-color-primary-dark, 0.8);
+        border-radius: 1rem;
+        cursor: pointer;
+
+        position: relative;
+
+        transition: all 0.1s;
+
+        &::before {
+          content: "";
+          position: absolute;
+          bottom: -0.3rem;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 99%;
+          height: 10px;
+          background-color: transparent;
+          z-index: 3;
+        }
+      }
+    }
+
+    &-item {
+      display: flex;
+      flex-wrap: wrap;
+
+      width: 77rem;
+      padding: 1.5rem 1.5rem 1.3rem;
+      background-color: $color-white;
+      border: 2px solid rgba($customer-color-primary-dark, 0.8);
+      border-radius: 1rem;
+
+      margin-top: 1rem;
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition: all 0.2s;
+
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      &--list {
+        cursor: pointer;
+        transition: all 0.25s;
+        margin-bottom: 0.2rem;
+
+        &:hover {
+          color: rgba($customer-color-primary-dark, 0.6);
+        }
+
+        &:not(:last-child) {
+          margin-right: 2rem;
+        }
+      }
+    }
+
+    &-list:hover &-list--heading {
+      border-radius: 1rem 1rem 0 0;
+      border-bottom-color: $color-white;
+      padding-bottom: 1.3rem;
+      z-index: 3;
+    }
+
+    &-list:hover &-list--heading::before {
+      background-color: $color-white;
+    }
+
+    &-list:hover &-item {
+      opacity: 1;
+      visibility: visible;
+      z-index: 2;
+    }
+  }
+
+  &-group {
+    display: flex;
+
+    align-items: center;
+  }
+
+  &__product-list {
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border-top: 1px dashed rgba($color-grey-light-4, 0.5);
+
+    height: 32vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+  }
+
+  &__product {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+
+    &-img {
+      width: 6rem;
+      height: 6rem;
+
+      img {
+        height: 100%;
+      }
+    }
+
+    &-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      text-align: left;
+
+      margin-left: 1rem;
+    }
+
+    &-name {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    &-note {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: $color-heading;
+    }
+
+    &-price {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: $admin-color-primary;
+
+      margin-right: 3rem;
+
+      @include respond(only-tablet) {
+        margin-right: 2rem;
+      }
+
+      @include respond(land-phone) {
+        margin-right: 1rem;
+      }
+    }
+  }
+
+  &-btn {
+    margin-left: auto;
+    font-size: 1.4rem;
   }
 }
 

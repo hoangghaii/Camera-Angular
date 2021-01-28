@@ -75,6 +75,7 @@ export class ModalProductComponent implements OnInit {
   // }
 
   uploadFile(event: any): void {
+    console.log(event);
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
@@ -84,10 +85,10 @@ export class ModalProductComponent implements OnInit {
 
       reader.onload = () => {
         this.imagesUrl = reader.result as string;
-        console.log(reader.result);
+        console.log(event.target.files[0]);
 
         this.productForm.patchValue({
-          productImage: reader.result,
+          productImage: event.target.files[0],
         });
       };
     }

@@ -60,7 +60,9 @@
         {{ helper.formatCurrency(this.listPrice[0]) }}
       </div>
 
-      <button class="btn btn-accessories btn-edit">Sửa</button>
+      <button class="btn btn-accessories btn-edit" (click)="openModal()">
+        Sửa
+      </button>
     </div>
   </div>
 
@@ -75,7 +77,9 @@
 
     <div class="accessories__content">Vui lòng chọn sản phẩm</div>
 
-    <button class="btn btn-accessories btn-choose">Chọn</button>
+    <button class="btn btn-accessories btn-choose" (click)="openModal()">
+      Chọn
+    </button>
   </div>
 
   <div class="accessories">
@@ -89,7 +93,9 @@
 
     <div class="accessories__content">Vui lòng chọn sản phẩm</div>
 
-    <button class="btn btn-accessories btn-choose">Chọn</button>
+    <button class="btn btn-accessories btn-choose" (click)="openModal()">
+      Chọn
+    </button>
   </div>
 
   <div class="accessories">
@@ -103,6 +109,10 @@
 
     <div class="accessories__content">Vui lòng chọn sản phẩm</div>
 
-    <button class="btn btn-accessories btn-choose">Chọn</button>
+    <button class="btn btn-accessories btn-choose" (click)="openModal()">
+      Chọn
+    </button>
   </div>
 </div>
+
+<app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal>
