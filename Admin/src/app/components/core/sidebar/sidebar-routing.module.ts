@@ -10,20 +10,6 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'configuration-settings',
-    loadChildren: () =>
-      import(
-        `../../sections/admin/configuration-settings/configuration-settings-routing.module`
-      ).then((m) => m.ConfigurationSettingsRoutingModule),
-  },
-  {
-    path: 'product-settings',
-    loadChildren: () =>
-      import(
-        `../../sections/admin/product-configuration/product-configuration.module`
-      ).then((m) => m.ProductConfigurationModule),
-  },
-  {
     path: '',
     redirectTo: 'product-manage',
     pathMatch: 'full',

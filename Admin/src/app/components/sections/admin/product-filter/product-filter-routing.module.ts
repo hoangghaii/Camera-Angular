@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ConfigurationSettingsComponent } from './configuration-settings/configuration-settings.component';
 import { FilterComponent } from './filter/filter.component';
 import { ProductFilterComponent } from './product-filter.component';
 import { ProductComponent } from './product/product.component';
@@ -23,6 +24,10 @@ const routes: Routes = [
         pathMatch: 'full',
       },
     ],
+  },
+  {
+    path: 'configuration-settings',
+    component: ConfigurationSettingsComponent,
   },
 ];
 

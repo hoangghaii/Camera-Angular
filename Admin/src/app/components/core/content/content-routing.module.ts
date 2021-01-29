@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductConfigurationComponent } from '../../sections/admin/product-configuration/product-configuration/product-configuration.component';
 import { ContentComponent } from './content.component';
 
 const routes: Routes = [
@@ -8,10 +7,6 @@ const routes: Routes = [
     path: '',
     component: ContentComponent,
     children: [
-      {
-        path: 'product-settings',
-        component: ProductConfigurationComponent,
-      },
       {
         path: 'product-manage',
         loadChildren: () =>
