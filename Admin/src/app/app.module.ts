@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared.module';
 import { LoaderInterceptor, RequestInterceptor } from './interceptors';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { LoaderInterceptor, RequestInterceptor } from './interceptors';
     FormsModule,
     AppRoutingModule,
     SharedModule,
+    NgMultiSelectDropDownModule.forRoot(),
   ],
   providers: [
     {

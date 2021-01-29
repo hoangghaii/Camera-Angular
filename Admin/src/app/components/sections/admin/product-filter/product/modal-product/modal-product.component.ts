@@ -12,6 +12,7 @@ import { ImageHolder } from 'src/app/constants/global-const';
 import { Product } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';
+import { ProductService } from 'src/app/services/apis';
 
 @Component({
   selector: 'app-modal-product',
@@ -29,14 +30,38 @@ export class ModalProductComponent implements OnInit {
   @Input() selectCurrent: any;
   @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private productService: ProductService,
+    private modalService: ModalService
+  ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.initForm();
   }
 
   ngOnChanges(): void {
     this.imagesUrl = ImageHolder.imageUrl;
+    if (this.open && this.selectCurrent) {
+      this.productService
+        .getProduct(this.selectCurrent.id)
+        .subscribe((res: any) => {
+          this.imagesUrl = res.file;
+          this.productForm.patchValue({
+            id: res.id,
+            productType: res.category_product_id,
+            productName: res.name,
+            productPrice: res.price,
+            productNote: res.description,
+            productImage: res.file,
+            updatedAt: res.updated_at,
+          });
+        });
+    }
+    if (this.open && this.selectCurrent === null) {
+      this.initForm();
+      this.submitted = false;
+    }
   }
 
   initForm(): void {
@@ -67,13 +92,6 @@ export class ModalProductComponent implements OnInit {
     this.confirm.emit({ open: false });
   }
 
-  // handleCreate(): void {
-  //   this.submitted = true;
-  //   if (!this.productForm.valid) {
-  //     return;
-  //   }
-  // }
-
   uploadFile(event: any): void {
     console.log(event);
     const reader = new FileReader();
@@ -81,11 +99,9 @@ export class ModalProductComponent implements OnInit {
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
       reader.readAsDataURL(file);
-      // console.log(reader.readAsDataURL(file));
 
       reader.onload = () => {
         this.imagesUrl = reader.result as string;
-        console.log(event.target.files[0]);
 
         this.productForm.patchValue({
           productImage: event.target.files[0],
@@ -99,6 +115,13 @@ export class ModalProductComponent implements OnInit {
     if (!this.productForm.valid) {
       return;
     }
+
+    const obj: any = this.parserObj(this.productForm.getRawValue());
+
+    this.productService.createProduct(obj).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
+    });
   }
 
   handleUpdate() {
@@ -106,16 +129,23 @@ export class ModalProductComponent implements OnInit {
     if (!this.productForm.valid) {
       return;
     }
+
+    const obj: any = this.parserObj(this.productForm.getRawValue());
+
+    this.productService.updateProduct(obj).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Cập nhật sản phẩm thành công !');
+    });
   }
 
   parserObj(obj: any): object {
     return {
       id: obj.id,
-      product_type: obj.productType,
-      product_name: obj.productName,
-      product_price: obj.productPrice,
-      product_note: obj.productNote,
-      product_image: obj.productImage,
+      category_product_id: obj.productType,
+      name: obj.productName,
+      price: obj.productPrice,
+      description: obj.productNote,
+      image: obj.productImage,
       updated_at: obj.updatedAt,
     };
   }

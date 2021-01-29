@@ -76,7 +76,7 @@
   @extend %absCenter;
   @extend %modal;
 
-  width: 35rem;
+  width: 40rem;
 
   &__content {
     font-size: 1.6rem;
@@ -86,7 +86,7 @@
   }
 
   &.show {
-    width: 35rem;
+    width: 40rem;
 
     @extend %show;
   }

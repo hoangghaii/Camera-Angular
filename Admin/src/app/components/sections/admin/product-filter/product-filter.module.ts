@@ -12,6 +12,7 @@ import { ModalProductComponent } from './product/modal-product/modal-product.com
 import { ModalFilterComponent } from './filter/modal-filter/modal-filter.component';
 import { ModalProductTypeComponent } from './product/modal-product-type/modal-product-type.component';
 import { ModalFilterTypeComponent } from './filter/modal-filter-type/modal-filter-type.component';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ModalFilterTypeComponent } from './filter/modal-filter-type/modal-filte
     FormsModule,
     ProductFilterRoutingModule,
     SharedModule,
+    NgMultiSelectDropDownModule,
   ],
 })
 export class ProductFilterModule {}

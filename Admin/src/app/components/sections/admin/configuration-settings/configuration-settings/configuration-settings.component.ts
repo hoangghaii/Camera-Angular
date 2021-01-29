@@ -1,18 +1,17 @@
-import { Component } from '@angular/core';
-import { Router, NavigationStart } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-configuration-settings',
+  templateUrl: './configuration-settings.component.html',
+  styleUrls: ['./configuration-settings.component.scss'],
 })
-export class AppComponent {
-  title = 'RongBay.xyz | Admin Site';
-
+export class ConfigurationSettingsComponent implements OnInit {
   public dropdownList: any = [];
   public selectedItems: any = [];
   public dropdownSettings!: IDropdownSettings;
+
+  constructor() {}
 
   ngOnInit(): void {
     this.dropdownList = [

@@ -13,11 +13,7 @@
       <span class="header__cart-number">1</span>
     </div>
 
-    <a
-      [routerLink]="'/login'"
-      routerLinkActive="active"
-      class="header__nav-user"
-    >
+    <a routerLinkActive="active" class="header__nav-user" *ngIf="currentUser">
       <img
         src="./assets/images/user.jpg"
         alt="user logo"

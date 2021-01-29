@@ -9,23 +9,14 @@
     </div>
 
     <ul class="product-type">
-      <li class="product-type__item">
-        <span class="product-type__name" data-modal="add-modal"> Loại 1 </span>
-        <span class="times-icon">
-          <i class="fal fa-times"></i>
+      <li class="product-type__item" *ngFor="let it of productTypeList">
+        <span
+          class="product-type__name"
+          (click)="selectedRowProductType(it, 'modalType')"
+        >
+          {{ it.name }}
         </span>
-      </li>
-
-      <li class="product-type__item">
-        <span class="product-type__name" data-modal="add-modal"> Loại 2 </span>
-        <span class="times-icon">
-          <i class="fal fa-times"></i>
-        </span>
-      </li>
-
-      <li class="product-type__item">
-        <span class="product-type__name" data-modal="add-modal"> Loại 3 </span>
-        <span class="times-icon">
+        <span class="times-icon" (click)="handleDeleteProductType(it.id)">
           <i class="fal fa-times"></i>
         </span>
       </li>
@@ -57,19 +48,25 @@
         <div class="table-content__list" *ngFor="let item of productList">
           <span class="table-content__item"> {{ item.id }} </span>
           <span class="table-content__item">
-            <a href="#0" class="table-content__link">
+            <a
+              class="table-content__link"
+              (click)="selectedRowProduct(item, 'modalAdd')"
+            >
               {{ item.name }}
             </a>
           </span>
           <span class="table-content__item"> {{ item.price }} </span>
           <span class="table-content__item">
-            {{ item.category_product["name"] }}
+            {{ item.category_product_id }}
           </span>
           <span class="table-content__item">
             {{ helper.formatDate(item.created_at) }}
           </span>
           <span class="table-content__item">
-            <span class="times-icon times-icon-2">
+            <span
+              class="times-icon times-icon-2"
+              (click)="handleDeleteProduct(item.id)"
+            >
               <i class="fal fa-times"></i>
             </span>
           </span>
@@ -87,14 +84,14 @@
 <app-modal-product
   [open]="isOpen"
   [typeModal]="typeModal"
-  [selectCurrent]="selectCurrent"
+  [selectCurrent]="selectCurrentProduct"
   (confirm)="closeModal($event)"
 ></app-modal-product>
 
 <app-modal-product-type
   [open]="isOpen"
   [typeModal]="typeModal"
-  [selectCurrent]="selectCurrent"
+  [selectCurrent]="selectCurrentProductType"
   (confirm)="closeModal($event)"
 >
 </app-modal-product-type>

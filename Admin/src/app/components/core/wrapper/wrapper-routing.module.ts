@@ -13,7 +13,7 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () =>
           import(`../content/content.module`).then((m) => m.ContentModule),
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'user',

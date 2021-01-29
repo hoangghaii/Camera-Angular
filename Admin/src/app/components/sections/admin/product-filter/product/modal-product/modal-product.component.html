@@ -19,10 +19,10 @@
         <div class="form__group">
           <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
           <select name="" class="form__select" formControlName="productType">
-            <option value="lsp1">Loại sản phẩm 1</option>
-            <option value="lsp2">Loại sản phẩm 2</option>
-            <option value="lsp3">Loại sản phẩm 3</option>
-            <option value="lsp4">Loại sản phẩm 4</option>
+            <option value="1">Loại sản phẩm 1</option>
+            <option value="2">Loại sản phẩm 2</option>
+            <option value="3">Loại sản phẩm 3</option>
+            <option value="4">Loại sản phẩm 4</option>
           </select>
         </div>
       </div>
@@ -35,7 +35,7 @@
           style="margin-left: 25rem"
         >
           <div *ngIf="f.productType.errors.required">
-            <span>⚠</span> Loại sản phẩm cần được chọn
+            <span>⚠️</span> Loại sản phẩm cần được chọn
           </div>
         </div>
       </div>
@@ -62,16 +62,16 @@
       <div class="form__group-error" *ngIf="submitted">
         <div *ngIf="submitted && f.productName.errors" class="invalid">
           <div *ngIf="f.productName.errors.required">
-            <span>⚠</span> Tên sản phẩm không được để trống
+            <span>⚠️</span> Tên sản phẩm không được để trống
           </div>
         </div>
 
         <div *ngIf="submitted && f.productPrice.errors" class="invalid">
           <div *ngIf="f.productPrice.errors.required">
-            <span>⚠</span> Giá sản phẩm không được để trống
+            <span>⚠️</span> Giá sản phẩm không được để trống
           </div>
           <div *ngIf="f.productPrice.errors.isNumber">
-            <span>⚠</span> Giá sản phẩm phải là số
+            <span>⚠️</span> Giá sản phẩm phải là số
           </div>
         </div>
       </div>
@@ -103,7 +103,7 @@
       </div>
       <div *ngIf="submitted && f.productImage.errors" class="invalid">
         <div *ngIf="f.productImage.errors.required">
-          <span>⚠</span> Hình ảnh không được để trống
+          <span>⚠️</span> Hình ảnh không được để trống
         </div>
       </div>
       <img [src]="imagesUrl" class="file-placeholder" />

@@ -2,7 +2,7 @@
   <div class="product__heading">
     <a
       class="product__heading--item"
-      [routerLink]="'/product-manage/product'"
+      [routerLink]="'product'"
       routerLinkActive="active"
       (click)="changeBg1()"
       [ngClass]="this.isToogle1 ? 'product__heading--item-active' : ''"
@@ -13,7 +13,7 @@
 
     <a
       class="product__heading--item"
-      [routerLink]="'/product-manage/filter'"
+      [routerLink]="'filter'"
       routerLinkActive="active"
       (click)="changeBg2()"
       [ngClass]="this.isToogle2 ? 'product__heading--item-active' : ''"

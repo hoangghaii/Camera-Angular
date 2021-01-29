@@ -5,7 +5,7 @@ const routes: Routes = [
   {
     path: 'product-manage',
     loadChildren: () =>
-      import(`../../sections/product-filter/product-filter.module`).then(
+      import(`../../sections/admin/product-filter/product-filter.module`).then(
         (m) => m.ProductFilterModule
       ),
   },
@@ -13,8 +13,15 @@ const routes: Routes = [
     path: 'configuration-settings',
     loadChildren: () =>
       import(
-        `../../sections/configuration-settings/configuration-settings-routing.module`
+        `../../sections/admin/configuration-settings/configuration-settings-routing.module`
       ).then((m) => m.ConfigurationSettingsRoutingModule),
+  },
+  {
+    path: 'product-settings',
+    loadChildren: () =>
+      import(
+        `../../sections/admin/product-configuration/product-configuration.module`
+      ).then((m) => m.ProductConfigurationModule),
   },
   {
     path: '',

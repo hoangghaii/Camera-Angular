@@ -9,29 +9,14 @@
     </div>
 
     <ul class="product-type">
-      <li class="product-type__item">
-        <span class="product-type__name" data-modal="add-modal">
-          Loại bộ lọc 1
+      <li class="product-type__item" *ngFor="let it of filterTypeList">
+        <span
+          class="product-type__name"
+          (click)="selectedRowFilterType(it, 'modalType')"
+        >
+          {{ it.name }}
         </span>
-        <span class="times-icon">
-          <i class="fal fa-times"></i>
-        </span>
-      </li>
-
-      <li class="product-type__item">
-        <span class="product-type__name" data-modal="add-modal">
-          Loại bộ lọc 2
-        </span>
-        <span class="times-icon">
-          <i class="fal fa-times"></i>
-        </span>
-      </li>
-
-      <li class="product-type__item">
-        <span class="product-type__name" data-modal="add-modal">
-          Loại bộ lọc 3
-        </span>
-        <span class="times-icon">
+        <span class="times-icon" (click)="handleDeleteFilterType(it.id)">
           <i class="fal fa-times"></i>
         </span>
       </li>
@@ -109,38 +94,23 @@
       </div>
     </div>
 
-    <div class="pagination">
-      <ul class="pagination__list">
-        <li class="pagination__item pagination__item--active">
-          <a href="#" class="pagination__link"> 1 </a>
-        </li>
-
-        <li class="pagination__item">
-          <a href="#" class="pagination__link"> 2 </a>
-        </li>
-
-        <li class="pagination__item">
-          <a href="#" class="pagination__link"> 3 </a>
-        </li>
-
-        <li class="pagination__item">
-          <a href="#" class="pagination__link"> 4 </a>
-        </li>
-      </ul>
-    </div>
+    <!-- <app-pagination
+      [items]="productList"
+      (changePage)="onChangePage($event)"
+    ></app-pagination> -->
   </div>
 </div>
 
 <app-modal-filter
   [open]="isOpen"
   [typeModal]="typeModal"
-  [selectCurrent]="selectCurrent"
+  [selectCurrent]="selectCurrentFilter"
   (confirm)="closeModal($event)"
 ></app-modal-filter>
 
 <app-modal-filter-type
   [open]="isOpen"
   [typeModal]="typeModal"
-  [selectCurrent]="selectCurrent"
+  [selectCurrent]="selectCurrentFilterType"
   (confirm)="closeModal($event)"
 ></app-modal-filter-type>

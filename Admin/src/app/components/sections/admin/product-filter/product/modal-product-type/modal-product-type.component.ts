@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ProductType } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';
+import { ProductTypeService } from 'src/app/services/apis';
 
 @Component({
   selector: 'app-modal-product-type',
@@ -27,10 +28,33 @@ export class ModalProductTypeComponent implements OnInit {
   @Input() selectCurrent: any;
   @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private productTypeService: ProductTypeService,
+    private modalService: ModalService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.initForm();
+  }
+
+  ngOnChanges(): void {
+    if (this.open && this.selectCurrent) {
+      this.productTypeService
+        .getProductType(this.selectCurrent.id)
+        .subscribe((res: any) => {
+          this.productTypeForm.patchValue({
+            id: res.id,
+            productTypeName: res.name,
+            productTypeNote: res.description,
+            updatedAt: res.updated_at,
+          });
+        });
+    }
+    if (this.open && this.selectCurrent === null) {
+      this.initForm();
+      this.submitted = false;
+    }
   }
 
   initForm(): void {
@@ -60,6 +84,13 @@ export class ModalProductTypeComponent implements OnInit {
     if (!this.productTypeForm.valid) {
       return;
     }
+
+    const obj: any = this.parserObj(this.productTypeForm.getRawValue());
+
+    this.productTypeService.createProductType(obj).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Đăng ký loại sản phẩm thành công !');
+    });
   }
 
   handleUpdate() {
@@ -67,13 +98,20 @@ export class ModalProductTypeComponent implements OnInit {
     if (!this.productTypeForm.valid) {
       return;
     }
+
+    const obj: any = this.parserObj(this.productTypeForm.getRawValue());
+
+    this.productTypeService.updateProductType(obj, obj.id).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Cập nhật loại sản phẩm thành công !');
+    });
   }
 
   parserObj(obj: any): object {
     return {
       id: obj.id,
-      product_type_name: obj.productTypeName,
-      productType_note: obj.productTypeNote,
+      name: obj.productTypeName,
+      description: obj.productTypeNote,
       updated_at: obj.updatedAt,
     };
   }

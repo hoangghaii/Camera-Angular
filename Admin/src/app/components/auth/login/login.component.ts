@@ -62,13 +62,13 @@ export class LoginComponent implements OnInit {
           );
           this.authService.getCurrentUser().subscribe((user) => {
             localStorage.setItem('getUser', JSON.stringify(user));
-            this.router.navigateByUrl('/product-manage');
+            this.router.navigateByUrl('/admin/product-manage');
           });
         }
       },
       (error) => {
         this.submitted = false;
-        this.modalService.open('UserName hoặc PassWord không chính xác!');
+        this.modalService.open('⚠️ UserName hoặc PassWord không chính xác!');
       }
     );
   }

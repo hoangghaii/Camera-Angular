@@ -6,8 +6,6 @@ import { environment as env } from 'src/environments/environment';
 import { HttpService } from '../http.service';
 import { Product } from 'src/app/models';
 
-Product;
-
 @Injectable({
   providedIn: 'root',
 })
@@ -22,9 +20,9 @@ export class ProductService extends HttpService {
    *
    * @param categoryCd
    */
-  getProductList(): Observable<Product[]> {
+  getProductList(): Observable<any[]> {
     const url = this.apiUrl + `product`;
-    return this.http.get<Product[]>(url).pipe(
+    return this.http.get<any[]>(url).pipe(
       map((res: any) => {
         if (res) {
           return res;
@@ -38,11 +36,10 @@ export class ProductService extends HttpService {
 
   /**
    *
-   * @param shopId
-   * @param skillId
+   * @param productId
    */
-  getSkill(shopId: string, skillId: string): Observable<Product[]> {
-    const url = this.apiUrl + `shops/${shopId}/skills/${skillId}`;
+  getProduct(productId: any): Observable<Product[]> {
+    const url = this.apiUrl + `product/${productId}`;
     return this.http.get<Product[]>(url).pipe(
       map((res: any) => {
         if (res) {
@@ -63,7 +60,14 @@ export class ProductService extends HttpService {
     const url = this.apiUrl + `product`;
     const headers = new HttpHeaders();
     const formData = new FormData();
+    formData.append('name', objProduct.name);
     formData.append('image', objProduct.image);
+    formData.append(
+      'category_product_id',
+      objProduct.category_product_id.toString()
+    );
+    formData.append('description', objProduct.description);
+    formData.append('price', objProduct.price.toString());
     headers.append('Content-Type', 'multipart/form-data');
     headers.append('Accept', 'application/json');
     return this.http
@@ -82,17 +86,35 @@ export class ProductService extends HttpService {
 
   /**
    *
-   * @param shopId
-   * @param classId
    * @param objProduct
    */
-  updateSkill(
-    shopId: string,
-    classId: string,
-    objProduct: Product
-  ): Observable<Product[]> {
-    const url = this.apiUrl + `shops/${shopId}/skills/${classId}`;
-    return this.http.put<Product[]>(url, objProduct).pipe(
+  updateProduct(objProduct: Product): Observable<Product[]> {
+    const url = this.apiUrl + `productUpdate`;
+    const headers = new HttpHeaders();
+    const formData = new FormData();
+    formData.append('id', objProduct.id.toString());
+    formData.append('name', objProduct.name);
+    formData.append('image', objProduct.image);
+    formData.append(
+      'category_product_id',
+      objProduct.category_product_id.toString()
+    );
+    formData.append('description', objProduct.description);
+    formData.append('price', objProduct.price.toString());
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    return this.http
+      .post<Product[]>(url, formData, { headers: headers })
+      .pipe(
+        catchError((e) => {
+          return this.handleError(e);
+        })
+      );
+  }
+
+  deleteProduct(productId: any): Observable<any> {
+    const url = this.apiUrl + `product/${productId}`;
+    return this.http.delete(url).pipe(
       catchError((e) => {
         return this.handleError(e);
       })

@@ -11,6 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FilterType } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';
+import { FilterTypeService } from 'src/app/services/apis';
 
 @Component({
   selector: 'app-modal-filter-type',
@@ -27,10 +28,33 @@ export class ModalFilterTypeComponent implements OnInit {
   @Input() selectCurrent: any;
   @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private filterTypeService: FilterTypeService,
+    private modalService: ModalService
+  ) {}
 
   async ngOnInit(): Promise<void> {
     this.initForm();
+  }
+
+  ngOnChanges(): void {
+    if (this.open && this.selectCurrent) {
+      this.filterTypeService
+        .getFilterType(this.selectCurrent.id)
+        .subscribe((res: any) => {
+          this.filterTypeForm.patchValue({
+            id: res.id,
+            filterTypeName: res.name,
+            filterTypeNote: res.description,
+            updatedAt: res.updated_at,
+          });
+        });
+    }
+    if (this.open && this.selectCurrent === null) {
+      this.initForm();
+      this.submitted = false;
+    }
   }
 
   initForm(): void {
@@ -53,6 +77,7 @@ export class ModalFilterTypeComponent implements OnInit {
     this.submitted = false;
     this.filterTypeForm.reset();
     this.confirm.emit({ open: false });
+    this.initForm();
   }
 
   handleCreate() {
@@ -60,6 +85,13 @@ export class ModalFilterTypeComponent implements OnInit {
     if (!this.filterTypeForm.valid) {
       return;
     }
+
+    const obj: any = this.parserObj(this.filterTypeForm.getRawValue());
+
+    this.filterTypeService.createFilterType(obj).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Đăng ký loại bộ lọc thành công !');
+    });
   }
 
   handleUpdate() {
@@ -67,13 +99,20 @@ export class ModalFilterTypeComponent implements OnInit {
     if (!this.filterTypeForm.valid) {
       return;
     }
+
+    const obj: any = this.parserObj(this.filterTypeForm.getRawValue());
+
+    this.filterTypeService.updateFilterType(obj, obj.id).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Cập nhật loại bộ lọc thành công !');
+    });
   }
 
   parserObj(obj: any): object {
     return {
       id: obj.id,
-      filter_type_name: obj.filterTypeName,
-      filterType_note: obj.filterTypeNote,
+      name: obj.filterTypeName,
+      description: obj.filterTypeNote,
       updated_at: obj.updatedAt,
     };
   }

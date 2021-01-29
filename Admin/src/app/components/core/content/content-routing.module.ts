@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ConfigurationSettingsComponent } from '../../sections/configuration-settings/configuration-settings.component';
+import { ProductConfigurationComponent } from '../../sections/admin/product-configuration/product-configuration/product-configuration.component';
 import { ContentComponent } from './content.component';
 
 const routes: Routes = [
@@ -9,15 +9,15 @@ const routes: Routes = [
     component: ContentComponent,
     children: [
       {
-        path: 'configuration-settings',
-        component: ConfigurationSettingsComponent,
+        path: 'product-settings',
+        component: ProductConfigurationComponent,
       },
       {
         path: 'product-manage',
         loadChildren: () =>
-          import(`../../sections/product-filter/product-filter.module`).then(
-            (m) => m.ProductFilterModule
-          ),
+          import(
+            `../../sections/admin/product-filter/product-filter.module`
+          ).then((m) => m.ProductFilterModule),
       },
       { path: '', redirectTo: 'product-manage', pathMatch: 'full' },
     ],

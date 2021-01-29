@@ -1,7 +1,7 @@
 <div class="modal" [ngClass]="isError ? 'show' : 'hide-dialog'">
   <div class="msg-modal">
     <h5 class="heading-5">Thông báo</h5>
-    <div class="msg-modal__content invalid"><span>⚠ </span>{{ msg }}</div>
+    <div class="msg-modal__content invalid">{{ msg }}</div>
     <button class="btn btn-success" (click)="confirm.emit(false)">
       Xác nhận
     </button>

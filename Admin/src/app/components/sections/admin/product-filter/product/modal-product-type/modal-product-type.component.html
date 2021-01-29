@@ -8,26 +8,32 @@
       <i class="fal fa-times"></i>
     </span>
 
-    <h4 class="heading-4">Thêm/sửa loại bộ lọc</h4>
+    <h4 class="heading-4">Thêm/sửa loại sản phẩm</h4>
 
-    <form action="#0" class="form" [formGroup]="filterTypeForm">
+    <form action="#0" class="form" [formGroup]="productTypeForm">
       <div class="form__group">
         <label class="form__label"> Tên loại:<span>(*)</span> </label>
         <input
           type="text"
           class="form__input"
-          formControlName="filterTypeName"
+          formControlName="productTypeName"
         />
       </div>
-      <div *ngIf="submitted && f.filterTypeName.errors" class="invalid">
-        <div *ngIf="f.filterTypeName.errors.required">
-          <span>⚠</span> Tên loại lọc không được để trống
+      <div *ngIf="submitted && f.productTypeName.errors" class="invalid">
+        <div *ngIf="f.productTypeName.errors.required">
+          <span>⚠️</span> Tên sản phẩm không được để trống
         </div>
       </div>
 
       <div class="form__group">
         <label class="form__label"> Ghi chú: </label>
-        <textarea name="" cols="30" rows="3" class="form__area"></textarea>
+        <textarea
+          name=""
+          cols="30"
+          rows="3"
+          class="form__area"
+          formControlName="productTypeNote"
+        ></textarea>
       </div>
 
       <button
