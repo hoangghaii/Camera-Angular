@@ -1,0 +1,69 @@
+/* =================== Ng-Select ================== */
+.ng-select {
+  .ng-clear-wrapper {
+    &:hover .ng-clear {
+      color: $admin-color-primary;
+    }
+  }
+}
+
+.ng-select .ng-select-container {
+  border: 1px solid rgba($admin-color-primary, 0.5);
+}
+
+.ng-select.ng-select-opened > .ng-select-container {
+  border-color: rgba($admin-color-primary, 0.5);
+}
+
+.ng-dropdown-panel {
+  border: 1px solid rgba($admin-color-primary, 0.5);
+
+  .ng-select-bottom {
+    border-top-color: rgba($admin-color-primary, 0.3);
+  }
+
+  .ng-dropdown-panel-items {
+    .ng-option {
+      color: currentColor;
+
+      &.ng-option-selected {
+        background-color: transparent;
+      }
+
+      &.ng-option-selected,
+      &.ng-option-marked {
+        color: $admin-color-primary !important;
+      }
+    }
+  }
+}
+
+.ng-select.ng-select-multiple
+  .ng-select-container
+  .ng-value-container
+  .ng-value {
+  background-color: rgba($admin-color-primary-light, $alpha: 0.7);
+  color: $color-white;
+  border-radius: 0.2rem;
+
+  .ng-value-icon {
+    transition: all 0.25s;
+
+    &.left {
+      border-radius: 0.2rem 0 0 0.2rem;
+    }
+
+    &:hover {
+      background-color: $admin-color-primary-light;
+      color: inherit;
+    }
+  }
+
+  .ng-value-label {
+    color: inherit;
+  }
+}
+
+.ng-select .ng-select-container .ng-value-container .ng-input > input:focus {
+  outline: none;
+}
