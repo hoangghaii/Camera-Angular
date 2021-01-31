@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Helper } from 'src/app/utils/helper';
 
 const HEROES = [
@@ -19,17 +19,53 @@ export class UserComponent implements OnInit {
   public totalPrice: number = 0;
   public listPrice: any[] = HEROES;
   public heroes = HEROES;
-
+  public formProduct !: FormGroup;
   public isOpen!: boolean;
 
-  constructor() {}
+  constructor(
+    private fb :FormBuilder
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+    this.setForm();
+    console.log(this.listProductType.value)
+  }
+  setForm() {
+    let list = this.formProduct.get("listProductType") as FormArray;
+    this.heroes.forEach(item=>{
+      let form = this.addFormProductType(item);
+      list.push(form);
+    })
+  }
+  get listProductType() : FormArray {
+    return this.formProduct.get("listProductType") as FormArray
+  }
+
+  initForm() {
+    this.formProduct = this.fb.group({
+      listProductType : this.fb.array([])
+    })
+  }
+
 
   ngOnChange(): void {}
 
   openModal(): void {
     this.isOpen = true;
+  }
+
+
+  addFormProductType(item:any){
+   return this.fb.group({
+        id : item.id,
+        nameProductType : item.name,
+        image :[''],
+        count :0,
+        price :item.price,
+        originalPrice :item.price,
+        nameProduct :['']
+   })
   }
 
   closeModal(event: any): void {
@@ -41,8 +77,20 @@ export class UserComponent implements OnInit {
    * @param index
    */
   quantityMinus(index: number) {
-    if (this.valueInputNumber - 1 >= 0) this.valueInputNumber -= 1;
-    // this.setPrice(index);
+    let product = this.listProductType.controls[index].value;
+    let count  =product.count;
+    let originalPrice = Number(product.originalPrice);
+    if(Number(count)>0){
+      count = Number(count)-1
+    }
+    else{
+      count = 0;
+    }
+
+    this.listProductType.controls[index].patchValue({
+        count : count,
+        price : originalPrice*count
+    });
   }
 
   /**
@@ -50,10 +98,13 @@ export class UserComponent implements OnInit {
    * @param index
    */
   quantityPlus(e: any, index: number) {
-    e.path[1].childNodes[1].value++;
-    let valueInput = e.path[1].childNodes[1].value;
-
-    this.setPrice(valueInput, index);
+    let product = this.listProductType.controls[index].value;
+    let originalPrice = Number(product.originalPrice);
+    let count  =Number(product.count)+1;
+    this.listProductType.controls[index].patchValue({
+        count : count,
+        price : originalPrice*count
+       });
   }
 
   setPrice(item: number, index: number) {
