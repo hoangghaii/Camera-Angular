@@ -80,6 +80,12 @@
     &__name {
       color: $admin-color-primary;
       display: inline-block;
+
+      width: 10rem;
+      white-space: nowrap;
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+
       position: relative;
       cursor: pointer;
 

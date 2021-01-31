@@ -1,4 +1,11 @@
 /* =================== Table ================== */
+%overflow {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+}
+
 .table {
   width: 90%;
   margin: 2rem auto;
@@ -22,6 +29,9 @@
     font-weight: 600;
     text-align: center;
 
+    padding: 8px 5px;
+    display: inline-block;
+
     &:not(:last-child) {
       border-right: 2px solid $color-white;
     }
@@ -40,15 +50,12 @@
   &-content__item {
     text-align: center;
 
+    padding: 8px 15px 0;
+    display: inline-block;
+
     &:not(:last-child) {
       border-right: 2px solid $admin-color-primary-light;
     }
-  }
-
-  &-heading__item,
-  &-content__item {
-    padding: 8px 5px;
-    display: block;
   }
 
   &-1 {
@@ -129,6 +136,11 @@
 
     display: inline-block;
     cursor: pointer;
+
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
 
     transition: all 0.25s;
 
