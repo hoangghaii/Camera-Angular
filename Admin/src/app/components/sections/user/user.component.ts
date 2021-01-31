@@ -55,6 +55,7 @@ export class UserComponent implements OnInit {
     this.isOpen = true;
   }
 
+
   addFormProductType(item:any){
    return this.fb.group({
         id : item.id,
