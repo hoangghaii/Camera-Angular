@@ -69,16 +69,16 @@ img {
   }
 
   &-thumb {
-    background-color: $customer-color-primary-dark;
+    background-color: $color-primary-dark;
   }
 }
 
 ::-moz-selection {
-  background: $admin-color-primary; /* Gecko Browsers */
+  background: $color-primary; /* Gecko Browsers */
   color: $color-white;
 }
 
 ::selection {
-  background: $admin-color-primary; /* WebKit/Blink Browsers */
+  background: $color-primary; /* WebKit/Blink Browsers */
   color: $color-white;
 }

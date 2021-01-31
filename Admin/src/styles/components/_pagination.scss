@@ -18,19 +18,19 @@
     }
 
     &.first-item {
-      color: $admin-color-primary;
+      color: $color-primary;
     }
 
     &.previous-item {
-      color: $admin-color-primary;
+      color: $color-primary;
     }
 
     &.number-item {
-      color: $admin-color-primary;
+      color: $color-primary;
 
       &.active {
-        background-color: $admin-color-primary;
-        border-color: $admin-color-primary;
+        background-color: $color-primary;
+        border-color: $color-primary;
         color: $color-white;
       }
     }

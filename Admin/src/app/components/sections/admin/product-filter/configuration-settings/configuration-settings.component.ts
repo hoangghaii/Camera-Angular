@@ -5,6 +5,7 @@ import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';
 import {
   FilterTypeService,
+  FilterService,
   ProductTypeService,
   ConfigurationSettingsService,
 } from 'src/app/services/apis';
@@ -36,11 +37,13 @@ export class ConfigurationSettingsComponent implements OnInit {
   public pageOfItems!: Array<any>;
   public productTypeList: any;
   public filterTypeList: any;
+  public filterList: any;
 
   constructor(
     private fb: FormBuilder,
     private productTypeService: ProductTypeService,
     private filterTypeService: FilterTypeService,
+    private filterService: FilterService,
     private configurationSettingsService: ConfigurationSettingsService,
     private modalService: ModalService
   ) {}
@@ -66,6 +69,10 @@ export class ConfigurationSettingsComponent implements OnInit {
   }
 
   handleCreateConfiguratonSettings() {}
+
+  filterItemsOfType(typeId: number): any {
+    return this.filterList.filter((item: any) => item.id === typeId);
+  }
 
   parserObj(obj: any): object {
     return {

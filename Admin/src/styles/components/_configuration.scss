@@ -32,15 +32,15 @@
       color: $color-white;
       background: linear-gradient(
         to right,
-        $customer-color-primary,
-        $customer-color-primary-light
+        $color-primary,
+        $color-primary-light
       );
 
       &:hover {
         background: linear-gradient(
           to right,
-          $customer-color-primary,
-          $customer-color-primary-light
+          $color-primary,
+          $color-primary-light
         );
       }
     }
@@ -70,7 +70,7 @@
 
     &--number {
       font-weight: 500;
-      color: $admin-color-primary;
+      color: $color-primary;
     }
   }
 
@@ -145,7 +145,7 @@
   &__price {
     font-size: 1.7rem;
     font-weight: 600;
-    color: $admin-color-primary;
+    color: $color-primary;
 
     margin: 0 4rem;
 

@@ -57,3 +57,10 @@
   <button class="btn btn-add">Thêm</button>
   <!-- <button class="btn btn-edit">Sửa</button> -->
 </div>
+
+<ul *ngFor="let item of filterTypeList">
+  <span>{{ item.name }}</span>
+  <li *ngFor="let i of filterItemsOfType(item.id)">
+    {{ i.name }}
+  </li>
+</ul>

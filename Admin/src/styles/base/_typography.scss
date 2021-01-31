@@ -84,8 +84,8 @@ body {
 
   background-image: linear-gradient(
     to right,
-    $customer-color-primary,
-    $customer-color-primary-dark
+    $color-primary,
+    $color-primary-dark
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -141,8 +141,8 @@ body {
   font-size: 1.6rem;
   font-weight: 600;
   text-transform: uppercase;
-  color: $admin-color-primary;
-  border-bottom: 2px solid $admin-color-primary;
+  color: $color-primary;
+  border-bottom: 2px solid $color-primary;
 
   margin-bottom: 3rem;
 }

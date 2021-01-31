@@ -11,7 +11,7 @@
   margin: 2rem auto;
 
   &-header {
-    background-color: $admin-color-primary-light;
+    background-color: $color-primary-light;
     border-radius: 1rem 1rem 0 0;
   }
 
@@ -38,12 +38,12 @@
   }
 
   &-body {
-    border: 2px solid $admin-color-primary-light;
+    border: 2px solid $color-primary-light;
   }
 
   &-content__list {
     &:not(:last-child) {
-      border-bottom: 2px solid $admin-color-primary-light;
+      border-bottom: 2px solid $color-primary-light;
     }
   }
 
@@ -54,7 +54,7 @@
     display: inline-block;
 
     &:not(:last-child) {
-      border-right: 2px solid $admin-color-primary-light;
+      border-right: 2px solid $color-primary-light;
     }
   }
 
@@ -130,7 +130,7 @@
   }
 
   &-content__link {
-    color: $admin-color-primary;
+    color: $color-primary;
     font-weight: 500;
     text-decoration: underline !important;
 
