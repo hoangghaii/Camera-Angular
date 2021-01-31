@@ -9,7 +9,7 @@ declare const fnClock: any;
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public currentUser: any;
+  public currentUser?: any;
 
   constructor(private localStorageService: LocalStorageService) {}
 

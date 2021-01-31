@@ -7,7 +7,7 @@ import { LocalStorageService } from 'src/app/services';
   styleUrls: ['./wrapper.component.scss'],
 })
 export class WrapperComponent implements OnInit {
-  public currentUser: any;
+  public currentUser?: any;
 
   constructor(private localStorageService: LocalStorageService) {}
 

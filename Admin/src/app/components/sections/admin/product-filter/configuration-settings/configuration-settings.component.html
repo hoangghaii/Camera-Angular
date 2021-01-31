@@ -1,23 +1,59 @@
-<ng-select
-  [items]="dropdownList"
-  [multiple]="true"
-  bindLabel="item_text"
-  [selectableGroup]="true"
-  [closeOnSelect]="false"
-  bindValue="item_id"
-  [(ngModel)]="selectedItems"
->
-  <ng-template
-    ng-option-tmp
-    let-item="item"
-    let-item$="item$"
-    let-index="index"
-  >
-    <input id="item-{{ index }}" type="checkbox" [ngModel]="item$.selected" />
-    {{ item.item_text }}
-  </ng-template>
-</ng-select>
+<div class="cs-flex cs-container">
+  <div class="cs-flex gr1">
+    <label for="gr1">Loại sản phẩm:</label>
+    <ng-select
+      id="gr1"
+      [items]="dropdownList1"
+      [multiple]="false"
+      bindLabel="item_text"
+      [selectableGroup]="true"
+      [closeOnSelect]="false"
+      bindValue="item_id"
+      placeholder="Loại sản phẩm"
+      [(ngModel)]="selectedItems1"
+      (change)="getValues1()"
+    >
+      <ng-template
+        ng-option-tmp
+        let-item="item"
+        let-item$="item$"
+        let-index="index"
+      >
+        {{ item.item_text }}
+      </ng-template>
+    </ng-select>
+  </div>
 
-<br />
+  <div class="cs-flex gr2">
+    <label for="grr2">Loại bộ lọc:</label>
+    <ng-select
+      id="gr2"
+      [items]="dropdownList2"
+      [multiple]="true"
+      bindLabel="item_text"
+      [selectableGroup]="true"
+      [closeOnSelect]="false"
+      bindValue="item_id"
+      placeholder="Loại bộ lọc"
+      [(ngModel)]="selectedItems2"
+      (change)="getValues2()"
+    >
+      <ng-template
+        ng-option-tmp
+        let-item="item"
+        let-item$="item$"
+        let-index="index"
+      >
+        <input
+          id="item-{{ index }}"
+          type="checkbox"
+          [ngModel]="item$.selected"
+        />
+        {{ item.item_text }}
+      </ng-template>
+    </ng-select>
+  </div>
 
-<small>{{ selectedItems | json }}</small>
+  <button class="btn btn-add">Thêm</button>
+  <!-- <button class="btn btn-edit">Sửa</button> -->
+</div>
