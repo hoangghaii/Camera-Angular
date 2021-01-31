@@ -45,8 +45,8 @@
       </div>
 
       <div class="table-body">
-        <div class="table-content__list" *ngFor="let item of productList">
-          <span class="table-content__item"> {{ item.id }} </span>
+        <div class="table-content__list" *ngFor="let item of productList;index as i">
+          <span class="table-content__item"> {{ i+1 }} </span>
           <span class="table-content__item">
             <a
               class="table-content__link"
