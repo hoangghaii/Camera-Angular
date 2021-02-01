@@ -5,9 +5,7 @@ const routes: Routes = [
   {
     path: 'product-manage',
     loadChildren: () =>
-      import(`../../sections/admin/product-filter/product-filter.module`).then(
-        (m) => m.ProductFilterModule
-      ),
+      import(`../../sections/admin/admin.module`).then((m) => m.AdminModule),
   },
   {
     path: '',

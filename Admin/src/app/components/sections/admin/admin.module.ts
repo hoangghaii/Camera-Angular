@@ -2,12 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared.module';
-import { ProductFilterRoutingModule } from './product-filter-routing.module';
+import { AdminRoutingModule } from './admin-routing.module';
 import { PaginationComponent } from 'src/app/components/core/pagination/pagination.component';
 
 import { ProductComponent } from './product/product.component';
 import { FilterComponent } from './filter/filter.component';
-import { ProductFilterComponent } from './product-filter.component';
+import { AdminComponent } from './admin.component';
 import { ModalProductComponent } from './product/modal-product/modal-product.component';
 import { ModalFilterComponent } from './filter/modal-filter/modal-filter.component';
 import { ModalProductTypeComponent } from './product/modal-product-type/modal-product-type.component';
@@ -17,7 +17,7 @@ import { ConfigurationSettingsComponent } from './configuration-settings/configu
 
 @NgModule({
   declarations: [
-    ProductFilterComponent,
+    AdminComponent,
     ProductComponent,
     FilterComponent,
     ModalProductComponent,
@@ -31,9 +31,9 @@ import { ConfigurationSettingsComponent } from './configuration-settings/configu
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    ProductFilterRoutingModule,
+    AdminRoutingModule,
     SharedModule,
     NgSelectModule,
   ],
 })
-export class ProductFilterModule {}
+export class AdminModule {}

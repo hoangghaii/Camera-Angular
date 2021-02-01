@@ -5,11 +5,7 @@
       (click)="changeBg1()"
       [ngClass]="this.isToogle1 ? 'side-nav__item--active' : ''"
     >
-      <a
-        [routerLink]="'product-manage'"
-        routerLinkActive="active"
-        class="side-nav__link"
-      >
+      <a [routerLink]="''" routerLinkActive="active" class="side-nav__link">
         <i class="fal fa-tasks side-nav__icon"></i>
         <span class="side-nav__heading"> Quản lý sản phẩm </span>
       </a>
@@ -21,7 +17,7 @@
       [ngClass]="this.isToogle2 ? 'side-nav__item--active' : ''"
     >
       <a
-        [routerLink]="'/admin/product-manage/configuration-settings'"
+        [routerLink]="'/admin/configuration-settings'"
         routerLinkActive="active"
         class="side-nav__link"
       >

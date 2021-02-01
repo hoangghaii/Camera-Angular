@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-product-filter',
-  templateUrl: './product-filter.component.html',
-  styleUrls: ['./product-filter.component.scss'],
+  selector: 'app-admin',
+  templateUrl: './admin.component.html',
+  styleUrls: ['./admin.component.scss'],
 })
-export class ProductFilterComponent implements OnInit {
+export class AdminComponent implements OnInit {
   public isToogle1: boolean = true;
   public isToogle2: boolean = false;
 

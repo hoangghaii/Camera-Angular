@@ -8,13 +8,13 @@ const routes: Routes = [
     component: ContentComponent,
     children: [
       {
-        path: 'product-manage',
+        path: '',
         loadChildren: () =>
-          import(
-            `../../sections/admin/product-filter/product-filter.module`
-          ).then((m) => m.ProductFilterModule),
+          import(`../../sections/admin/admin.module`).then(
+            (m) => m.AdminModule
+          ),
       },
-      { path: '', redirectTo: 'product-manage', pathMatch: 'full' },
+      // { path: '', redirectTo: 'product-manage', pathMatch: 'full' },
     ],
   },
 ];
