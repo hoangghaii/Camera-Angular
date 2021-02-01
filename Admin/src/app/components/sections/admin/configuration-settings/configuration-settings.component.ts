@@ -49,9 +49,9 @@ export class ConfigurationSettingsComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    // this.filterList = await this.getFilterList();
-    // this.filterTypeList = await this.getFilterTypeList();
-    // this.productTypeList = await this.getProductTypeList();
+    this.filterList = await this.getFilterList();
+    this.filterTypeList = await this.getFilterTypeList();
+    this.productTypeList = await this.getProductTypeList();
   }
 
   getValues1(): void {
