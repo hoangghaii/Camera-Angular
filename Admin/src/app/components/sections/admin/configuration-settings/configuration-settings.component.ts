@@ -16,21 +16,6 @@ import {
   styleUrls: ['./configuration-settings.component.scss'],
 })
 export class ConfigurationSettingsComponent implements OnInit {
-  public dropdownList1 = [
-    { item_id: 1, item_text: 'Mumbai1' },
-    { item_id: 2, item_text: 'Bangaluru1' },
-    { item_id: 3, item_text: 'Pune1' },
-    { item_id: 4, item_text: 'Navsari1' },
-    { item_id: 5, item_text: 'New Delhi1' },
-  ];
-
-  public dropdownList2 = [
-    { item_id: 1, item_text: 'Mumbai2' },
-    { item_id: 2, item_text: 'Bangaluru2' },
-    { item_id: 3, item_text: 'Pune2' },
-    { item_id: 4, item_text: 'Navsari2' },
-    { item_id: 5, item_text: 'New Delhi2' },
-  ];
   public selectedItems1: any = [];
   public selectedItems2: any = [];
 

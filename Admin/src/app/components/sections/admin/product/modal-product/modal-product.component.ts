@@ -44,6 +44,7 @@ export class ModalProductComponent implements OnInit {
   }
 
   async ngOnChanges(): Promise<void> {
+    this.productTypeList = await this.getProductTypeList();
     this.imagesUrl = ImageHolder.imageUrl;
     if (this.open && this.selectCurrent) {
       let res = await this.productService
@@ -140,12 +141,12 @@ export class ModalProductComponent implements OnInit {
     }
 
     const obj: any = this.parserObj(this.productForm.getRawValue());
-    obj.file = this.createFile(obj.file);
-    console.log(obj);
-    // this.productService.updateProduct(obj).subscribe((res) => {
-    //   this.confirm.emit({ open: false, status: 'upCreate' });
-    //   this.modalService.open('✔️ Cập nhật sản phẩm thành công !');
-    // });
+    // obj.file = this.createFile(obj.file);
+    // console.log(obj);
+    this.productService.updateProduct(obj).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Cập nhật sản phẩm thành công !');
+    });
   }
 
   parserObj(obj: any): object {

@@ -56,7 +56,7 @@ img {
 }
 
 ::-webkit-scrollbar {
-  width: 0.5rem;
+  width: 0.4rem;
   background-color: $color-grey-light-1;
 
   @include respond(tab-port) {
@@ -69,7 +69,7 @@ img {
   }
 
   &-thumb {
-    background-color: $color-primary-dark;
+    background-color: rgba($color-primary, 0.3);
   }
 }
 

@@ -76,6 +76,7 @@
 
   &__select {
     width: 100%;
+    max-width: 24.3rem;
     padding: 0.8rem 3.3rem;
     border: 1px solid $color-grey-light-4;
     border-radius: 1.1rem;
@@ -188,7 +189,7 @@
     width: 15rem;
     height: 15rem;
     margin: 1rem auto;
-    background-color: $color-grey-light-3;
+    box-shadow: $shadow-dark-1;
   }
 }
 

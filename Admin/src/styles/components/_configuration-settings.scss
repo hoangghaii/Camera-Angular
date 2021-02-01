@@ -42,3 +42,21 @@
 #gr2 {
   width: 35rem;
 }
+.cs-list__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 3rem;
+}
+.cs-list {
+  &__heading {
+    display: inline-block;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: $color-primary-light;
+    margin-bottom: 0.5rem;
+  }
+}
+.cs-item {
+  // margin-left: 1rem;
+}
