@@ -70,7 +70,7 @@ export class ModalProductComponent implements OnInit {
       productType: ['', [ValidatorService.required]],
       productName: [
         '',
-        [ValidatorService.required, ValidatorService.maxLength(30)],
+        [ValidatorService.required, ValidatorService.maxLength(500)],
       ],
       productPrice: [
         '',

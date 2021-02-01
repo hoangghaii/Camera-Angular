@@ -15,9 +15,9 @@ export class ProductTypeService extends HttpService {
     super();
   }
 
-  getProductTypeList(): Observable<any[]> {
+  getProductTypeList(): Observable<any> {
     const url = this.apiUrl + `category_product`;
-    return this.http.get<any[]>(url).pipe(
+    return this.http.get<any>(url).pipe(
       map((res: any) => {
         if (res) {
           return res;

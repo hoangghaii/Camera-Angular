@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
+import { ProductTypeService } from 'src/app/services/apis';
 import { Helper } from 'src/app/utils/helper';
 
 const HEROES = [
@@ -21,15 +22,17 @@ export class UserComponent implements OnInit {
   public heroes = HEROES;
   public formProduct !: FormGroup;
   public isOpen!: boolean;
-
+  public listProductTypes = [];
   constructor(
-    private fb :FormBuilder
+    private fb :FormBuilder,
+    private productTypeService : ProductTypeService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.initForm();
     this.setForm();
-    console.log(this.listProductType.value)
+    this.listProductTypes = await this.productTypeService.getProductTypeList().toPromise();
+    console.log(this.listProductTypes)
   }
   setForm() {
     let list = this.formProduct.get("listProductType") as FormArray;
@@ -52,17 +55,20 @@ export class UserComponent implements OnInit {
   ngOnChange(): void {}
 
   openModal(): void {
+
     this.isOpen = true;
   }
 
+  open(){
 
+  }
   addFormProductType(item:any){
    return this.fb.group({
         id : item.id,
         nameProductType : item.name,
         image :[''],
         count :0,
-        price :item.price,
+        price :item.price||'',
         originalPrice :item.price,
         nameProduct :['']
    })
