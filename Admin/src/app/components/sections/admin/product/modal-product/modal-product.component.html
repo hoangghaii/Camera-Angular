@@ -19,10 +19,9 @@
         <div class="form__group">
           <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
           <select name="" class="form__select" formControlName="productType">
-            <option value="1">Loại sản phẩm 1</option>
-            <option value="2">Loại sản phẩm 2</option>
-            <option value="3">Loại sản phẩm 3</option>
-            <option value="4">Loại sản phẩm 4</option>
+            <option value="{{ item.id }}" *ngFor="let item of productTypeList">
+              {{ item.name }}
+            </option>
           </select>
         </div>
       </div>
@@ -109,7 +108,9 @@
       <img [src]="imagesUrl" class="file-placeholder" />
 
       <div class="btn-group">
-        <button class="btn btn-cancel" (click)="closeModal()">Hủy</button>
+        <button class="btn btn-cancel" type="button" (click)="closeModal()">
+          Hủy
+        </button>
         <button
           class="btn btn-add"
           type="submit"

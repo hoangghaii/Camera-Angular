@@ -14,7 +14,6 @@ const routes: Routes = [
             (m) => m.AdminModule
           ),
       },
-      // { path: '', redirectTo: 'product-manage', pathMatch: 'full' },
     ],
   },
 ];

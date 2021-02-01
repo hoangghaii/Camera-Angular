@@ -13,14 +13,14 @@ const routes: Routes = [
         path: 'admin',
         loadChildren: () =>
           import(`../content/content.module`).then((m) => m.ContentModule),
-        // canActivate: [AuthGuard],
+        canActivate: [AuthGuard],
       },
       {
         path: 'user',
         loadChildren: () =>
           import(`../../sections/user/user.module`).then((m) => m.UserModule),
       },
-      { path: '', redirectTo: 'admin', pathMatch: 'full' },
+      { path: '', redirectTo: 'user', pathMatch: 'full' },
     ],
   },
 ];

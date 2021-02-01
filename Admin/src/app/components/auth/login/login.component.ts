@@ -62,7 +62,7 @@ export class LoginComponent implements OnInit {
           );
           this.authService.getCurrentUser().subscribe((user) => {
             localStorage.setItem('getUser', JSON.stringify(user));
-            this.router.navigateByUrl('/admin/product-manage');
+            this.router.navigateByUrl('/admin');
           });
         }
       },

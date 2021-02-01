@@ -38,9 +38,9 @@ export class ProductService extends HttpService {
    *
    * @param productId
    */
-  getProduct(productId: any): Observable<Product[]> {
+  getProduct(productId: any): Observable<any> {
     const url = this.apiUrl + `product/${productId}`;
-    return this.http.get<Product[]>(url).pipe(
+    return this.http.get<any>(url).pipe(
       map((res: any) => {
         if (res) {
           return res;

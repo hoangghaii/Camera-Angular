@@ -12,7 +12,7 @@ import { ImageHolder } from 'src/app/constants/global-const';
 import { Product } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';
-import { ProductService } from 'src/app/services/apis';
+import { ProductService, ProductTypeService } from 'src/app/services/apis';
 
 @Component({
   selector: 'app-modal-product',
@@ -24,6 +24,7 @@ export class ModalProductComponent implements OnInit {
   public product: Product[] = [];
   public submitted: boolean = false;
   public imagesUrl!: string;
+  public productTypeList: any;
 
   @Input() open!: boolean;
   @Input() typeModal!: string;
@@ -33,30 +34,33 @@ export class ModalProductComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
+    private productTypeService: ProductTypeService,
     private modalService: ModalService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.initForm();
+    this.productTypeList = await this.getProductTypeList();
   }
 
-  ngOnChanges(): void {
+  async ngOnChanges(): Promise<void> {
     this.imagesUrl = ImageHolder.imageUrl;
     if (this.open && this.selectCurrent) {
-      this.productService
+      let res = await this.productService
         .getProduct(this.selectCurrent.id)
-        .subscribe((res: any) => {
-          this.imagesUrl = res.file;
-          this.productForm.patchValue({
-            id: res.id,
-            productType: res.category_product_id,
-            productName: res.name,
-            productPrice: res.price,
-            productNote: res.description,
-            productImage: res.file,
-            updatedAt: res.updated_at,
-          });
-        });
+        .toPromise();
+      console.log(res);
+      this.imagesUrl = res.file;
+      this.productForm.patchValue({
+        id: res['id'],
+        productType: res['category_product_id'],
+        productName: res['name'],
+        productPrice: res['price'],
+        productNote: res['description'],
+        updatedAt: res['updated_at'],
+      });
+      // this.productForm.controls.productImage.setValue(res.file);
+      console.log(this.productForm.value);
     }
     if (this.open && this.selectCurrent === null) {
       this.initForm();
@@ -92,6 +96,10 @@ export class ModalProductComponent implements OnInit {
     this.confirm.emit({ open: false });
   }
 
+  async getProductTypeList(): Promise<any[]> {
+    return await this.productTypeService.getProductTypeList().toPromise();
+  }
+
   uploadFile(event: any): void {
     console.log(event);
     const reader = new FileReader();
@@ -117,11 +125,12 @@ export class ModalProductComponent implements OnInit {
     }
 
     const obj: any = this.parserObj(this.productForm.getRawValue());
-
-    this.productService.createProduct(obj).subscribe((res) => {
-      this.confirm.emit({ open: false, status: 'upCreate' });
-      this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
-    });
+    obj.file = this.createFile(obj.file);
+    console.log(obj);
+    // this.productService.createProduct(obj).subscribe((res) => {
+    //   this.confirm.emit({ open: false, status: 'upCreate' });
+    //   this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
+    // });
   }
 
   handleUpdate() {
@@ -131,11 +140,12 @@ export class ModalProductComponent implements OnInit {
     }
 
     const obj: any = this.parserObj(this.productForm.getRawValue());
-
-    this.productService.updateProduct(obj).subscribe((res) => {
-      this.confirm.emit({ open: false, status: 'upCreate' });
-      this.modalService.open('✔️ Cập nhật sản phẩm thành công !');
-    });
+    obj.file = this.createFile(obj.file);
+    console.log(obj);
+    // this.productService.updateProduct(obj).subscribe((res) => {
+    //   this.confirm.emit({ open: false, status: 'upCreate' });
+    //   this.modalService.open('✔️ Cập nhật sản phẩm thành công !');
+    // });
   }
 
   parserObj(obj: any): object {
@@ -145,8 +155,18 @@ export class ModalProductComponent implements OnInit {
       name: obj.productName,
       price: obj.productPrice,
       description: obj.productNote,
+      file: obj.productImage,
       image: obj.productImage,
       updated_at: obj.updatedAt,
     };
+  }
+  async createFile(url: string): Promise<any> {
+    let response = await fetch(url);
+    let ext = url.substring(url.lastIndexOf('.') + 1, url.length);
+    let data = await response.blob();
+    let metadata = {
+      type: 'image/' + ext,
+    };
+    return new File([data], 'test.' + ext, metadata);
   }
 }
