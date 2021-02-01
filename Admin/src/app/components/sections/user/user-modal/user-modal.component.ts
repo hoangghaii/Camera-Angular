@@ -10,6 +10,17 @@ import { ValidatorService } from 'src/app/services';
 })
 export class UserModalComponent implements OnInit {
   public submitted: boolean = false;
+  public searchText = '';
+  public dataTest = [
+    'Ant-Man',
+    'Aquaman',
+    'Asterix',
+    'The Atom',
+    'The Avengers',
+    'Batgirl',
+    'Batman',
+    'Batwoman',
+  ];
 
   @Input() open!: boolean;
   @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);

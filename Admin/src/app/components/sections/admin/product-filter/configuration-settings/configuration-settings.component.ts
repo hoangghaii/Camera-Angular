@@ -49,6 +49,7 @@ export class ConfigurationSettingsComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    // this.filterList = await this.getFilterList();
     // this.filterTypeList = await this.getFilterTypeList();
     // this.productTypeList = await this.getProductTypeList();
   }
@@ -58,6 +59,10 @@ export class ConfigurationSettingsComponent implements OnInit {
   }
   getValues2(): void {
     console.log(this.selectedItems2);
+  }
+
+  async getFilterList(): Promise<any[]> {
+    return await this.filterService.getFilterList().toPromise();
   }
 
   async getFilterTypeList(): Promise<any[]> {

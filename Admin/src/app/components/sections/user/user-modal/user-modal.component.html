@@ -173,213 +173,230 @@
       </div>
     </div>
 
-    <form action="#0" class="search">
+    <div class="search">
       <input
         type="text"
         class="search__input"
         placeholder="Tìm kiếm sản phẩm"
+        aria-describedby="search-text"
+        [(ngModel)]="searchText"
+        autofocus
       />
       <button class="search__button">
         <i class="far fa-search search__icon"></i>
       </button>
-    </form>
+    </div>
 
     <div class="configuration-modal__product-list">
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
+      <div
+        class="configuration-modal__product"
+        *ngFor="let d of dataTest | search: searchText"
+        appHighlight
+        [searchedWord]="searchText"
+        [content]="d"
+        [classToApply]="'font-weight-bold'"
+        [setTitle]="true"
+      >
+        {{ d }}
       </div>
     </div>
+
+    <!-- <div class="configuration-modal__product-list" >
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+
+      <div class="configuration-modal__product">
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div>
+      </div>
+    </div> -->
 
     <!-- <app-pagination
       [items]="productList"

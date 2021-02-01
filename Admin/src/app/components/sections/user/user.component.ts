@@ -20,59 +20,58 @@ export class UserComponent implements OnInit {
   public totalPrice: number = 0;
   public listPrice: any[] = HEROES;
   public heroes = HEROES;
-  public formProduct !: FormGroup;
+  public formProduct!: FormGroup;
   public isOpen!: boolean;
   public listProductTypes = [];
   constructor(
-    private fb :FormBuilder,
-    private productTypeService : ProductTypeService
+    private fb: FormBuilder,
+    private productTypeService: ProductTypeService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.initForm();
-    this.setForm();
-    this.listProductTypes = await this.productTypeService.getProductTypeList().toPromise();
-    console.log(this.listProductTypes)
+    // this.initForm();
+    // this.setForm();
+    // this.listProductTypes = await this.productTypeService
+    //   .getProductTypeList()
+    //   .toPromise();
+    // console.log(this.listProductTypes);
   }
-  setForm() {
-    let list = this.formProduct.get("listProductType") as FormArray;
-    this.heroes.forEach(item=>{
-      let form = this.addFormProductType(item);
-      list.push(form);
-    })
-  }
-  get listProductType() : FormArray {
-    return this.formProduct.get("listProductType") as FormArray
-  }
+  // setForm() {
+  //   let list = this.formProduct.get('listProductType') as FormArray;
+  //   this.heroes.forEach((item) => {
+  //     let form = this.addFormProductType(item);
+  //     list.push(form);
+  //   });
+  // }
+  // get listProductType(): FormArray {
+  //   return this.formProduct.get('listProductType') as FormArray;
+  // }
 
-  initForm() {
-    this.formProduct = this.fb.group({
-      listProductType : this.fb.array([])
-    })
-  }
-
+  // initForm() {
+  //   this.formProduct = this.fb.group({
+  //     listProductType: this.fb.array([]),
+  //   });
+  // }
 
   ngOnChange(): void {}
 
   openModal(): void {
-
     this.isOpen = true;
+    console.log(this.isOpen);
   }
 
-  open(){
-
-  }
-  addFormProductType(item:any){
-   return this.fb.group({
-        id : item.id,
-        nameProductType : item.name,
-        image :[''],
-        count :0,
-        price :item.price||'',
-        originalPrice :item.price,
-        nameProduct :['']
-   })
-  }
+  // open() {}
+  // addFormProductType(item: any) {
+  //   return this.fb.group({
+  //     id: item.id,
+  //     nameProductType: item.name,
+  //     image: [''],
+  //     count: 0,
+  //     price: item.price || '',
+  //     originalPrice: item.price,
+  //     nameProduct: [''],
+  //   });
+  // }
 
   closeModal(event: any): void {
     this.isOpen = event.isOpen;
@@ -82,42 +81,41 @@ export class UserComponent implements OnInit {
    * Handle minus value input
    * @param index
    */
-  quantityMinus(index: number) {
-    let product = this.listProductType.controls[index].value;
-    let count  =product.count;
-    let originalPrice = Number(product.originalPrice);
-    if(Number(count)>0){
-      count = Number(count)-1
-    }
-    else{
-      count = 0;
-    }
+  // quantityMinus(index: number) {
+  //   let product = this.listProductType.controls[index].value;
+  //   let count = product.count;
+  //   let originalPrice = Number(product.originalPrice);
+  //   if (Number(count) > 0) {
+  //     count = Number(count) - 1;
+  //   } else {
+  //     count = 0;
+  //   }
 
-    this.listProductType.controls[index].patchValue({
-        count : count,
-        price : originalPrice*count
-    });
-  }
+  //   this.listProductType.controls[index].patchValue({
+  //     count: count,
+  //     price: originalPrice * count,
+  //   });
+  // }
 
   /**
    * Handle plus value input
    * @param index
    */
-  quantityPlus(e: any, index: number) {
-    let product = this.listProductType.controls[index].value;
-    let originalPrice = Number(product.originalPrice);
-    let count  =Number(product.count)+1;
-    this.listProductType.controls[index].patchValue({
-        count : count,
-        price : originalPrice*count
-       });
-  }
+  // quantityPlus(e: any, index: number) {
+  //   let product = this.listProductType.controls[index].value;
+  //   let originalPrice = Number(product.originalPrice);
+  //   let count = Number(product.count) + 1;
+  //   this.listProductType.controls[index].patchValue({
+  //     count: count,
+  //     price: originalPrice * count,
+  //   });
+  // }
 
-  setPrice(item: number, index: number) {
-    this.listPrice[index] = item * 2000;
-  }
+  // setPrice(item: number, index: number) {
+  //   this.listPrice[index] = item * 2000;
+  // }
 
-  handleTotalPrice(value: number) {
-    this.totalPrice += value;
-  }
+  // handleTotalPrice(value: number) {
+  //   this.totalPrice += value;
+  // }
 }

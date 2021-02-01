@@ -1,6 +1,7 @@
 @import "abstracts/variables";
 @import "abstracts/functions";
 @import "abstracts/mixins";
+@import "abstracts/utilities";
 
 @import "base/reset";
 @import "base/base";
@@ -14,6 +15,7 @@
 
 @import "components/button";
 @import "components/clock";
+@import "components/configuration-settings";
 @import "components/configuration";
 @import "components/form";
 @import "components/icon";
