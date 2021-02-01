@@ -25,6 +25,7 @@ export class ModalProductComponent implements OnInit {
   public submitted: boolean = false;
   public imagesUrl!: string;
   public productTypeList: any;
+  public flag = false;
 
   @Input() open!: boolean;
   @Input() typeModal!: string;
@@ -44,7 +45,6 @@ export class ModalProductComponent implements OnInit {
   }
 
   async ngOnChanges(): Promise<void> {
-    this.productTypeList = await this.getProductTypeList();
     this.imagesUrl = ImageHolder.imageUrl;
     if (this.open && this.selectCurrent) {
       let res = await this.productService
@@ -59,6 +59,7 @@ export class ModalProductComponent implements OnInit {
         productPrice: res['price'],
         productNote: res['description'],
         updatedAt: res['updated_at'],
+        productImage: res['file'],
       });
       // this.productForm.controls.productImage.setValue(res.file);
       console.log(this.productForm.value);
@@ -102,7 +103,7 @@ export class ModalProductComponent implements OnInit {
   }
 
   uploadFile(event: any): void {
-    console.log(event);
+    this.flag = true;
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
@@ -126,12 +127,13 @@ export class ModalProductComponent implements OnInit {
     }
 
     const obj: any = this.parserObj(this.productForm.getRawValue());
-    obj.file = this.createFile(obj.file);
-    console.log(obj);
-    // this.productService.createProduct(obj).subscribe((res) => {
-    //   this.confirm.emit({ open: false, status: 'upCreate' });
-    //   this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
-    // });
+    // obj.file = this.createFile(obj.file);
+    // console.log(obj);
+    this.productService.createProduct(obj).subscribe((res) => {
+      this.confirm.emit({ open: false, status: 'upCreate' });
+      this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
+    });
+    this.flag = false;
   }
 
   handleUpdate() {
@@ -140,13 +142,18 @@ export class ModalProductComponent implements OnInit {
       return;
     }
 
-    const obj: any = this.parserObj(this.productForm.getRawValue());
-    // obj.file = this.createFile(obj.file);
-    // console.log(obj);
+    let obj: any;
+    if (this.flag) {
+      obj = this.parserObj(this.productForm.getRawValue());
+    } else {
+      obj = this.parserObj2(this.productForm.getRawValue());
+    }
+
     this.productService.updateProduct(obj).subscribe((res) => {
       this.confirm.emit({ open: false, status: 'upCreate' });
       this.modalService.open('✔️ Cập nhật sản phẩm thành công !');
     });
+    this.flag = false;
   }
 
   parserObj(obj: any): object {
@@ -158,6 +165,16 @@ export class ModalProductComponent implements OnInit {
       description: obj.productNote,
       file: obj.productImage,
       image: obj.productImage,
+      updated_at: obj.updatedAt,
+    };
+  }
+  parserObj2(obj: any): object {
+    return {
+      id: obj.id,
+      category_product_id: obj.productType,
+      name: obj.productName,
+      price: obj.productPrice,
+      description: obj.productNote,
       updated_at: obj.updatedAt,
     };
   }
