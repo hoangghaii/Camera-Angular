@@ -26,6 +26,8 @@
     .ng-option {
       color: currentColor;
 
+      transition: all 0.25s;
+
       &.ng-option-selected {
         background-color: transparent;
       }
