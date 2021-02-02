@@ -5,13 +5,14 @@
       id="gr1"
       [items]="productTypeList"
       [multiple]="false"
-      bindLabel="item_text"
+      bindLabel="name"
       [selectableGroup]="true"
       [closeOnSelect]="false"
-      bindValue="item_id"
+      bindValue="id"
       placeholder="Loại sản phẩm"
-      [(ngModel)]="selectedItems1"
-      (change)="getValues1()"
+      [closeOnSelect]="true"
+      [(ngModel)]="selectedProductTypeId"
+      (close)="getValues1()"
     >
       <ng-template
         ng-option-tmp
@@ -30,13 +31,13 @@
       id="gr2"
       [items]="filterTypeList"
       [multiple]="true"
-      bindLabel="item_text"
+      bindLabel="name"
       [selectableGroup]="true"
       [closeOnSelect]="false"
-      bindValue="item_id"
+      bindValue="id"
       placeholder="Loại bộ lọc"
-      [(ngModel)]="selectedItems2"
-      (change)="getValues2()"
+      [(ngModel)]="selectedFilterTypeId"
+      (close)="getValues2()"
     >
       <ng-template
         ng-option-tmp
@@ -54,30 +55,22 @@
     </ng-select>
   </div>
 
-  <button type="button" class="btn btn-add">Thêm</button>
+  <button
+    type="button"
+    class="btn btn-add"
+    (click)="handleCreateConfiguratonSettings()"
+  >
+    Thêm
+  </button>
   <!-- <button class="btn btn-edit">Sửa</button> -->
 </div>
 
 <div class="cs-list__wrapper">
-  <ul class="cs-list" *ngFor="let item of filterTypeList">
+  <div class="cs-list" *ngFor="let item of filterTypeList">
     <span class="cs-list__heading">{{ item.name }}</span>
-    <!-- <li class="cs-item" *ngFor="let i of filterItemsOfType(item.id)">
-      {{ i.name }}
-    </li> -->
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-    <li class="cs-item">i.name</li>
-  </ul>
+    <select class="cs__select">
+      <option>---Danh sách bộ lọc---</option>
+      <option *ngFor="let i of filterItemsOfType(item.id)">{{ i.name }}</option>
+    </select>
+  </div>
 </div>

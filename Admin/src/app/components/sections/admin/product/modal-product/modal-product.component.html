@@ -19,6 +19,7 @@
         <div class="form__group">
           <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
           <select name="" class="form__select" formControlName="productType">
+            <option value="">----Chọn loại sản phẩm----</option>
             <option value="{{ item.id }}" *ngFor="let item of productTypeList">
               {{ item.name }}
             </option>

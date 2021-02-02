@@ -7,18 +7,19 @@
 }
 
 .table {
+  border-collapse: collapse;
   width: 90%;
   margin: 2rem auto;
+  border-radius: 1.2rem 1.2rem 0 0;
+  overflow: hidden;
 
   &-header {
+    border: 0.2rem solid $color-primary-light;
     background-color: $color-primary-light;
-    border-radius: 1rem 1rem 0 0;
   }
 
   &-heading__list,
   &-content__list {
-    padding: 0 1rem;
-
     display: flex;
   }
 
@@ -29,32 +30,38 @@
     font-weight: 600;
     text-align: center;
 
-    padding: 8px 5px;
+    padding: 1rem 0;
     display: inline-block;
 
     &:not(:last-child) {
-      border-right: 2px solid $color-white;
+      border-right: 0.2rem solid $color-white;
     }
   }
 
+  tbody {
+    border: 0.2rem solid $color-primary-light;
+  }
+
   &-body {
-    border: 2px solid $color-primary-light;
+    border-bottom: 0.2rem solid $color-primary-light;
   }
 
   &-content__list {
     &:not(:last-child) {
-      border-bottom: 2px solid $color-primary-light;
+      border-bottom: 0.2rem solid $color-primary-light;
     }
   }
 
   &-content__item {
     text-align: center;
 
-    padding: 8px 15px 0;
+    padding: 0.8rem;
     display: inline-block;
 
+    @extend %overflow;
+
     &:not(:last-child) {
-      border-right: 2px solid $color-primary-light;
+      border-right: 0.2rem solid $color-primary-light;
     }
   }
 
@@ -62,47 +69,47 @@
     .table {
       &-heading__item:first-child,
       &-content__item:first-child {
-        width: 10rem;
+        width: 10%;
         overflow: hidden;
       }
 
       &-heading__item:nth-child(2),
       &-content__item:nth-child(2) {
-        width: 25rem;
+        width: 25%;
         overflow: hidden;
       }
 
       &-heading__item:nth-child(3),
       &-content__item:nth-child(3) {
-        width: 15rem;
+        width: 15%;
         overflow: hidden;
 
         @include respond(table) {
-          width: 20rem;
+          width: 20%;
           overflow: hidden;
         }
       }
 
       &-heading__item:nth-child(4),
       &-content__item:nth-child(4) {
-        width: 18rem;
+        width: 20%;
         overflow: hidden;
       }
 
       &-heading__item:nth-child(5),
       &-content__item:nth-child(5) {
-        width: 18rem;
+        width: 15%;
         overflow: hidden;
 
         @include respond(table) {
-          width: 20rem;
+          width: 20%;
           overflow: hidden;
         }
       }
 
       &-heading__item:last-child,
       &-content__item:last-child {
-        width: 15rem;
+        width: 15%;
         overflow: hidden;
       }
     }
@@ -112,31 +119,31 @@
     .table {
       &-heading__item:first-child,
       &-content__item:first-child {
-        width: 10rem;
+        width: 10%;
         overflow: hidden;
       }
 
       &-heading__item:nth-child(2),
       &-content__item:nth-child(2) {
-        width: 30rem;
+        width: 30%;
         overflow: hidden;
       }
 
       &-heading__item:nth-child(3),
       &-content__item:nth-child(3) {
-        width: 20rem;
+        width: 20%;
         overflow: hidden;
       }
 
       &-heading__item:nth-child(4),
       &-content__item:nth-child(4) {
-        width: 20rem;
+        width: 20%;
         overflow: hidden;
       }
 
       &-heading__item:last-child,
       &-content__item:last-child {
-        width: 20rem;
+        width: 20%;
         overflow: hidden;
       }
     }
@@ -145,10 +152,10 @@
   &-content__link {
     color: $color-primary;
     font-weight: 500;
-    text-decoration: underline !important;
 
-    display: inline-block;
+    display: inline;
     cursor: pointer;
+    position: relative;
 
     width: 90%;
     white-space: nowrap;
@@ -157,10 +164,23 @@
 
     transition: all 0.25s;
 
-    &:hover,
-    &:focus {
-      outline: none;
-      transform: translateY(-3px);
+    &::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+
+      display: inline-block;
+      width: 0;
+      height: 2px;
+      background-color: $color-primary;
+
+      transition: all 0.25s;
+    }
+
+    &:hover::after {
+      width: 100%;
     }
   }
 }

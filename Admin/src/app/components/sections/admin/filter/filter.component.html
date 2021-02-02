@@ -32,72 +32,50 @@
       </span>
     </div>
 
-    <div class="table table-2">
-      <div class="table-header">
-        <div class="table-heading__list">
-          <span class="table-heading__item"> STT </span>
-          <span class="table-heading__item"> Tên bộ lọc </span>
-          <span class="table-heading__item"> Loại bộ lọc </span>
-          <span class="table-heading__item"> Ngày tạo </span>
-          <span class="table-heading__item"> Hành động </span>
-        </div>
-      </div>
+    <table class="table table-2">
+      <thead>
+        <tr class="table-header">
+          <th class="table-heading__item">STT</th>
+          <th class="table-heading__item"><a>Tên bộ lọc</a></th>
+          <th class="table-heading__item">Loại bộ lọc</th>
+          <th class="table-heading__item">Ngày tạo</th>
+          <th class="table-heading__item"><a> Hành động</a></th>
+        </tr>
+      </thead>
 
-      <div class="table-body">
-        <div class="table-content__list">
-          <span class="table-content__item"> 1 </span>
-          <span class="table-content__item">
-            <a href="#0" class="table-content__link" data-modal="product-modal">
-              Bộ lọc 1
+      <tbody>
+        <tr class="table-body" *ngFor="let item of pageOfItems; index as i">
+          <td class="table-content__item">{{ i + 1 }}</td>
+          <td class="table-content__item">
+            <a
+              class="table-content__link"
+              (click)="selectedRowFilter(item, 'modalAdd')"
+            >
+              {{ item.name }}
             </a>
-          </span>
-          <span class="table-content__item"> Loại 1 </span>
-          <span class="table-content__item"> 21/12/2021 </span>
-          <span class="table-content__item">
-            <span class="times-icon times-icon-2">
+          </td>
+          <td class="table-content__item">
+            {{ getFilterTypeNameById(item.category_filter_id) }}
+          </td>
+          <td class="table-content__item">
+            {{ helper.formatDate(item.created_at) }}
+          </td>
+          <td class="table-content__item">
+            <a
+              class="times-icon times-icon-2"
+              (click)="handleDeleteFilter(item.id)"
+            >
               <i class="fal fa-times"></i>
-            </span>
-          </span>
-        </div>
-
-        <div class="table-content__list">
-          <span class="table-content__item"> 1 </span>
-          <span class="table-content__item">
-            <a href="#0" class="table-content__link" data-modal="product-modal">
-              Bộ lọc 1
             </a>
-          </span>
-          <span class="table-content__item"> Loại 1 </span>
-          <span class="table-content__item"> 21/12/2021 </span>
-          <span class="table-content__item">
-            <span class="times-icon times-icon-2">
-              <i class="fal fa-times"></i>
-            </span>
-          </span>
-        </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <div class="table-content__list">
-          <span class="table-content__item"> 1 </span>
-          <span class="table-content__item">
-            <a href="#0" class="table-content__link" data-modal="product-modal">
-              Bộ lọc 1
-            </a>
-          </span>
-          <span class="table-content__item"> Loại 1 </span>
-          <span class="table-content__item"> 21/12/2021 </span>
-          <span class="table-content__item">
-            <span class="times-icon times-icon-2">
-              <i class="fal fa-times"></i>
-            </span>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- <app-pagination
-      [items]="productList"
+    <app-pagination
+      [items]="filterList"
       (changePage)="onChangePage($event)"
-    ></app-pagination> -->
+    ></app-pagination>
   </div>
 </div>
 

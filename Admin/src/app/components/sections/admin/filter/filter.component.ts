@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ItemsList } from '@ng-select/ng-select/lib/items-list';
 import { Filter, FilterType } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { FilterService, FilterTypeService } from 'src/app/services/apis';
+import { Helper } from 'src/app/utils/helper';
 
 @Component({
   selector: 'app-filter',
@@ -13,18 +15,20 @@ export class FilterComponent implements OnInit {
   public selectCurrentFilterType: any;
   public typeModal: any;
   public isOpen!: boolean;
+  public helper = Helper;
 
   public pageOfItems!: Array<any>;
   public filterList: any;
   public filterTypeList: any;
 
   constructor(
-    // private productService: FilterService,
+    private filterService: FilterService,
     private filterTypeService: FilterTypeService,
     private modalService: ModalService
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.filterList = await this.getFilterList();
     this.filterTypeList = await this.getFilterTypeList();
   }
 
@@ -40,13 +44,23 @@ export class FilterComponent implements OnInit {
   async closeModal(event: any): Promise<void> {
     if (event.status && event.status === 'upCreate') {
       this.filterTypeList = await this.getFilterTypeList();
-      // this.productList = await this.getProductList();
+      this.filterList = await this.getFilterList();
     }
     this.isOpen = event.open;
   }
 
+  async getFilterList(): Promise<any[]> {
+    return await this.filterService.getFilterList().toPromise();
+  }
+
   async getFilterTypeList(): Promise<any[]> {
     return await this.filterTypeService.getFilterTypeList().toPromise();
+  }
+
+  getFilterTypeNameById(id: number) {
+    let value = this.filterTypeList?.filter((item: any) => item.id === id)[0]
+      .name;
+    return value;
   }
 
   selectedRowFilter(select: Filter, type?: string): void {
@@ -63,9 +77,16 @@ export class FilterComponent implements OnInit {
     this.isOpen = true;
   }
 
+  async handleDeleteFilter(id: any): Promise<void> {
+    this.filterService.deleteFilter(id).subscribe(async (res) => {
+      this.modalService.open('✔️ Xóa bộ lọc thành công !');
+      this.filterList = await this.getFilterList();
+    });
+  }
+
   async handleDeleteFilterType(id: any): Promise<void> {
     this.filterTypeService.deleteFilterType(id).subscribe(async (res) => {
-      this.modalService.open('✔️ Xóa loại sản phẩm thành công !');
+      this.modalService.open('✔️ Xóa loại bộ lọc thành công !');
       this.filterTypeList = await this.getFilterTypeList();
     });
   }

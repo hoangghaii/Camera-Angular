@@ -41,10 +41,12 @@ export class ModalProductComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.initForm();
-    this.productTypeList = await this.getProductTypeList();
+    this.getProductTypeList();
   }
 
   async ngOnChanges(): Promise<void> {
+    // this.getProductTypeList();
+
     this.imagesUrl = ImageHolder.imageUrl;
     if (this.open && this.selectCurrent) {
       let res = await this.productService
@@ -61,7 +63,6 @@ export class ModalProductComponent implements OnInit {
         updatedAt: res['updated_at'],
         productImage: res['file'],
       });
-      // this.productForm.controls.productImage.setValue(res.file);
       console.log(this.productForm.value);
     }
     if (this.open && this.selectCurrent === null) {
@@ -99,7 +100,9 @@ export class ModalProductComponent implements OnInit {
   }
 
   async getProductTypeList(): Promise<any[]> {
-    return await this.productTypeService.getProductTypeList().toPromise();
+    return (this.productTypeList = await this.productTypeService
+      .getProductTypeList()
+      .toPromise());
   }
 
   uploadFile(event: any): void {
@@ -127,8 +130,7 @@ export class ModalProductComponent implements OnInit {
     }
 
     const obj: any = this.parserObj(this.productForm.getRawValue());
-    // obj.file = this.createFile(obj.file);
-    // console.log(obj);
+
     this.productService.createProduct(obj).subscribe((res) => {
       this.confirm.emit({ open: false, status: 'upCreate' });
       this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
@@ -177,14 +179,5 @@ export class ModalProductComponent implements OnInit {
       description: obj.productNote,
       updated_at: obj.updatedAt,
     };
-  }
-  async createFile(url: string): Promise<any> {
-    let response = await fetch(url);
-    let ext = url.substring(url.lastIndexOf('.') + 1, url.length);
-    let data = await response.blob();
-    let metadata = {
-      type: 'image/' + ext,
-    };
-    return new File([data], 'test.' + ext, metadata);
   }
 }

@@ -18,9 +18,9 @@ import paginate from 'jw-paginate';
 export class PaginationComponent implements OnInit, OnChanges {
   @Input() items!: Array<any>;
   @Output() changePage = new EventEmitter<any>(true);
-  @Input() initialPage = 1;
-  @Input() pageSize = 5;
-  @Input() maxPages = 10;
+  public initialPage = 1;
+  public pageSize = 5;
+  public maxPages = 10;
 
   pager: any = {};
 

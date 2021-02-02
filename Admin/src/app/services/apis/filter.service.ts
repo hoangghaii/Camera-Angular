@@ -38,9 +38,9 @@ export class FilterService extends HttpService {
    *
    * @param filtertId
    */
-  getFilter(filtertId: any): Observable<Filter[]> {
+  getFilter(filtertId: any): Observable<any> {
     const url = this.apiUrl + `filter/${filtertId}`;
-    return this.http.get<Filter[]>(url).pipe(
+    return this.http.get<any>(url).pipe(
       map((res: any) => {
         if (res) {
           return res;
@@ -75,9 +75,9 @@ export class FilterService extends HttpService {
    *
    * @param objFilter
    */
-  updateFilter(objFilter: Filter): Observable<Filter[]> {
-    const url = this.apiUrl + `filter`;
-    return this.http.post<Filter[]>(url, objFilter).pipe(
+  updateFilter(objFilter: Filter, filtertId: any): Observable<Filter[]> {
+    const url = this.apiUrl + `filter/${filtertId}`;
+    return this.http.put<Filter[]>(url, objFilter).pipe(
       catchError((e) => {
         return this.handleError(e);
       })

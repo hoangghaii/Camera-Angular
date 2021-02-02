@@ -57,6 +57,12 @@ export class ProductComponent implements OnInit {
     return await this.productTypeService.getProductTypeList().toPromise();
   }
 
+  getProductTypeNameById(id: number) {
+    let value = this.productTypeList?.filter((item: any) => item.id === id)[0]
+      .name;
+    return value;
+  }
+
   selectedRowProduct(select: Product, type?: string): void {
     this.selectCurrentProductType = null;
     this.selectCurrentProduct = select;

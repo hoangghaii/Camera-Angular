@@ -76,11 +76,13 @@
 
   &__select {
     width: 100%;
-    max-width: 24.3rem;
-    padding: 0.8rem 3.3rem;
+    max-width: 24.2rem;
+    padding: 0.8rem 1rem;
     border: 1px solid $color-grey-light-4;
     border-radius: 1.1rem;
     color: inherit;
+
+    text-align: center;
 
     &:focus {
       outline: none;

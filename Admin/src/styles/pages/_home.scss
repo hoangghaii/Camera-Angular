@@ -48,9 +48,14 @@
 
   background-color: $color-black;
   flex: 0 0 18%;
+  width: 24rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  @include respond(tablet) {
+    width: 100%;
+  }
 }
 
 .main {

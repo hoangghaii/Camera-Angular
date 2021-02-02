@@ -45,8 +45,8 @@ export class ConfigurationSettingsService extends HttpService {
     );
   }
 
-  updateConfigurationSettings(obj: any, id: any): Observable<any[]> {
-    const url = this.apiUrl + `filter-product/${id}`;
+  updateConfigurationSettings(obj: any): Observable<any[]> {
+    const url = this.apiUrl + `filter-product`;
 
     return this.http.put<any[]>(url, obj).pipe(
       catchError((e) => {

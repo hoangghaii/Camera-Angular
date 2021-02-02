@@ -32,48 +32,47 @@
       </span>
     </div>
 
-    <div class="table table-1">
-      <div class="table-header">
-        <div class="table-heading__list">
-          <span class="table-heading__item"> STT </span>
-          <span class="table-heading__item"> Tên sản phẩm </span>
-          <span class="table-heading__item"> Giá (đ) </span>
-          <span class="table-heading__item"> Loại sản phẩm </span>
-          <span class="table-heading__item"> Ngày tạo </span>
-          <span class="table-heading__item"> Hành động </span>
-        </div>
-      </div>
+    <table class="table table-1">
+      <thead>
+        <tr class="table-header">
+          <th class="table-heading__item">STT</th>
+          <th class="table-heading__item">Tên sản phẩm</th>
+          <th class="table-heading__item">Giá (đ)</th>
+          <th class="table-heading__item">Loại sản phẩm</th>
+          <th class="table-heading__item">Ngày tạo</th>
+          <th class="table-heading__item">Hành động</th>
+        </tr>
+      </thead>
 
-      <div class="table-body">
-        <div
-          class="table-content__list"
-          *ngFor="let item of productList; index as i"
-        >
-          <span class="table-content__item"> {{ i + 1 }} </span>
-          <span
-            class="table-content__item table-content__link"
-            (click)="selectedRowProduct(item, 'modalAdd')"
-          >
-            {{ item.name }}
-          </span>
-          <span class="table-content__item"> {{ item.price }} </span>
-          <span class="table-content__item">
-            {{ item.category_product_id }}
-          </span>
-          <span class="table-content__item">
+      <tbody>
+        <tr class="table-body" *ngFor="let item of productList; index as i">
+          <td class="table-content__item">{{ i + 1 }}</td>
+          <td class="table-content__item">
+            <a
+              class="table-content__link"
+              (click)="selectedRowProduct(item, 'modalAdd')"
+            >
+              {{ item.name }}
+            </a>
+          </td>
+          <td class="table-content__item">{{ item.price }}</td>
+          <td class="table-content__item">
+            {{ getProductTypeNameById(item.category_product_id) }}
+          </td>
+          <td class="table-content__item">
             {{ helper.formatDate(item.created_at) }}
-          </span>
-          <span class="table-content__item">
+          </td>
+          <td class="table-content__item">
             <span
               class="times-icon times-icon-2"
               (click)="handleDeleteProduct(item.id)"
             >
               <i class="fal fa-times"></i>
             </span>
-          </span>
-        </div>
-      </div>
-    </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <app-pagination
       [items]="productList"

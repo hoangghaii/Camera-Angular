@@ -12,11 +12,16 @@
     <form action="#0" class="form" [formGroup]="filterForm">
       <div class="form__group">
         <label class="form__label"> Loại bộ lọc:<span>(*)</span> </label>
-        <select name="" class="form__select" formControlName="filterType">
-          <option value="lbl1">Loại bộ lọc 1</option>
-          <option value="lbl2">Loại bộ lọc 2</option>
-          <option value="lbl3">Loại bộ lọc 3</option>
-          <option value="lbl4">Loại bộ lọc 4</option>
+        <select
+          name=""
+          class="form__select"
+          formControlName="filterType"
+          style="max-width: 29.8rem"
+        >
+          <option value="">----Chọn loại bộ lọc----</option>
+          <option value="{{ item.id }}" *ngFor="let item of filterTypeList">
+            {{ item.name }}
+          </option>
         </select>
       </div>
       <div *ngIf="submitted && f.filterType.errors" class="invalid">
@@ -27,7 +32,7 @@
 
       <div class="form__group">
         <label class="form__label"> Tên bộ lọc:<span>(*)</span> </label>
-        <input type="text" class="form__input" rformControlName="filterName" />
+        <input type="text" class="form__input" formControlName="filterName" />
       </div>
       <div *ngIf="submitted && f.filterName.errors" class="invalid">
         <div *ngIf="f.filterName.errors.required">

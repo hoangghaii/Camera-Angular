@@ -4,7 +4,6 @@
   padding: 0 2rem;
 
   flex-wrap: wrap;
-
   justify-content: space-between;
 
   & > * {
@@ -42,21 +41,45 @@
 #gr2 {
   width: 35rem;
 }
+
 .cs-list__wrapper {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-between;
   padding: 3rem;
 }
+
 .cs-list {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 3rem;
+  }
+
   &__heading {
     display: inline-block;
     font-size: 1.6rem;
-    text-transform: uppercase;
     color: $color-primary-light;
     margin-bottom: 0.5rem;
+
+    width: 24rem;
   }
 }
-.cs-item {
-  // margin-left: 1rem;
+
+.cs__select {
+  width: 100%;
+  max-width: 30rem;
+  padding: 1rem 5rem;
+  border: 1px solid $color-grey-light-4;
+  border-radius: 1.1rem;
+  color: inherit;
+
+  text-align: center;
+
+  &:focus {
+    outline: none;
+  }
 }

@@ -16,9 +16,11 @@ import {
   styleUrls: ['./configuration-settings.component.scss'],
 })
 export class ConfigurationSettingsComponent implements OnInit {
-  public selectedItems1: any = [];
-  public selectedItems2: any = [];
+  public selectedProductTypeId: any = [];
+  public selectedFilterTypeId: any = [];
 
+  public submitted: boolean = false;
+  public filterProductForm!: FormGroup;
   public pageOfItems!: Array<any>;
   public productTypeList: any;
   public filterTypeList: any;
@@ -34,16 +36,34 @@ export class ConfigurationSettingsComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
+    this.initForm();
     this.filterList = await this.getFilterList();
     this.filterTypeList = await this.getFilterTypeList();
     this.productTypeList = await this.getProductTypeList();
   }
 
+  initForm(): void {
+    this.filterProductForm = this.fb.group({
+      id: [''],
+      productTypeId: ['', [ValidatorService.required]],
+      listFilterTypeId: [[], [ValidatorService.required]],
+      updatedAt: [''],
+    });
+  }
+
+  get f() {
+    return this.filterProductForm.controls;
+  }
+
   getValues1(): void {
-    console.log(this.selectedItems1);
+    this.filterProductForm.patchValue({
+      productTypeId: this.selectedProductTypeId,
+    });
   }
   getValues2(): void {
-    console.log(this.selectedItems2);
+    this.filterProductForm.patchValue({
+      listFilterTypeId: this.selectedFilterTypeId,
+    });
   }
 
   async getFilterList(): Promise<any[]> {
@@ -58,7 +78,20 @@ export class ConfigurationSettingsComponent implements OnInit {
     return await this.productTypeService.getProductTypeList().toPromise();
   }
 
-  handleCreateConfiguratonSettings() {}
+  handleCreateConfiguratonSettings() {
+    // this.submitted = true;
+    // if (!this.filterProductForm.valid) {
+    //   return;
+    // }
+    const obj: any = this.parserObj(this.filterProductForm.getRawValue());
+    this.configurationSettingsService
+      .updateConfigurationSettings(obj)
+      .subscribe((res) => {
+        this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
+      });
+
+    console.log(this.filterProductForm.value);
+  }
 
   filterItemsOfType(typeId: number): any {
     return this.filterList.filter((item: any) => item.id === typeId);
@@ -67,8 +100,8 @@ export class ConfigurationSettingsComponent implements OnInit {
   parserObj(obj: any): object {
     return {
       id: obj.id,
-      category_product_id: obj.productTypeName,
-      description: obj.productTypeNote,
+      category_product_id: obj.productTypeId,
+      list: obj.listFilterTypeId,
       updated_at: obj.updatedAt,
     };
   }
