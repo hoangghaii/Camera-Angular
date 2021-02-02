@@ -24,6 +24,7 @@ export class ConfigurationSettingsComponent implements OnInit {
   public pageOfItems!: Array<any>;
   public productTypeList: any;
   public filterTypeList: any;
+  public filterProductList: any;
   public filterList: any;
 
   constructor(
@@ -40,6 +41,8 @@ export class ConfigurationSettingsComponent implements OnInit {
     this.filterList = await this.getFilterList();
     this.filterTypeList = await this.getFilterTypeList();
     this.productTypeList = await this.getProductTypeList();
+    this.getFilterProductTypeList();
+    console.log(this.getFilterProductTypeList());
   }
 
   initForm(): void {
@@ -78,6 +81,12 @@ export class ConfigurationSettingsComponent implements OnInit {
     return await this.productTypeService.getProductTypeList().toPromise();
   }
 
+  async getFilterProductTypeList(): Promise<any[]> {
+    return (this.filterProductList = await this.configurationSettingsService
+      .getConfigurationSettings()
+      .toPromise());
+  }
+
   handleCreateConfiguratonSettings() {
     // this.submitted = true;
     // if (!this.filterProductForm.valid) {
@@ -88,9 +97,8 @@ export class ConfigurationSettingsComponent implements OnInit {
       .updateConfigurationSettings(obj)
       .subscribe((res) => {
         this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
+        console.log(this.getFilterProductTypeList());
       });
-
-    console.log(this.filterProductForm.value);
   }
 
   filterItemsOfType(typeId: number): any {
