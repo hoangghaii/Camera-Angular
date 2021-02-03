@@ -7,11 +7,16 @@
     <div class="configuration-modal__header">
       <h5 class="configuration-modal__heading heading-5">Bộ lọc</h5>
 
-      <div class="configuration-modal__filter-choose">
-        AMD
-        <span class="times-icon">
-          <i class="fal fa-times"></i>
-        </span>
+      <div class="configuration-modal__filter-choose--list">
+        <div
+          class="configuration-modal__filter-choose"
+          *ngFor="let item of chooseList"
+        >
+          {{ item }}
+          <span class="times-icon" (click)="handleDeleteFilterTypeChoose(item)">
+            <i class="fal fa-times"></i>
+          </span>
+        </div>
       </div>
     </div>
 
@@ -28,7 +33,10 @@
           class="configuration-modal__filter-item"
           *ngFor="let i of filterItemsOfType(item.id)"
         >
-          <span class="configuration-modal__filter-item--list">
+          <span
+            class="configuration-modal__filter-item--list"
+            (click)="handleChooseFilterType(i.name)"
+          >
             {{ i.name }}
           </span>
         </div>

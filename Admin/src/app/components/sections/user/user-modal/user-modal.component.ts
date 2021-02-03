@@ -25,6 +25,7 @@ export class UserModalComponent implements OnInit {
   public filterTypeList: any;
   public filterProductList: any;
   public filterList: any;
+  public chooseList: any = [];
 
   @Input() open!: boolean;
   @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
@@ -42,7 +43,6 @@ export class UserModalComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     // this.initForm();
     this.filterList = await this.getFilterList();
-    console.log(this.filterList);
     this.filterTypeList = await this.getFilterTypeList();
     this.productList = await this.getProductList();
     this.productTypeList = await this.getProductTypeList();
@@ -52,6 +52,7 @@ export class UserModalComponent implements OnInit {
     this.submitted = false;
     // this.productTypeForm.reset();
     this.confirm.emit({ open: false });
+    this.chooseList = [];
   }
 
   async getFilterList(): Promise<any[]> {
@@ -76,6 +77,22 @@ export class UserModalComponent implements OnInit {
 
   filterProductItemsOfType(typeId: number): any {
     return this.productList.filter((item: any) => item.id === typeId);
+  }
+
+  handleChooseFilterType(item: any) {
+    for (const ele of this.chooseList) {
+      if (ele == item) {
+        return;
+      }
+    }
+    this.chooseList.push(item);
+  }
+
+  handleDeleteFilterTypeChoose(item: any) {
+    let index = this.chooseList.indexOf(item);
+    if (index > -1) {
+      this.chooseList.splice(index, 1);
+    }
   }
 
   /**

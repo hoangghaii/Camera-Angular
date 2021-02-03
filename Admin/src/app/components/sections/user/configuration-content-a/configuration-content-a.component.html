@@ -1,0 +1,112 @@
+<div class="configuration__pdf">
+  <div class="configuration__cost">
+    <span class="configuration__cost--heading"> Chi phí dự tính: </span>
+    <span class="configuration__cost--number"> 200.000đ </span>
+  </div>
+
+  <button class="btn btn-pdf">Tải báo giá (PDF)</button>
+
+  <div class="configuration__contact">
+    <i class="fas fa-phone-alt"></i>
+    <span class="configuration__contact-number"> Liên hệ: 23423423 </span>
+  </div>
+</div>
+
+<form>
+  <div>
+    <div class="accessories">
+      <div class="accessories__group">
+        <div class="accessories__heading"></div>
+
+        <div class="accessories__img">
+          <img src="./assets/images/banner09.jpg" alt="accessories image" />
+        </div>
+      </div>
+
+      <div class="accessories__content">
+        <span class="accessories__title">Tên sản phẩm</span>
+        <span class="accessories__note">Ghi chú</span>
+      </div>
+
+      <div class="accessories__group">
+        <div class="form__number">
+          <label class="arrow-minus"> - </label>
+          <input type="number" formControlName="price" readonly />
+
+          <label class="arrow-plus"> + </label>
+        </div>
+
+        <div class="accessories__price"></div>
+
+        <button
+          type="button"
+          class="btn btn-accessories btn-edit"
+          (click)="openModal()"
+        >
+          Sửa
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="accessories">
+  <div class="accessories__group">
+    <div class="accessories__heading">Tên loại sản phẩm</div>
+
+    <div class="accessories__img">
+      <img src="./assets/images/100x100.png" alt="accessories image" />
+    </div>
+  </div>
+
+  <div class="accessories__content">Vui lòng chọn sản phẩm</div>
+
+  <button
+    type="button"
+    class="btn btn-accessories btn-choose"
+    (click)="openModal()"
+  >
+    Chọn
+  </button>
+</div>
+
+<div class="accessories">
+  <div class="accessories__group">
+    <div class="accessories__heading">Tên loại sản phẩm</div>
+
+    <div class="accessories__img">
+      <img src="./assets/images/100x100.png" alt="accessories image" />
+    </div>
+  </div>
+
+  <div class="accessories__content">Vui lòng chọn sản phẩm</div>
+
+  <button
+    type="button"
+    class="btn btn-accessories btn-choose"
+    (click)="openModal()"
+  >
+    Chọn
+  </button>
+</div>
+
+<div class="accessories">
+  <div class="accessories__group">
+    <div class="accessories__heading">Tên loại sản phẩm</div>
+
+    <div class="accessories__img">
+      <img src="./assets/images/100x100.png" alt="accessories image" />
+    </div>
+  </div>
+
+  <div class="accessories__content">Vui lòng chọn sản phẩm</div>
+
+  <button
+    type="button"
+    class="btn btn-accessories btn-choose"
+    (click)="openModal()"
+  >
+    Chọn
+  </button>
+</div>
+
+<app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal>
