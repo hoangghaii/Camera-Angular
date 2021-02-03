@@ -6,6 +6,7 @@ import { ValidatorService } from 'src/app/services';
 import {
   FilterTypeService,
   FilterService,
+  ProductService,
   ProductTypeService,
   ConfigurationSettingsService,
 } from 'src/app/services/apis';
@@ -22,6 +23,7 @@ export class ConfigurationSettingsComponent implements OnInit {
   public submitted: boolean = false;
   public filterProductForm!: FormGroup;
   public pageOfItems!: Array<any>;
+  public productList: any;
   public productTypeList: any;
   public filterTypeList: any;
   public filterProductList: any;
@@ -29,6 +31,7 @@ export class ConfigurationSettingsComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private productService: ProductService,
     private productTypeService: ProductTypeService,
     private filterTypeService: FilterTypeService,
     private filterService: FilterService,
@@ -40,12 +43,17 @@ export class ConfigurationSettingsComponent implements OnInit {
     this.initForm();
     this.filterList = await this.getFilterList();
     this.filterTypeList = await this.getFilterTypeList();
+    this.productList = await this.getProductList();
     this.productTypeList = await this.getProductTypeList();
     this.getFilterProductTypeList();
     console.log(this.getFilterProductTypeList());
   }
 
   initForm(): void {
+    this.submitted = false;
+    this.selectedProductTypeId = [];
+    this.selectedFilterTypeId = [];
+
     this.filterProductForm = this.fb.group({
       id: [''],
       productTypeId: ['', [ValidatorService.required]],
@@ -77,6 +85,10 @@ export class ConfigurationSettingsComponent implements OnInit {
     return await this.filterTypeService.getFilterTypeList().toPromise();
   }
 
+  async getProductList(): Promise<any[]> {
+    return await this.productService.getProductList().toPromise();
+  }
+
   async getProductTypeList(): Promise<any[]> {
     return await this.productTypeService.getProductTypeList().toPromise();
   }
@@ -88,21 +100,27 @@ export class ConfigurationSettingsComponent implements OnInit {
   }
 
   handleCreateConfiguratonSettings() {
-    // this.submitted = true;
-    // if (!this.filterProductForm.valid) {
-    //   return;
-    // }
+    this.submitted = true;
+    if (!this.filterProductForm.valid) {
+      return;
+    }
+
     const obj: any = this.parserObj(this.filterProductForm.getRawValue());
     this.configurationSettingsService
       .updateConfigurationSettings(obj)
       .subscribe((res) => {
         this.modalService.open('✔️ Đăng ký sản phẩm thành công !');
+        this.initForm();
         console.log(this.getFilterProductTypeList());
       });
   }
 
   filterItemsOfType(typeId: number): any {
     return this.filterList.filter((item: any) => item.id === typeId);
+  }
+
+  filterProductItemsOfType(typeId: number): any {
+    return this.productList.filter((item: any) => item.id === typeId);
   }
 
   parserObj(obj: any): object {

@@ -16,158 +16,20 @@
     </div>
 
     <div class="configuration-modal__filter">
-      <div class="configuration-modal__filter-list">
+      <div
+        class="configuration-modal__filter-list"
+        *ngFor="let item of filterTypeList"
+      >
         <span class="configuration-modal__filter-list--heading">
-          Loại thương hiệu 1
+          {{ item.name }}
         </span>
 
-        <div class="configuration-modal__filter-item">
+        <div
+          class="configuration-modal__filter-item"
+          *ngFor="let i of filterItemsOfType(item.id)"
+        >
           <span class="configuration-modal__filter-item--list">
-            Thương hiệu 1
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 2
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 3
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 4
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 5
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 6
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 7
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 8
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 9
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 10
-          </span>
-        </div>
-      </div>
-
-      <div class="configuration-modal__filter-list">
-        <span class="configuration-modal__filter-list--heading">
-          Loại thương hiệu 1
-        </span>
-
-        <div class="configuration-modal__filter-item">
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 1
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 2
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 3
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 4
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 5
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 6
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 7
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 8
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 9
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 10
-          </span>
-        </div>
-      </div>
-
-      <div class="configuration-modal__filter-list">
-        <span class="configuration-modal__filter-list--heading">
-          Loại thương hiệu 1
-        </span>
-
-        <div class="configuration-modal__filter-item">
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 1
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 2
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 3
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 4
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 5
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 6
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 7
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 8
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 9
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 10
-          </span>
-        </div>
-      </div>
-
-      <div class="configuration-modal__filter-list">
-        <span class="configuration-modal__filter-list--heading">
-          Loại thương hiệu 1
-        </span>
-
-        <div class="configuration-modal__filter-item">
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 1
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 2
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 3
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 4
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 5
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 6
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 7
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 8
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 9
-          </span>
-          <span class="configuration-modal__filter-item--list">
-            Thương hiệu 10
+            {{ i.name }}
           </span>
         </div>
       </div>
@@ -190,217 +52,29 @@
     <div class="configuration-modal__product-list">
       <div
         class="configuration-modal__product"
-        *ngFor="let d of dataTest | search: searchText"
-        appHighlight
-        [searchedWord]="searchText"
-        [content]="d"
-        [classToApply]="'font-weight-bold'"
-        [setTitle]="true"
+        *ngFor="let item of pageOfItems | filter: searchText"
       >
-        {{ d }}
+        {{ item.name }}
+        <!-- <div class="configuration-modal-group">
+          <div class="configuration-modal__product-img">
+            <img src="./assets/images/banner01.jpg" alt="product image" />
+          </div>
+          <div class="configuration-modal__product-info">
+            <div class="configuration-modal__product-name">Tên sản phẩm</div>
+            <div class="configuration-modal__product-note">Ghi chú</div>
+          </div>
+        </div>
+
+        <div class="configuration-modal-group">
+          <div class="configuration-modal__product-price">20.000đ</div>
+          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
+        </div> -->
       </div>
     </div>
 
-    <!-- <div class="configuration-modal__product-list" >
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-
-      <div class="configuration-modal__product">
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
-          </div>
-          <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
-          </div>
-        </div>
-        <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose">Chọn</button>
-        </div>
-      </div>
-    </div> -->
-
-    <!-- <app-pagination
-      [items]="productList"
+    <app-pagination
+      [items]="filterList"
       (changePage)="onChangePage($event)"
-    ></app-pagination> -->
+    ></app-pagination>
   </div>
 </div>

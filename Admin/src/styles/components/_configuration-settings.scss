@@ -4,6 +4,7 @@
   padding: 0 2rem;
 
   flex-wrap: wrap;
+  align-items: baseline !important;
   justify-content: space-between;
 
   & > * {
@@ -42,12 +43,31 @@
   width: 35rem;
 }
 
+.cs-prodfilt {
+  margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+
+  @include respond(tablet) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__wrapper {
+    text-align: center;
+  }
+}
+
 .cs-list__wrapper {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
   justify-content: space-between;
-  padding: 3rem;
+  padding: 0 3rem 3rem;
+
+  @include respond(tablet) {
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
 }
 
 .cs-list {
@@ -63,7 +83,9 @@
     display: inline-block;
     font-size: 1.6rem;
     color: $color-primary-light;
-    margin-bottom: 0.5rem;
+    word-break: break-word;
+    text-align: left;
+    padding-right: 3rem;
 
     width: 24rem;
   }
@@ -72,12 +94,10 @@
 .cs__select {
   width: 100%;
   max-width: 30rem;
-  padding: 1rem 5rem;
+  padding: 1rem 3rem;
   border: 1px solid $color-grey-light-4;
   border-radius: 1.1rem;
   color: inherit;
-
-  text-align: center;
 
   &:focus {
     outline: none;

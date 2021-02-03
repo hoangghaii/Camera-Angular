@@ -30,21 +30,6 @@ export class ConfigurationSettingsService extends HttpService {
     );
   }
 
-  createConfigurationSettings(obj: any): Observable<any[]> {
-    const url = this.apiUrl + `filter-product`;
-
-    return this.http.post<any[]>(url, obj).pipe(
-      map((res: any) => {
-        if (res) {
-          return res;
-        }
-      }),
-      catchError((e) => {
-        return this.handleError(e);
-      })
-    );
-  }
-
   updateConfigurationSettings(obj: any): Observable<any[]> {
     const url = this.apiUrl + `filter-product`;
 

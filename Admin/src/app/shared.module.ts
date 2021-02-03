@@ -8,6 +8,7 @@ import { ErrorComponent } from './components/core/error/error.component';
 import { ModalComponent } from './directives/modal.component ';
 import { LoadingComponent } from './components/core/loading/loading.component';
 import { HeaderComponent } from './components/core/header/header.component';
+import { PaginationComponent } from './components/core/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { HeaderComponent } from './components/core/header/header.component';
     ModalComponent,
     LoadingComponent,
     HeaderComponent,
+    PaginationComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +25,13 @@ import { HeaderComponent } from './components/core/header/header.component';
     HttpClientModule,
     RouterModule,
   ],
-  exports: [ErrorComponent, LoadingComponent, ModalComponent, HeaderComponent],
+  exports: [
+    ErrorComponent,
+    LoadingComponent,
+    ModalComponent,
+    HeaderComponent,
+    PaginationComponent,
+  ],
   entryComponents: [ModalComponent],
   providers: [],
 })

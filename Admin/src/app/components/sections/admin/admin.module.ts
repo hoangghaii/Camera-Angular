@@ -24,7 +24,6 @@ import { ConfigurationSettingsComponent } from './configuration-settings/configu
     ModalFilterComponent,
     ModalProductTypeComponent,
     ModalFilterTypeComponent,
-    PaginationComponent,
     ConfigurationSettingsComponent,
   ],
   imports: [
