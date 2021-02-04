@@ -29,7 +29,7 @@
           {{ item.name }}
         </span>
 
-        <div
+        <!-- <div
           class="configuration-modal__filter-item"
           *ngFor="let i of filterItemsOfType(item.id)"
         >
@@ -39,7 +39,7 @@
           >
             {{ i.name }}
           </span>
-        </div>
+        </div> -->
       </div>
     </div>
 
@@ -60,7 +60,7 @@
     <div class="configuration-modal__product-list">
       <div
         class="configuration-modal__product"
-        *ngFor="let item of pageOfItems | filter: searchText"
+        *ngFor="let item of productList | filter: searchText"
       >
         {{ item.name }}
         <div class="configuration-modal-group">
@@ -75,14 +75,14 @@
 
         <div class="configuration-modal-group">
           <div class="configuration-modal__product-price">20.000đ</div>
-          <button class="btn configuration-modal-btn btn-choose" (click)="selectProduct(item)" >Chọn</button>
+          <button
+            class="btn configuration-modal-btn btn-choose"
+            (click)="selectProduct(item)"
+          >
+            Chọn
+          </button>
         </div>
       </div>
     </div>
-
-    <app-pagination
-      [items]="productList"
-      (changePage)="onChangePage($event)"
-    ></app-pagination>
   </div>
 </div>
