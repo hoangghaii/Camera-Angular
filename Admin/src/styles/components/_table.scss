@@ -149,6 +149,28 @@
     }
   }
 
+  &-3 {
+    .table {
+      &-heading__item:first-child,
+      &-content__item:first-child {
+        width: 10%;
+        overflow: hidden;
+      }
+
+      &-heading__item:nth-child(2),
+      &-content__item:nth-child(2) {
+        width: 35%;
+        overflow: hidden;
+      }
+
+      &-heading__item:last-child,
+      &-content__item:last-child {
+        width: 55%;
+        overflow: hidden;
+      }
+    }
+  }
+
   &-content__link {
     color: $color-primary;
     font-weight: 500;

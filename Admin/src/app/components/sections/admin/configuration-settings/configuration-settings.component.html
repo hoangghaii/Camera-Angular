@@ -1,134 +1,178 @@
-<form class="cs-flex cs-container" [formGroup]="filterProductForm">
-  <div>
-    <div class="cs-flex gr1">
-      <label for="gr1">Loại sản phẩm:</label>
-      <ng-select
-        id="gr1"
-        [items]="productTypeList"
-        [multiple]="false"
-        bindLabel="name"
-        [selectableGroup]="true"
-        [closeOnSelect]="false"
-        bindValue="id"
-        placeholder="Loại sản phẩm"
-        [closeOnSelect]="true"
-        [(ngModel)]="selectedProductTypeId"
-        [ngModelOptions]="{ standalone: true }"
-        (close)="getValues1()"
-      >
-        <ng-template
-          ng-option-tmp
-          let-item="item"
-          let-item$="item$"
-          let-index="index"
-        >
-          {{ item.name }}
-        </ng-template>
-      </ng-select>
-    </div>
+<div class="cs-content-1">
+  <h3 class="heading-3">Đăng ký cấu hình</h3>
 
-    <div *ngIf="submitted && f.productTypeId.errors" class="invalid invalid-1">
-      <div *ngIf="f.productTypeId.errors.required">
-        <span>⚠️</span> Loại sản phẩm không được để trống
+  <form class="cs-flex cs-container" [formGroup]="filterProductForm">
+    <div>
+      <div class="cs-flex gr1">
+        <label for="gr1">Loại sản phẩm:</label>
+        <ng-select
+          id="gr1"
+          [items]="productTypeList"
+          [multiple]="false"
+          bindLabel="name"
+          [selectableGroup]="true"
+          [closeOnSelect]="false"
+          bindValue="id"
+          placeholder="Loại sản phẩm"
+          [closeOnSelect]="true"
+          [(ngModel)]="selectedProductTypeId"
+          [ngModelOptions]="{ standalone: true }"
+          (close)="getValues1()"
+        >
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-item$="item$"
+            let-index="index"
+          >
+            {{ item.name }}
+          </ng-template>
+        </ng-select>
       </div>
-    </div>
 
-    <input
-      type="hidden"
-      value="{{ selectedProductTypeId | json }}"
-      formControlName="productTypeId"
-    />
-  </div>
-
-  <div>
-    <div class="cs-flex gr2">
-      <label for="gr2">Loại bộ lọc:</label>
-      <ng-select
-        id="gr2"
-        [items]="filterTypeList"
-        [multiple]="true"
-        bindLabel="name"
-        [selectableGroup]="true"
-        [closeOnSelect]="false"
-        bindValue="id"
-        placeholder="Loại bộ lọc"
-        [(ngModel)]="selectedFilterTypeId"
-        [ngModelOptions]="{ standalone: true }"
-        (close)="getValues2()"
+      <div
+        *ngIf="submitted && f.productTypeId.errors"
+        class="invalid invalid-1"
       >
-        <ng-template
-          ng-option-tmp
-          let-item="item"
-          let-item$="item$"
-          let-index="index"
-        >
-          <input
-            id="item-{{ index }}"
-            type="checkbox"
-            [ngModel]="item$.selected"
-            [ngModelOptions]="{ standalone: true }"
-          />
-          {{ item.name }}
-        </ng-template>
-      </ng-select>
+        <div *ngIf="f.productTypeId.errors.required">
+          <span>⚠️</span> Loại sản phẩm không được để trống
+        </div>
+      </div>
+
+      <input
+        type="hidden"
+        value="{{ selectedProductTypeId | json }}"
+        formControlName="productTypeId"
+      />
     </div>
 
-    <div
-      *ngIf="submitted && f.listFilterTypeId.errors"
-      class="invalid invalid-2"
+    <div>
+      <div class="cs-flex gr2">
+        <label for="gr2">Loại bộ lọc:</label>
+        <ng-select
+          id="gr2"
+          [items]="filterTypeList"
+          [multiple]="true"
+          bindLabel="name"
+          [selectableGroup]="true"
+          [closeOnSelect]="false"
+          bindValue="id"
+          placeholder="Loại bộ lọc"
+          [(ngModel)]="selectedFilterTypeId"
+          [ngModelOptions]="{ standalone: true }"
+          (close)="getValues2()"
+        >
+          <ng-template
+            ng-option-tmp
+            let-item="item"
+            let-item$="item$"
+            let-index="index"
+          >
+            <input
+              id="item-{{ index }}"
+              type="checkbox"
+              [ngModel]="item$.selected"
+              [ngModelOptions]="{ standalone: true }"
+            />
+            {{ item.name }}
+          </ng-template>
+        </ng-select>
+      </div>
+
+      <div
+        *ngIf="submitted && f.listFilterTypeId.errors"
+        class="invalid invalid-2"
+      >
+        <div *ngIf="f.listFilterTypeId.errors.required">
+          <span>⚠️</span> Danh sách loại bộ lọc không được để trống
+        </div>
+      </div>
+
+      <input
+        type="hidden"
+        value="{{ selectedFilterTypeId | json }}"
+        formControlName="listFilterTypeId"
+      />
+    </div>
+
+    <button
+      type="button"
+      class="btn btn-add"
+      (click)="handleCreateConfiguratonSettings()"
     >
-      <div *ngIf="f.listFilterTypeId.errors.required">
-        <span>⚠️</span> Danh sách loại bộ lọc không được để trống
-      </div>
-    </div>
-
-    <input
-      type="hidden"
-      value="{{ selectedFilterTypeId | json }}"
-      formControlName="listFilterTypeId"
-    />
-  </div>
-
-  <button
-    type="button"
-    class="btn btn-add"
-    (click)="handleCreateConfiguratonSettings()"
-  >
-    Thêm
-  </button>
-</form>
-
-<div *ngFor="let item of filterProductList">
-  <span> {{ item.category_product_id }}</span>
+      Thêm
+    </button>
+  </form>
 </div>
 
-<div class="cs-prodfilt">
-  <div class="cs-prodfilt__wrapper">
-    <h5 class="heading-5">Danh sách loại sản phẩm</h5>
-    <div class="cs-list__wrapper">
-      <div class="cs-list" *ngFor="let item of productTypeList">
-        <span class="cs-list__heading">{{ item.name }}</span>
-        <select class="cs__select">
-          <option>---Danh sách sản phẩm---</option>
-          <option *ngFor="let i of filterProductItemsOfType(item.id)">
-            {{ i.name }}
-          </option>
-        </select>
+<div class="cs-content-2">
+  <h3 class="heading-3">Danh sách cấu hình đã đăng ký</h3>
+
+  <table class="table table-3">
+    <thead>
+      <tr class="table-header">
+        <th class="table-heading__item">STT</th>
+        <th class="table-heading__item">Loại sản phẩm</th>
+        <th class="table-heading__item">Loại bộ lọc</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="table-body" *ngFor="let item of pageOfItems; index as i">
+        <td class="table-content__item">{{ i + 1 }}</td>
+        <td class="table-content__item">
+          <span class="cs-configed__heading">
+            {{ filterProductTypeById(item.category_product_id) }}
+          </span>
+        </td>
+        <td class="table-content__item">
+          <ul class="cs-configed">
+            <li *ngFor="let i of item.list" class="cs-configed__item">
+              {{ filterTypeById(i) }}
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <app-pagination
+    [items]="filterProductList"
+    (changePage)="onChangePage($event)"
+  ></app-pagination>
+</div>
+
+<div class="cs-content-3">
+  <h3 class="heading-3">Danh sách loại sản phẩm & loại bộ lọc</h3>
+
+  <div class="cs-prodfilt">
+    <div class="cs-prodfilt__wrapper">
+      <h5 class="heading-5">Danh sách loại sản phẩm</h5>
+      <div class="cs-list__wrapper">
+        <div class="cs-list" *ngFor="let item of productTypeList">
+          <span class="cs-list__heading">{{ item.name }}</span>
+          <select class="cs__select">
+            <option>---Danh sách sản phẩm---</option>
+            <option *ngFor="let i of filterProductItemsOfType(item.id)">
+              {{ i.name }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="cs-prodfilt__wrapper">
-    <h5 class="heading-5">Danh sách loại bộ lọc</h5>
-    <div class="cs-list__wrapper">
-      <div class="cs-list" *ngFor="let item of filterTypeList">
-        <span class="cs-list__heading">{{ item.name }}</span>
-        <select class="cs__select">
-          <option>---Danh sách bộ lọc---</option>
-          <option *ngFor="let i of filterItemsOfType(item.id)">
-            {{ i.name }}
-          </option>
-        </select>
+    <div class="cs-prodfilt__wrapper">
+      <h5 class="heading-5">Danh sách loại bộ lọc</h5>
+      <div class="cs-list__wrapper">
+        <div class="cs-list" *ngFor="let item of filterTypeList">
+          <span class="cs-list__heading">{{ item.name }}</span>
+          <select class="cs__select">
+            <option>---Danh sách bộ lọc---</option>
+            <option *ngFor="let i of filterItemsOfType(item.id)">
+              {{ i.name }}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
   </div>

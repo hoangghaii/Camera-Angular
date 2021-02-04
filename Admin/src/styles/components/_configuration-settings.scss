@@ -1,34 +1,141 @@
 /* =================== Configuration-Settings ================== */
-.cs-container {
-  margin-top: 2rem;
-  padding: 0 2rem;
 
-  flex-wrap: wrap;
-  align-items: baseline !important;
-  justify-content: space-between;
+.cs {
+  &-container {
+    margin-top: 2rem;
 
-  & > * {
+    flex-wrap: wrap;
+    align-items: baseline !important;
+    justify-content: space-between;
+
+    & > * {
+      margin-bottom: 2rem;
+    }
+
+    label {
+      margin-right: 1rem;
+    }
+
+    .btn-add {
+      margin-top: 0;
+
+      padding: 1rem 5rem;
+      border-radius: 0.7rem;
+
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &-content {
+    &-1 {
+      padding: 2rem;
+
+      border-bottom: 2px solid $color-grey-light-3;
+    }
+
+    &-2 {
+      text-align: center;
+
+      padding: 2rem;
+
+      border-bottom: 2px solid $color-grey-light-3;
+    }
+
+    &-3 {
+      text-align: center;
+
+      padding: 2rem;
+    }
+  }
+
+  &-configed {
+    list-style: inside;
+    display: flex;
+    flex-wrap: wrap;
+
+    padding: 0 2rem;
+
+    &__heading {
+      color: $color-primary;
+      font-size: 1.7rem;
+      font-weight: 500;
+    }
+
+    &__item {
+      &:not(:last-child) {
+        margin-right: 1.5rem;
+      }
+    }
+  }
+
+  &-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  &-prodfilt {
+    margin-top: 2rem;
     margin-bottom: 2rem;
+
+    display: flex;
+    justify-content: space-between;
+
+    @include respond(tablet) {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    &__wrapper {
+      text-align: center;
+    }
   }
 
-  label {
-    margin-right: 1rem;
+  &-list__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 3rem 3rem;
+
+    @include respond(tablet) {
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
   }
 
-  .btn-add {
-    margin-top: 0;
+  &-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 
-    padding: 1rem 5rem;
-    border-radius: 0.7rem;
+    &:not(:last-child) {
+      margin-bottom: 3rem;
+    }
 
-    margin-left: auto;
-    margin-right: auto;
+    &__heading {
+      display: inline-block;
+      font-size: 1.6rem;
+      color: $color-primary-light;
+      word-break: break-word;
+      text-align: left;
+      padding-right: 3rem;
+
+      width: 24rem;
+    }
   }
-}
 
-.cs-flex {
-  display: flex;
-  align-items: center;
+  &__select {
+    width: 100%;
+    max-width: 30rem;
+    padding: 1rem 3rem;
+    border: 1px solid $color-grey-light-4;
+    border-radius: 1.1rem;
+    color: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
 }
 
 .gr1 {
@@ -41,65 +148,4 @@
 
 #gr2 {
   width: 35rem;
-}
-
-.cs-prodfilt {
-  margin-top: 5rem;
-  display: flex;
-  justify-content: space-between;
-
-  @include respond(tablet) {
-    flex-direction: column;
-    justify-content: center;
-  }
-
-  &__wrapper {
-    text-align: center;
-  }
-}
-
-.cs-list__wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  padding: 0 3rem 3rem;
-
-  @include respond(tablet) {
-    justify-content: center;
-    margin-bottom: 1rem;
-  }
-}
-
-.cs-list {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  &:not(:last-child) {
-    margin-bottom: 3rem;
-  }
-
-  &__heading {
-    display: inline-block;
-    font-size: 1.6rem;
-    color: $color-primary-light;
-    word-break: break-word;
-    text-align: left;
-    padding-right: 3rem;
-
-    width: 24rem;
-  }
-}
-
-.cs__select {
-  width: 100%;
-  max-width: 30rem;
-  padding: 1rem 3rem;
-  border: 1px solid $color-grey-light-4;
-  border-radius: 1.1rem;
-  color: inherit;
-
-  &:focus {
-    outline: none;
-  }
 }
