@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalService } from 'src/app/services';
 import { ValidatorService } from 'src/app/services';
@@ -15,7 +15,7 @@ import {
   templateUrl: './user-modal.component.html',
   styleUrls: ['./user-modal.component.scss'],
 })
-export class UserModalComponent implements OnInit {
+export class UserModalComponent implements OnInit,OnChanges {
   public searchText = '';
 
   public submitted: boolean = false;
@@ -28,6 +28,9 @@ export class UserModalComponent implements OnInit {
   public chooseList: any = [];
 
   @Input() open!: boolean;
+  @Input() index!: number;
+  @Input() productTypeId!: number;
+  
   @Output() confirm: EventEmitter<object> = new EventEmitter<object>(false);
 
   constructor(
@@ -39,6 +42,14 @@ export class UserModalComponent implements OnInit {
     private configurationSettingsService: ConfigurationSettingsService,
     private modalService: ModalService
   ) {}
+  async ngOnChanges(): Promise<void> {
+    if(this.open&&this.productTypeId){
+      this.productList = await this.getProductByType();
+    }
+  }
+  async getProductByType(): Promise<any> {
+      return await this.productTypeService.getProductType(this.productTypeId).toPromise();
+  }
 
   async ngOnInit(): Promise<void> {
     // this.initForm();
@@ -54,7 +65,12 @@ export class UserModalComponent implements OnInit {
     this.confirm.emit({ open: false });
     this.chooseList = [];
   }
-
+  selectProduct(item:any): void {
+    this.submitted = false;
+    // this.productTypeForm.reset();
+    this.confirm.emit({ open: false,product :item,index : this.index });
+    this.chooseList = [];
+  }
   async getFilterList(): Promise<any[]> {
     return await this.filterService.getFilterList().toPromise();
   }

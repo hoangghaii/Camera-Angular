@@ -20,9 +20,9 @@ import { ConfigurationContentCComponent } from './configuration-content-c/config
     ConfigurationContentCComponent,
   ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    CommonModule,
     UserRoutingModule,
     Ng2SearchPipeModule,
     SharedModule,

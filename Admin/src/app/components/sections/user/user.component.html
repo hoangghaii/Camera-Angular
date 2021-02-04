@@ -1,4 +1,4 @@
-<!-- <div class="configuration">
+<div class="configuration">
   <h2 class="heading-2">Cấu hình sản phẩm</h2>
 
   <div class="configuration__header">
@@ -22,27 +22,28 @@
       </div>
     </div>
   </div>
-  <form>
+  <div [formGroup]="formProduct">
     <div formArrayName="listProductType">
       <div
         class="accessories"
-        *ngFor="let item of this.listProductType.value; let i = index"
+        *ngFor="let item of listProductTypeForm.value; let i = index"
       >
         <div class="accessories__group">
           <div class="accessories__heading">{{ item.nameProductType }}</div>
 
           <div class="accessories__img">
-            <img src="./assets/images/banner09.jpg" alt="accessories image" />
+            <img *ngIf="!item.image" src="./assets/images/banner09.jpg" alt="accessories image" />
+            <img *ngIf="item.image " [src] ="item.image" alt="accessories image" />
           </div>
         </div>
 
-        <div class="accessories__content">
-          <span class="accessories__title">Tên sản phẩm</span>
+        <div class="accessories__content" *ngIf="item.count>0">
+          <span class="accessories__title">{{item.nameProduct}}</span>
           <span class="accessories__note">Ghi chú</span>
         </div>
 
-        <div class="accessories__group">
-          <div class="form__number">
+        <div class="accessories__group" >
+          <div class="form__number" *ngIf="item.count>0">
             <label
               for="{{ 'inputNumber' + i }}"
               class="arrow-minus"
@@ -60,22 +61,22 @@
             </label>
           </div>
 
-          <div class="accessories__price">
+          <div class="accessories__price"  *ngIf="item.count>0">
             {{ helper.formatCurrency(item.price) }}
           </div>
 
           <button
             type="button"
             class="btn btn-accessories btn-edit"
-            (click)="openModal()"
+            (click)="openModal(i,item.id)"
           >
             Sửa
           </button>
         </div>
       </div>
     </div>
-  </form>
-  <div class="accessories">
+  </div>
+  <!-- <div class="accessories">
     <div class="accessories__group">
       <div class="accessories__heading">Tên loại sản phẩm</div>
 
@@ -134,11 +135,11 @@
       Chọn
     </button>
   </div>
-</div>
+</div> -->
 
-<app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal> -->
+<app-user-modal [open]="isOpen" [index]="index" [productTypeId]="productTypeId" (confirm)="closeModal($event)"></app-user-modal>
 
-<div class="configuration">
+<!-- <div class="configuration">
   <h2 class="heading-2">Cấu hình sản phẩm</h2>
 
   <div class="configuration__header">
@@ -157,6 +158,6 @@
   <div class="configuration__content">
     <router-outlet></router-outlet>
   </div>
-</div>
+</div> -->
 
-<app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal>
+<!-- <app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal>  -->
