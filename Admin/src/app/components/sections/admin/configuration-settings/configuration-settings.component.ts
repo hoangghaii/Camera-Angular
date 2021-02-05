@@ -125,11 +125,11 @@ export class ConfigurationSettingsComponent implements OnInit {
   }
 
   filterItemsOfType(typeId: number): any {
-    return this.filterList.filter((item: any) => item.id === typeId);
+    return this.filterList.filter((item: any) => item.category_filter_id === typeId);
   }
 
   filterProductItemsOfType(typeId: number): any {
-    return this.productList.filter((item: any) => item.id === typeId);
+    return this.productList.filter((item: any) => item.category_product_id === typeId);
   }
 
   parserObj(obj: any): object {
