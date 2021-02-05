@@ -24,8 +24,8 @@ export class UserComponent implements OnInit {
   public formProduct!: FormGroup;
   public isOpen!: boolean;
   public listProductTypes = [];
-  public index : number = 0;
-  public productTypeId : number = 0;
+  public index: number = 0;
+  public productTypeId: number = 0;
   constructor(
     private fb: FormBuilder,
     private productTypeService: ProductTypeService
@@ -38,8 +38,7 @@ export class UserComponent implements OnInit {
       .toPromise();
     console.log(this.listProductTypes);
     this.setForm();
-    console.log(this.listProductTypeForm)
-   
+    console.log(this.listProductTypeForm);
   }
   setForm() {
     let list = this.formProduct.get('listProductType') as FormArray;
@@ -48,19 +47,19 @@ export class UserComponent implements OnInit {
       list.push(form);
     });
   }
-   get listProductTypeForm(): FormArray {
+  get listProductTypeForm(): FormArray {
     return this.formProduct.get('listProductType') as FormArray;
   }
 
   initForm() {
     this.formProduct = this.fb.group({
-      listProductType: new FormArray([])
+      listProductType: new FormArray([]),
     });
   }
 
   ngOnChange(): void {}
 
-  openModal(i:number,productTypeId :number): void {
+  openModal(i: number, productTypeId: number): void {
     this.index = i;
     this.isOpen = true;
     this.productTypeId = productTypeId;
@@ -75,23 +74,23 @@ export class UserComponent implements OnInit {
       image: [''],
       count: 0,
       price: item.price || '',
-      originalPrice: item.price||'',
+      originalPrice: item.price || '',
       nameProduct: [''],
     });
   }
 
   closeModal(event: any): void {
     this.isOpen = event.isOpen;
-    if(event.product){
-      console.log(event.product)
-      console.log('doIt')
+    if (event.product) {
+      console.log(event.product);
       this.listProductTypeForm.at(event.index).patchValue({
-        count : 1,
-        nameProduct:event.product.name,
-        price:event.product.price,
-        image:event.product.file
-      })
-      console.log(this.listProductTypeForm.value)
+        count: 1,
+        nameProduct: event.product.name,
+        price: event.product.price,
+        image: event.product.file,
+        description: event.product.description,
+      });
+      console.log(this.listProductTypeForm.value);
     }
   }
 
@@ -101,12 +100,7 @@ export class UserComponent implements OnInit {
    */
   quantityMinus(index: number) {
     let product = this.listProductTypeForm.controls[index].value;
-    let count = product.count;
-    if (Number(count) >= 2) {
-      count = Number(count) - 1;
-    } else {
-      count = 1;
-    }
+    let count = Number(product.count) - 1;
 
     this.listProductTypeForm.controls[index].patchValue({
       count: count,
@@ -122,7 +116,6 @@ export class UserComponent implements OnInit {
     let count = Number(product.count) + 1;
     this.listProductTypeForm.controls[index].patchValue({
       count: count,
-
     });
   }
 

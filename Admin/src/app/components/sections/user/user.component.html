@@ -32,26 +32,36 @@
           <div class="accessories__heading">{{ item.nameProductType }}</div>
 
           <div class="accessories__img">
-            <img *ngIf="!item.image" src="./assets/images/banner09.jpg" alt="accessories image" />
-            <img *ngIf="item.image " [src] ="item.image" alt="accessories image" />
+            <img
+              *ngIf="!item.image"
+              src="./assets/images/100x100.png"
+              alt="accessories image"
+            />
+
+            <img
+              *ngIf="item.image"
+              [src]="item.image"
+              alt="accessories image"
+            />
           </div>
         </div>
 
-        <div class="accessories__content" *ngIf="item.count>0">
-          <span class="accessories__title">{{item.nameProduct}}</span>
-          <span class="accessories__note">Ghi chú</span>
+        <div class="accessories__content" *ngIf="item.count > 0">
+          <span class="accessories__title">{{ item.nameProduct }}</span>
+          <span class="accessories__note">{{ item.description }}</span>
         </div>
 
-        <div class="accessories__group" >
-          <div class="form__number" *ngIf="item.count>0">
+        <div class="accessories__group">
+          <div class="form__number" *ngIf="item.count > 0">
             <label
               for="{{ 'inputNumber' + i }}"
               class="arrow-minus"
               (click)="quantityMinus(i)"
             >
-              -
+              <i *ngIf="item.count > 1"> - </i>
+              <i class="fal fa-trash-alt" *ngIf="item.count <= 1"></i>
             </label>
-            {{ item.count }}
+            <span class="number">{{ item.count }}</span>
             <label
               for="{{ 'inputNumber' + i }}"
               class="arrow-plus"
@@ -61,16 +71,25 @@
             </label>
           </div>
 
-          <div class="accessories__price"  *ngIf="item.count>0">
+          <div class="accessories__price" *ngIf="item.count > 0">
             {{ helper.formatCurrency(item.price) }}
           </div>
 
           <button
+            *ngIf="item.count > 0"
             type="button"
             class="btn btn-accessories btn-edit"
-            (click)="openModal(i,item.id)"
+            (click)="openModal(i, item.id)"
           >
             Sửa
+          </button>
+          <button
+            *ngIf="item.count == 0"
+            type="button"
+            class="btn btn-accessories btn-choose"
+            (click)="openModal(i, item.id)"
+          >
+            Chọn
           </button>
         </div>
       </div>
@@ -137,9 +156,14 @@
   </div>
 </div> -->
 
-<app-user-modal [open]="isOpen" [index]="index" [productTypeId]="productTypeId" (confirm)="closeModal($event)"></app-user-modal>
+  <app-user-modal
+    [open]="isOpen"
+    [index]="index"
+    [productTypeId]="productTypeId"
+    (confirm)="closeModal($event)"
+  ></app-user-modal>
 
-<!-- <div class="configuration">
+  <!-- <div class="configuration">
   <h2 class="heading-2">Cấu hình sản phẩm</h2>
 
   <div class="configuration__header">
@@ -160,4 +184,5 @@
   </div>
 </div> -->
 
-<!-- <app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal>  -->
+  <!-- <app-user-modal [open]="isOpen" (confirm)="closeModal($event)"></app-user-modal>  -->
+</div>
