@@ -18,7 +18,7 @@ import { FilterService, FilterTypeService } from 'src/app/services/apis';
   templateUrl: './modal-filter.component.html',
   styleUrls: ['./modal-filter.component.scss'],
 })
-export class ModalFilterComponent implements OnInit {
+export class ModalFilterComponent implements OnInit,OnChanges {
   public filterForm!: FormGroup;
   public product: Filter[] = [];
   public submitted: boolean = false;
@@ -38,17 +38,17 @@ export class ModalFilterComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.initForm();
-    this.getFilterTypeList();
+   await  this.getFilterTypeList();
   }
 
   async ngOnChanges(): Promise<void> {
-    // this.getFilterTypeList();
-
+    if(this.open){
+      await  this.getFilterTypeList();
+    }
     if (this.open && this.selectCurrent) {
       let res = await this.filterService
         .getFilter(this.selectCurrent.id)
         .toPromise();
-      console.log(res);
       this.filterForm.patchValue({
         id: res['id'],
         filterType: res['category_filter_id'],
