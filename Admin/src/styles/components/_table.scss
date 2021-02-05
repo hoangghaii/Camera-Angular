@@ -6,6 +6,11 @@
   text-overflow: ellipsis;
 }
 
+.table-wrapper {
+  width: 100%;
+  overflow: auto;
+}
+
 .table {
   border-collapse: collapse;
   width: 100%;
@@ -183,8 +188,8 @@
     cursor: pointer;
     position: relative;
 
-    width: fit-content;
-    max-width: 90%;
+    // width: fit-content;
+    max-width: 15rem;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;

@@ -4,6 +4,12 @@
   justify-content: flex-end;
   margin-top: 5rem;
 
+  font-size: 1.5rem;
+
+  @include respond(port-phone) {
+    font-size: 1.2rem;
+  }
+
   .page-item {
     border: 1.5px solid;
     border-color: rgba($color-grey-light-4, 0.5);
@@ -46,8 +52,7 @@
     }
   }
 
-  // .page-link {
-  //   color: currentColor;
-  //   transition: all 0.25s;
-  // }
+  .page-link {
+    font-size: inherit;
+  }
 }

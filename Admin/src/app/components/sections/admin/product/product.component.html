@@ -32,47 +32,49 @@
       </span>
     </div>
 
-    <table class="table table-1">
-      <thead>
-        <tr class="table-header">
-          <th class="table-heading__item">STT</th>
-          <th class="table-heading__item">Tên sản phẩm</th>
-          <th class="table-heading__item">Giá (đ)</th>
-          <th class="table-heading__item">Loại sản phẩm</th>
-          <th class="table-heading__item">Ngày tạo</th>
-          <th class="table-heading__item">Hành động</th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr class="table-body" *ngFor="let item of pageOfItems; index as i">
-          <td class="table-content__item">{{ i + 1 }}</td>
-          <td class="table-content__item">
-            <a
-              class="table-content__link"
-              (click)="selectedRowProduct(item, 'modalAdd')"
-            >
-              {{ item.name }}
-            </a>
-          </td>
-          <td class="table-content__item">{{ item.price }}</td>
-          <td class="table-content__item">
-             {{ item.category_product.name }}
-          </td>
-          <td class="table-content__item">
-            {{ helper.formatDate(item.created_at) }}
-          </td>
-          <td class="table-content__item">
-            <span
-              class="times-icon times-icon-2"
-              (click)="handleDeleteProduct(item.id)"
-            >
-              <i class="fal fa-times"></i>
-            </span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-wrapper">
+      <table class="table table-1">
+        <thead>
+          <tr class="table-header">
+            <th class="table-heading__item">STT</th>
+            <th class="table-heading__item">Tên sản phẩm</th>
+            <th class="table-heading__item">Giá (đ)</th>
+            <th class="table-heading__item">Loại sản phẩm</th>
+            <th class="table-heading__item">Ngày tạo</th>
+            <th class="table-heading__item">Hành động</th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr class="table-body" *ngFor="let item of pageOfItems; index as i">
+            <td class="table-content__item">{{ i + 1 }}</td>
+            <td class="table-content__item">
+              <a
+                class="table-content__link"
+                (click)="selectedRowProduct(item, 'modalAdd')"
+              >
+                {{ item.name }}
+              </a>
+            </td>
+            <td class="table-content__item">{{ item.price }}</td>
+            <td class="table-content__item">
+               {{ item.category_product.name }}
+            </td>
+            <td class="table-content__item">
+              {{ helper.formatDate(item.created_at) }}
+            </td>
+            <td class="table-content__item">
+              <span
+                class="times-icon times-icon-2"
+                (click)="handleDeleteProduct(item.id)"
+              >
+                <i class="fal fa-times"></i>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
     <app-pagination
       [items]="productList"

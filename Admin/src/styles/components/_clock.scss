@@ -7,6 +7,10 @@
   cursor: default;
   animation: animate 4s linear infinite;
 
+  @include respond(land-phone) {
+    display: none;
+  }
+
   &__display {
     position: absolute;
     top: 50%;
