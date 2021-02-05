@@ -29,7 +29,7 @@
           {{ item.name }}
         </span>
 
-        <!-- <div
+        <div
           class="configuration-modal__filter-item"
           *ngFor="let i of filterItemsOfType(item.id)"
         >
@@ -39,7 +39,7 @@
           >
             {{ i.name }}
           </span>
-        </div> -->
+        </div>
       </div>
     </div>
 
@@ -60,21 +60,24 @@
     <div class="configuration-modal__product-list">
       <div
         class="configuration-modal__product"
-        *ngFor="let item of productList | filter: searchText"
+        *ngFor="let item of productList?.product | filter: searchText"
       >
-        {{ item.name }}
         <div class="configuration-modal-group">
           <div class="configuration-modal__product-img">
-            <img src="./assets/images/banner01.jpg" alt="product image" />
+            <img [src]="item.file" alt="product image" />
           </div>
           <div class="configuration-modal__product-info">
-            <div class="configuration-modal__product-name">Tên sản phẩm</div>
-            <div class="configuration-modal__product-note">Ghi chú</div>
+            <div class="configuration-modal__product-name">{{ item.name }}</div>
+            <div class="configuration-modal__product-note">
+              {{ item.description }}
+            </div>
           </div>
         </div>
 
         <div class="configuration-modal-group">
-          <div class="configuration-modal__product-price">20.000đ</div>
+          <div class="configuration-modal__product-price">
+            {{ helper.formatCurrency(item.price) }}
+          </div>
           <button
             class="btn configuration-modal-btn btn-choose"
             (click)="selectProduct(item)"
