@@ -57,7 +57,7 @@
           </td>
           <td class="table-content__item">{{ item.price }}</td>
           <td class="table-content__item">
-            {{ getProductTypeNameById(item.category_product_id) }}
+             {{ item.category_product.name }}
           </td>
           <td class="table-content__item">
             {{ helper.formatDate(item.created_at) }}

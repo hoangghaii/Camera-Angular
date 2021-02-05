@@ -41,18 +41,19 @@ export class ModalProductComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.initForm();
-    this.getProductTypeList();
+    await this.getProductTypeList();
   }
 
   async ngOnChanges(): Promise<void> {
-    // this.getProductTypeList();
+    if(this.open){  
+      await this.getProductTypeList();
+    }
 
     this.imagesUrl = ImageHolder.imageUrl;
     if (this.open && this.selectCurrent) {
       let res = await this.productService
         .getProduct(this.selectCurrent.id)
         .toPromise();
-      console.log(res);
       this.imagesUrl = res.file;
       this.productForm.patchValue({
         id: res['id'],
@@ -63,7 +64,6 @@ export class ModalProductComponent implements OnInit {
         updatedAt: res['updated_at'],
         productImage: res['file'],
       });
-      console.log(this.productForm.value);
     }
     if (this.open && this.selectCurrent === null) {
       this.initForm();

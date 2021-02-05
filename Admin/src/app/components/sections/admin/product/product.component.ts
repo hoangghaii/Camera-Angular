@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Product, ProductType } from 'src/app/models';
 import { ModalService } from 'src/app/services';
 import { ProductService, ProductTypeService } from 'src/app/services/apis';
@@ -9,7 +9,7 @@ import { Helper } from 'src/app/utils/helper';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss'],
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit,OnChanges {
   public selectCurrentProduct: any;
   public selectCurrentProductType: any;
   public typeModal: any;
@@ -26,6 +26,8 @@ export class ProductComponent implements OnInit {
     private productTypeService: ProductTypeService,
     private modalService: ModalService
   ) {}
+  async ngOnChanges(): Promise<void> {
+  }
 
   async ngOnInit(): Promise<void> {
     this.productList = await this.getProductList();

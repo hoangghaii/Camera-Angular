@@ -55,7 +55,7 @@
             </a>
           </td>
           <td class="table-content__item">
-            {{ getFilterTypeNameById(item.category_filter_id) }}
+            {{ item.category_filter.name }}
           </td>
           <td class="table-content__item">
             {{ helper.formatDate(item.created_at) }}
