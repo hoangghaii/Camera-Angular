@@ -3,11 +3,6 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductTypeService } from 'src/app/services/apis';
 import { Helper } from 'src/app/utils/helper';
 import { CommonModule } from '@angular/common';
-const HEROES = [
-  { id: 1, name: 'a', price: 2000000 },
-  { id: 2, name: 'b', price: 4000000 },
-  { id: 5, name: 'c', price: 6000000 },
-];
 
 @Component({
   selector: 'app-user',
@@ -19,13 +14,12 @@ export class UserComponent implements OnInit {
   public pageOfItems!: Array<any>;
   public valueInputNumber: number = 1;
   public totalPrice: number = 0;
-  public listPrice: any[] = HEROES;
-  public heroes = HEROES;
   public formProduct!: FormGroup;
   public isOpen!: boolean;
   public listProductTypes = [];
   public index: number = 0;
   public productTypeId: number = 0;
+
   constructor(
     private fb: FormBuilder,
     private productTypeService: ProductTypeService
@@ -40,6 +34,7 @@ export class UserComponent implements OnInit {
     this.setForm();
     console.log(this.listProductTypeForm);
   }
+
   setForm() {
     let list = this.formProduct.get('listProductType') as FormArray;
     this.listProductTypes.forEach((item) => {
@@ -47,6 +42,7 @@ export class UserComponent implements OnInit {
       list.push(form);
     });
   }
+
   get listProductTypeForm(): FormArray {
     return this.formProduct.get('listProductType') as FormArray;
   }
@@ -66,7 +62,6 @@ export class UserComponent implements OnInit {
     console.log(this.isOpen);
   }
 
-  open() {}
   addFormProductType(item: any) {
     return this.fb.group({
       id: item.id,
@@ -86,7 +81,7 @@ export class UserComponent implements OnInit {
       this.listProductTypeForm.at(event.index).patchValue({
         count: 1,
         nameProduct: event.product.name,
-        price: event.product.price,
+        originalPrice: event.product.originalPrice,
         image: event.product.file,
         description: event.product.description,
       });
@@ -105,6 +100,12 @@ export class UserComponent implements OnInit {
     this.listProductTypeForm.controls[index].patchValue({
       count: count,
     });
+
+    this.listProductTypeForm.controls[index].patchValue({
+      price: count * Number(product.originalPrice),
+    });
+    // this.totalPrice = count * Number(product.price);
+    console.log(this.listProductTypeForm.value);
   }
 
   /**
@@ -114,14 +115,21 @@ export class UserComponent implements OnInit {
   quantityPlus(e: any, index: number) {
     let product = this.listProductTypeForm.controls[index].value;
     let count = Number(product.count) + 1;
+
     this.listProductTypeForm.controls[index].patchValue({
       count: count,
     });
+
+    this.listProductTypeForm.controls[index].patchValue({
+      price: count * Number(product.originalPrice),
+    });
+    // this.totalPrice = count * Number(product.price);
+    console.log(this.listProductTypeForm.value);
   }
 
-  setPrice(item: number, index: number) {
-    this.listPrice[index] = item * 2000;
-  }
+  // setPrice(item: number, index: number) {
+  //   this.listPrice[index] = item * 2000;
+  // }
 
   // handleTotalPrice(value: number) {
   //   this.totalPrice += value;

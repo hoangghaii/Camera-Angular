@@ -6,33 +6,33 @@ import { ConfigurationContentCComponent } from './configuration-content-c/config
 import { UserComponent } from './user.component';
 
 const routes: Routes = [
-  // {
-  //   path: '',
-  //   component: UserComponent,
-  // },
   {
     path: '',
     component: UserComponent,
-    children: [
-      {
-        path: 'config-1',
-        component: ConfigurationContentAComponent,
-      },
-      {
-        path: 'config-2',
-        component: ConfigurationContentBComponent,
-      },
-      {
-        path: 'config-3',
-        component: ConfigurationContentCComponent,
-      },
-      {
-        path: '',
-        redirectTo: 'config-1',
-        pathMatch: 'full',
-      },
-    ],
   },
+  // {
+  //   path: '',
+  //   component: UserComponent,
+  //   children: [
+  //     {
+  //       path: 'config-1',
+  //       component: ConfigurationContentAComponent,
+  //     },
+  //     {
+  //       path: 'config-2',
+  //       component: ConfigurationContentBComponent,
+  //     },
+  //     {
+  //       path: 'config-3',
+  //       component: ConfigurationContentCComponent,
+  //     },
+  //     {
+  //       path: '',
+  //       redirectTo: 'config-1',
+  //       pathMatch: 'full',
+  //     },
+  //   ],
+  // },
 ];
 
 @NgModule({

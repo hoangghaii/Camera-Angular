@@ -11,7 +11,9 @@
     <div class="configuration__pdf">
       <div class="configuration__cost">
         <span class="configuration__cost--heading"> Chi phí dự tính: </span>
-        <span class="configuration__cost--number"> 20.000đ </span>
+        <span class="configuration__cost--number">
+          {{ helper.formatCurrency(totalPrice) }}
+        </span>
       </div>
 
       <button class="btn btn-pdf">Tải báo giá (PDF)</button>
@@ -22,6 +24,7 @@
       </div>
     </div>
   </div>
+
   <div [formGroup]="formProduct">
     <div formArrayName="listProductType">
       <div
@@ -61,7 +64,9 @@
               <i *ngIf="item.count > 1"> - </i>
               <i class="fal fa-trash-alt" *ngIf="item.count <= 1"></i>
             </label>
+
             <span class="number">{{ item.count }}</span>
+
             <label
               for="{{ 'inputNumber' + i }}"
               class="arrow-plus"
@@ -72,7 +77,7 @@
           </div>
 
           <div class="accessories__price" *ngIf="item.count > 0">
-            {{ helper.formatCurrency(item.price) }}
+            {{ helper.formatCurrency(item.originalPrice) }}
           </div>
 
           <button
