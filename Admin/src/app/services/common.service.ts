@@ -12,5 +12,7 @@ export class CommonService {
   public isToogle1: boolean = true;
   public isToogle2: boolean = false;
 
+  public totalPrice: number = 0;
+
   constructor() {}
 }

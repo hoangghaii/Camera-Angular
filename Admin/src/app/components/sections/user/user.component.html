@@ -65,7 +65,9 @@
               <i class="fal fa-trash-alt" *ngIf="item.count <= 1"></i>
             </label>
 
-            <span class="number">{{ item.count }}</span>
+            <span class="number" (change)="calculatorTotalPrice()">
+              {{ item.count }}
+            </span>
 
             <label
               for="{{ 'inputNumber' + i }}"

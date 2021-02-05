@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductTypeService } from 'src/app/services/apis';
 import { Helper } from 'src/app/utils/helper';
 import { CommonModule } from '@angular/common';
+import { CommonService } from 'src/app/services';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +23,8 @@ export class UserComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private productTypeService: ProductTypeService
+    private productTypeService: ProductTypeService,
+    private commonService: CommonService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -53,7 +55,16 @@ export class UserComponent implements OnInit {
     });
   }
 
-  ngOnChange(): void {}
+  // ngOnChange(): void {
+
+  // }
+
+  calculatorTotalPrice() {
+    // console.log(this.totalPrice);
+    for (const element of this.listProductTypeForm.value) {
+      console.log(element.price);
+    }
+  }
 
   openModal(i: number, productTypeId: number): void {
     this.index = i;
@@ -81,7 +92,7 @@ export class UserComponent implements OnInit {
       this.listProductTypeForm.at(event.index).patchValue({
         count: 1,
         nameProduct: event.product.name,
-        originalPrice: event.product.originalPrice,
+        originalPrice: event.product.price,
         image: event.product.file,
         description: event.product.description,
       });
@@ -105,7 +116,7 @@ export class UserComponent implements OnInit {
       price: count * Number(product.originalPrice),
     });
     // this.totalPrice = count * Number(product.price);
-    console.log(this.listProductTypeForm.value);
+    console.log(this.listProductTypeForm.value.price);
   }
 
   /**
@@ -123,8 +134,12 @@ export class UserComponent implements OnInit {
     this.listProductTypeForm.controls[index].patchValue({
       price: count * Number(product.originalPrice),
     });
-    // this.totalPrice = count * Number(product.price);
-    console.log(this.listProductTypeForm.value);
+    console.log(this.listProductTypeForm.controls[index].value.price);
+    // for (const element of this.listProductTypeForm.value) {
+    //   console.log(Number(element.price));
+    //   this.totalPrice = 0;
+    //   this.totalPrice += Number(element.price);
+    // }
   }
 
   // setPrice(item: number, index: number) {

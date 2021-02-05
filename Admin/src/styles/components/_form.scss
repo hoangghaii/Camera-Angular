@@ -156,10 +156,22 @@
       border-radius: 0 0.5rem 0.5rem 0;
     }
 
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Firefox */
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
     .number {
       font-size: 1.6rem;
       font-weight: 600;
       width: 100%;
+      // width: 35%;
       color: inherit;
       text-align: center;
       background-color: $color-white;
@@ -168,6 +180,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+
+      outline: none;
+      border: none;
     }
   }
 
