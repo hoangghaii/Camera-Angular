@@ -17,8 +17,8 @@
     padding: 2rem;
   }
 
-  @include respond(desktop) {
-    padding: 2rem;
+  @include respond(port-phone) {
+    padding: 0;
   }
 }
 
