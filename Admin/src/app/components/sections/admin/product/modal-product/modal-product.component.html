@@ -10,68 +10,96 @@
     <h4 class="heading-4">Thêm/sửa sản phẩm</h4>
 
     <form action="#0" class="form" [formGroup]="productForm">
-      <div class="form__group-big">
-        <div class="form__group">
-          <label class="form__label"> Mã sản phẩm: </label>
-          <input type="text" class="form__input" formControlName="productCode" />
-        </div>
+      <div>
+        <div class="form__group-big">
+          <div class="form__group">
+            <label class="form__label"> Mã sản phẩm: </label>
+            <input
+              type="text"
+              class="form__input"
+              formControlName="productCode"
+            />
+          </div>
 
-        <div class="form__group">
-          <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
-          <select name="" class="form__select" formControlName="productType">
-            <option value="">----Chọn loại sản phẩm----</option>
-            <option value="{{ item.id }}" *ngFor="let item of productTypeList">
-              {{ item.name }}
-            </option>
-          </select>
+          <div class="form__group">
+            <label class="form__label"> Loại sản phẩm:<span>(*)</span> </label>
+            <select name="" class="form__select" formControlName="productType">
+              <option value="">----Chọn loại sản phẩm----</option>
+              <option
+                value="{{ item.id }}"
+                *ngFor="let item of productTypeList"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div class="form__group-error" *ngIf="submitted">
-        <div></div>
+        <div class="form__group-error" *ngIf="submitted">
+          <div></div>
 
-        <div
-          *ngIf="submitted && f.productType.errors"
-          class="invalid"
-          style="margin-left: 25rem"
-        >
-          <div *ngIf="f.productType.errors.required">
-            <span>⚠️</span> Loại sản phẩm cần được chọn
+          <div
+            *ngIf="submitted && f.productType.errors"
+            class="invalid"
+            style="margin-left: 25rem"
+          >
+            <div *ngIf="f.productType.errors.required">
+              <span>⚠️</span> Loại sản phẩm cần được chọn
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="form__group-big">
-        <div class="form__group">
+      <div>
+        <div class="form__group-big">
           <label class="form__label"> Tên sản phẩm:<span>(*)</span> </label>
-          <input
-            type="text"
-            class="form__input"
+          <textarea
+            cols="30"
+            rows="1"
+            class="form__area"
             formControlName="productName"
-          />
+          ></textarea>
         </div>
-
-        <div class="form__group">
-          <label class="form__label"> Giá sản phẩm:<span>(*)</span> </label>
-          <input
-            type="text"
-            class="form__input"
-            formControlName="productPrice"
-          />
-        </div>
-      </div>
-      <div class="form__group-error" *ngIf="submitted">
         <div *ngIf="submitted && f.productName.errors" class="invalid">
           <div *ngIf="f.productName.errors.required">
             <span>⚠️</span> Tên sản phẩm không được để trống
           </div>
         </div>
+      </div>
 
-        <div *ngIf="submitted && f.productPrice.errors" class="invalid">
-          <div *ngIf="f.productPrice.errors.required">
-            <span>⚠️</span> Giá sản phẩm không được để trống
+      <div>
+        <div class="form__group-big">
+          <div class="form__group">
+            <label class="form__label"> Thương hiệu:<span>(*)</span> </label>
+            <input
+              type="text"
+              class="form__input"
+              formControlName="productBrand"
+            />
           </div>
-          <div *ngIf="f.productPrice.errors.isNumber">
-            <span>⚠️</span> Giá sản phẩm phải là số
+
+          <div class="form__group">
+            <label class="form__label"> Giá sản phẩm:<span>(*)</span> </label>
+            <input
+              type="text"
+              class="form__input"
+              formControlName="productPrice"
+            />
+          </div>
+        </div>
+        <div class="form__group-error" *ngIf="submitted">
+          <div *ngIf="submitted && f.productBrand.errors" class="invalid">
+            <div *ngIf="f.productBrand.errors.required">
+              <span>⚠️</span> Thương hiệu không được để trống
+            </div>
+          </div>
+
+          <div *ngIf="submitted && f.productPrice.errors" class="invalid">
+            <div *ngIf="f.productPrice.errors.required">
+              <span>⚠️</span> Giá sản phẩm không được để trống
+            </div>
+            <div *ngIf="f.productPrice.errors.isNumber">
+              <span>⚠️</span> Giá sản phẩm phải là số
+            </div>
           </div>
         </div>
       </div>
@@ -81,31 +109,33 @@
         <textarea
           name=""
           cols="30"
-          rows="3"
+          rows="2"
           class="form__area"
           formControlName="productNote"
         ></textarea>
       </div>
 
-      <div class="form__group">
-        <label class="form__label"> Hình ảnh:<span>(*)</span> </label>
-        <div class="form__group-file">
-          <span class="form__input--heading"> Chọn ảnh </span>
-          <input
-            type="file"
-            class="form__input-file"
-            accept="image/*"
-            (change)="uploadFile($event)"
-            required
-          />
+      <div>
+        <div class="form__group">
+          <label class="form__label"> Hình ảnh:<span>(*)</span> </label>
+          <div class="form__group-file">
+            <span class="form__input--heading"> Chọn ảnh </span>
+            <input
+              type="file"
+              class="form__input-file"
+              accept="image/*"
+              (change)="uploadFile($event)"
+              required
+            />
+          </div>
         </div>
-      </div>
-      <div *ngIf="submitted && f.productImage.errors" class="invalid">
-        <div *ngIf="f.productImage.errors.required">
-          <span>⚠️</span> Hình ảnh không được để trống
+        <div *ngIf="submitted && f.productImage.errors" class="invalid">
+          <div *ngIf="f.productImage.errors.required">
+            <span>⚠️</span> Hình ảnh không được để trống
+          </div>
         </div>
+        <img [src]="imagesUrl" class="file-placeholder" />
       </div>
-      <img [src]="imagesUrl" class="file-placeholder" />
 
       <div class="btn-group">
         <button class="btn btn-cancel" type="button" (click)="closeModal()">

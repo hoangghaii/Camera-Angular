@@ -14,12 +14,11 @@
       <div class="form__group">
         <label class="form__label"> Tên loại:<span>(*)</span> </label>
         <textarea
-        name=""
-        cols="30"
-        rows="3"
-        class="form__area"
-        formControlName="productTypeName"
-      ></textarea>
+          cols="30"
+          rows="2"
+          class="form__area"
+          formControlName="productTypeName"
+        ></textarea>
       </div>
       <div *ngIf="submitted && f.productTypeName.errors" class="invalid">
         <div *ngIf="f.productTypeName.errors.required">

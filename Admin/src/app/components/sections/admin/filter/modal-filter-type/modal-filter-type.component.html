@@ -13,11 +13,12 @@
     <form action="#0" class="form" [formGroup]="filterTypeForm">
       <div class="form__group">
         <label class="form__label"> Tên loại:<span>(*)</span> </label>
-        <input
-          type="text"
-          class="form__input"
+        <textarea
+          cols="30"
+          rows="2"
+          class="form__area"
           formControlName="filterTypeName"
-        />
+        ></textarea>
       </div>
       <div *ngIf="submitted && f.filterTypeName.errors" class="invalid">
         <div *ngIf="f.filterTypeName.errors.required">
