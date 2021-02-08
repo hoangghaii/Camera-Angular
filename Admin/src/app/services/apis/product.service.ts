@@ -62,6 +62,7 @@ export class ProductService extends HttpService {
     const formData = new FormData();
     formData.append('name', objProduct.name);
     formData.append('image', objProduct.image);
+    formData.append('code', objProduct.code);
     formData.append(
       'category_product_id',
       objProduct.category_product_id.toString()
@@ -95,6 +96,7 @@ export class ProductService extends HttpService {
     formData.append('id', objProduct.id.toString());
     formData.append('name', objProduct.name);
     formData.append('image', objProduct.image);
+    formData.append('code', objProduct.code);
     formData.append(
       'category_product_id',
       objProduct.category_product_id.toString()

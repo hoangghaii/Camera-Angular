@@ -6,4 +6,5 @@ export class Product {
   description!: string;
   price!: number;
   updated_at?: string;
+  code!: string;
 }

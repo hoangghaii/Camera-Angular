@@ -13,11 +13,13 @@
     <form action="#0" class="form" [formGroup]="productTypeForm">
       <div class="form__group">
         <label class="form__label"> Tên loại:<span>(*)</span> </label>
-        <input
-          type="text"
-          class="form__input"
-          formControlName="productTypeName"
-        />
+        <textarea
+        name=""
+        cols="30"
+        rows="3"
+        class="form__area"
+        formControlName="productTypeName"
+      ></textarea>
       </div>
       <div *ngIf="submitted && f.productTypeName.errors" class="invalid">
         <div *ngIf="f.productTypeName.errors.required">
