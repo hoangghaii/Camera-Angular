@@ -62,7 +62,7 @@ export class ModalProductTypeComponent implements OnInit {
       id: [''],
       productTypeName: [
         '',
-        [ValidatorService.required, ValidatorService.maxLength(30)],
+        [ValidatorService.required],
       ],
       productTypeNote: [''],
       updatedAt: [''],

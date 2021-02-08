@@ -63,6 +63,7 @@ export class ModalProductComponent implements OnInit {
         productNote: res['description'],
         updatedAt: res['updated_at'],
         productImage: res['file'],
+        productCode :  res['code']
       });
     }
     if (this.open && this.selectCurrent === null) {
@@ -84,6 +85,7 @@ export class ModalProductComponent implements OnInit {
         [ValidatorService.required, ValidatorService.isNumber],
       ],
       productNote: [''],
+      productCode: [''],
       productImage: ['', [ValidatorService.required]],
       updatedAt: [''],
     });
@@ -168,6 +170,7 @@ export class ModalProductComponent implements OnInit {
       file: obj.productImage,
       image: obj.productImage,
       updated_at: obj.updatedAt,
+      code : obj.productCode
     };
   }
   parserObj2(obj: any): object {
@@ -178,6 +181,7 @@ export class ModalProductComponent implements OnInit {
       price: obj.productPrice,
       description: obj.productNote,
       updated_at: obj.updatedAt,
+      code : obj.productCode
     };
   }
 }
