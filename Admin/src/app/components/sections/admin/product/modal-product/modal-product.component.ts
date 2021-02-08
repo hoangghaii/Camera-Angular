@@ -64,6 +64,7 @@ export class ModalProductComponent implements OnInit {
         updatedAt: res['updated_at'],
         productImage: res['file'],
         productCode: res['code'],
+        productBrand: res['brand'],
       });
     }
     if (this.open && this.selectCurrent === null) {
@@ -165,26 +166,26 @@ export class ModalProductComponent implements OnInit {
     return {
       id: obj.id,
       category_product_id: obj.productType,
+      code: obj.productCode,
       name: obj.productName,
+      brand: obj.productBrand,
       price: obj.productPrice,
       description: obj.productNote,
       file: obj.productImage,
       image: obj.productImage,
       updated_at: obj.updatedAt,
-      code: obj.productCode,
-      brand: obj.productBrand,
     };
   }
   parserObj2(obj: any): object {
     return {
       id: obj.id,
       category_product_id: obj.productType,
+      code: obj.productCode,
       name: obj.productName,
+      brand: obj.productBrand,
       price: obj.productPrice,
       description: obj.productNote,
       updated_at: obj.updatedAt,
-      code: obj.productCode,
-      brand: obj.productBrand,
     };
   }
 }
