@@ -16,7 +16,9 @@
         </span>
       </div>
 
-      <button class="btn btn-pdf" (click)="exportPDF()">Tải báo giá (PDF)</button>
+      <button class="btn btn-pdf" (click)="exportPDF()">
+        Tải báo giá (PDF)
+      </button>
 
       <div class="configuration__contact">
         <i class="fas fa-phone-alt"></i>
@@ -62,7 +64,11 @@
               (click)="quantityMinus(i)"
             >
               <i *ngIf="item.count > 1"> - </i>
-              <i class="fal fa-trash-alt" (click)="deleteItem(i)" *ngIf="item.count <= 1"></i>
+              <i
+                class="fal fa-trash-alt"
+                (click)="deleteItem(i)"
+                *ngIf="item.count <= 1"
+              ></i>
             </label>
 
             <span class="number" (change)="calculatorTotalPrice()">

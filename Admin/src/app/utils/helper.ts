@@ -14,4 +14,8 @@ export class Helper {
   static formatCurrency(number: number): string {
     return new Intl.NumberFormat('vi-VN', {}).format(number) + ' VND';
   }
+
+  static formatCurrency2(number: number): string {
+    return new Intl.NumberFormat('vi-VN', {}).format(number) + ' D';
+  }
 }

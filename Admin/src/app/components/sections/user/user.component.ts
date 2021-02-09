@@ -1,11 +1,17 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductTypeService } from 'src/app/services/apis';
 import { Helper } from 'src/app/utils/helper';
-import { CommonModule } from '@angular/common';
 import { CommonService } from 'src/app/services';
-import jsPDF from 'jspdf'
-import 'jspdf-autotable'
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-user',
@@ -22,7 +28,9 @@ export class UserComponent implements OnInit {
   public listProductTypes = [];
   public index: number = 0;
   public productTypeId: number = 0;
+  public productVal: any;
 
+  @ViewChild('pdf') pdf!: ElementRef;
 
   constructor(
     private fb: FormBuilder,
@@ -68,15 +76,17 @@ export class UserComponent implements OnInit {
       console.log(element.price);
     }
   }
-  deleteItem(index:number){
+
+  deleteItem(index: number) {
     let product = this.listProductTypeForm.controls[index].value;
     this.totalPrice -= Number(product.originalPrice);
     this.listProductTypeForm.at(index).patchValue({
-      image :'./assets/images/100x100.png',
+      image: './assets/images/100x100.png',
       nameProduct: '',
       count: 0,
-    })
+    });
   }
+
   openModal(i: number, productTypeId: number): void {
     this.index = i;
     this.isOpen = true;
@@ -107,7 +117,7 @@ export class UserComponent implements OnInit {
         image: event.product.file,
         description: event.product.description,
       });
-      this.totalPrice+=Number(event.product.price);
+      this.totalPrice += Number(event.product.price);
     }
   }
 
@@ -127,12 +137,12 @@ export class UserComponent implements OnInit {
       price: count * Number(product.originalPrice),
     });
     this.totalPrice -= Number(product.originalPrice);
-    if(this.totalPrice<0){
+    if (this.totalPrice < 0) {
       this.totalPrice = 0;
     }
-    if(count==0){
+    if (count == 0) {
       this.listProductTypeForm.controls[index].patchValue({
-        image :'./assets/images/100x100.png',
+        image: './assets/images/100x100.png',
       });
     }
   }
@@ -156,52 +166,71 @@ export class UserComponent implements OnInit {
     this.totalPrice += Number(product.originalPrice);
   }
 
-  exportPDF(){
-    let productVal = this.listProductTypeForm.getRawValue();
-    productVal= productVal.filter((x)=>x.nameProduct!='');
-    let data = [];
-    let title ={
-      "STT":  "STT",
-      "Ten San Pham" : "Ten San Pham",
-      "Ten Loai San Pham" : "Ten Loai San Pham",
-      "So Luong":"So Luong",
-      "Gia": "Gia",
-      "Tong Cong" : "Tong Cong"
-    }
-    data.push(title);
-    productVal.forEach((item,index)=>{
-      console.log(index)
-        let val ={
-          "STT":(index+1).toString(),
-          "Ten San Pham" : item.nameProduct,
-          "Ten Loai San Pham" : item.nameProductType,
-          "So Luong": (item.count).toString(),
-          "Gia":this.helper.formatCurrency(item.originalPrice),
-          "Tong Cong" : this.helper.formatCurrency(Number(item.originalPrice)*Number(item.count))
-        }
-        data.push(val);
-    })
-    let sum ={
-      "STT": '-',
-      "Ten San Pham" : '-',
-      "Ten Loai San Pham" : '-',
-      "So Luong":'-',
-      "Gia":'-',
-      "Tong Cong" :this.helper.formatCurrency(Number(this.totalPrice))
-    }
-    data.push(sum);
-    let doc = new jsPDF('p','pt','a4');
-    let styles = {
-      autoSize: true,
-      printHeaders: false,
-      columnWidths:40,
-      fontSize :8,
-       
-    }
-    let header = ["STT", "Ten San Pham", "Ten Loai San Pham", "So Luong","Gia","Tong Cong"];
-    doc.table(10,30,data,header,styles );
-    doc.save("test.pdf");
-    console.log(productVal)
+  exportPDF() {
+    let data: any[][] = [];
+    let head = [
+      ['STT', 'San Pham', 'Loai San Pham', 'So Luong', 'Gia Goc', 'Tong Cong'],
+    ];
+
+    this.productVal = this.listProductTypeForm.getRawValue();
+    this.productVal = this.productVal.filter((x: any) => x.nameProduct != '');
+    this.productVal.forEach((item: any, index: any) => {
+      let val = [
+        (index + 1).toString(),
+        item.nameProduct,
+        item.nameProductType,
+        item.count.toString(),
+        this.helper.formatCurrency(item.originalPrice),
+        this.helper.formatCurrency(
+          Number(item.originalPrice) * Number(item.count)
+        ),
+      ];
+      data.push(val);
+    });
+    // data.push(this.helper.formatCurrency(Number(this.totalPrice)))
+    const doc = new jsPDF();
+
+    doc.setFontSize(16);
+    doc.text('Chi Tiet Hoa Don - Ngay tao: ', 50, 30);
+    doc.setFontSize(11);
+    doc.setTextColor('#b6b6b6');
+
+    autoTable(doc, {
+      head: head,
+      body: data,
+      // footer:this.helper.formatCurrency(Number(this.totalPrice)),
+      theme: 'striped',
+      headStyles: {
+        halign: 'center',
+      },
+      columnStyles: {
+        0: {
+          cellWidth: 'auto',
+          halign: 'center',
+        },
+        1: {
+          cellWidth: 50,
+        },
+        2: {
+          cellWidth: 'auto',
+        },
+        3: {
+          cellWidth: 'auto',
+          halign: 'center',
+        },
+        4: {
+          cellWidth: 'auto',
+          halign: 'right',
+        },
+        5: {
+          cellWidth: 'auto',
+          halign: 'right',
+        },
+      },
+      margin: { top: 40 },
+    });
+
+    // doc.save('table.pdf');
+    doc.output('dataurlnewwindow');
   }
- 
 }
