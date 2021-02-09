@@ -4,6 +4,8 @@ import { ProductTypeService } from 'src/app/services/apis';
 import { Helper } from 'src/app/utils/helper';
 import { CommonModule } from '@angular/common';
 import { CommonService } from 'src/app/services';
+import jsPDF from 'jspdf'
+import 'jspdf-autotable'
 
 @Component({
   selector: 'app-user',
@@ -20,6 +22,7 @@ export class UserComponent implements OnInit {
   public listProductTypes = [];
   public index: number = 0;
   public productTypeId: number = 0;
+
 
   constructor(
     private fb: FormBuilder,
@@ -65,7 +68,15 @@ export class UserComponent implements OnInit {
       console.log(element.price);
     }
   }
-
+  deleteItem(index:number){
+    let product = this.listProductTypeForm.controls[index].value;
+    this.totalPrice -= Number(product.originalPrice);
+    this.listProductTypeForm.at(index).patchValue({
+      image :'./assets/images/100x100.png',
+      nameProduct: '',
+      count: 0,
+    })
+  }
   openModal(i: number, productTypeId: number): void {
     this.index = i;
     this.isOpen = true;
@@ -96,7 +107,7 @@ export class UserComponent implements OnInit {
         image: event.product.file,
         description: event.product.description,
       });
-      console.log(this.listProductTypeForm.value);
+      this.totalPrice+=Number(event.product.price);
     }
   }
 
@@ -115,8 +126,15 @@ export class UserComponent implements OnInit {
     this.listProductTypeForm.controls[index].patchValue({
       price: count * Number(product.originalPrice),
     });
-    // this.totalPrice = count * Number(product.price);
-    console.log(this.listProductTypeForm.value.price);
+    this.totalPrice -= Number(product.originalPrice);
+    if(this.totalPrice<0){
+      this.totalPrice = 0;
+    }
+    if(count==0){
+      this.listProductTypeForm.controls[index].patchValue({
+        image :'./assets/images/100x100.png',
+      });
+    }
   }
 
   /**
@@ -135,18 +153,55 @@ export class UserComponent implements OnInit {
       price: count * Number(product.originalPrice),
     });
     console.log(this.listProductTypeForm.controls[index].value.price);
-    // for (const element of this.listProductTypeForm.value) {
-    //   console.log(Number(element.price));
-    //   this.totalPrice = 0;
-    //   this.totalPrice += Number(element.price);
-    // }
+    this.totalPrice += Number(product.originalPrice);
   }
 
-  // setPrice(item: number, index: number) {
-  //   this.listPrice[index] = item * 2000;
-  // }
-
-  // handleTotalPrice(value: number) {
-  //   this.totalPrice += value;
-  // }
+  exportPDF(){
+    let productVal = this.listProductTypeForm.getRawValue();
+    productVal= productVal.filter((x)=>x.nameProduct!='');
+    let data = [];
+    let title ={
+      "STT":  "STT",
+      "Ten San Pham" : "Ten San Pham",
+      "Ten Loai San Pham" : "Ten Loai San Pham",
+      "So Luong":"So Luong",
+      "Gia": "Gia",
+      "Tong Cong" : "Tong Cong"
+    }
+    data.push(title);
+    productVal.forEach((item,index)=>{
+      console.log(index)
+        let val ={
+          "STT":(index+1).toString(),
+          "Ten San Pham" : item.nameProduct,
+          "Ten Loai San Pham" : item.nameProductType,
+          "So Luong": (item.count).toString(),
+          "Gia":this.helper.formatCurrency(item.originalPrice),
+          "Tong Cong" : this.helper.formatCurrency(Number(item.originalPrice)*Number(item.count))
+        }
+        data.push(val);
+    })
+    let sum ={
+      "STT": '-',
+      "Ten San Pham" : '-',
+      "Ten Loai San Pham" : '-',
+      "So Luong":'-',
+      "Gia":'-',
+      "Tong Cong" :this.helper.formatCurrency(Number(this.totalPrice))
+    }
+    data.push(sum);
+    let doc = new jsPDF('p','pt','a4');
+    let styles = {
+      autoSize: true,
+      printHeaders: false,
+      columnWidths:40,
+      fontSize :8,
+       
+    }
+    let header = ["STT", "Ten San Pham", "Ten Loai San Pham", "So Luong","Gia","Tong Cong"];
+    doc.table(10,30,data,header,styles );
+    doc.save("test.pdf");
+    console.log(productVal)
+  }
+ 
 }
