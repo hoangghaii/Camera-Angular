@@ -257,13 +257,16 @@
 
   &-group {
     display: flex;
-
     align-items: center;
+
+    &:last-child {
+      flex: 1;
+      justify-content: flex-end;
+    }
   }
 
   &__product-list {
     padding-top: 1rem;
-    padding-left: 1rem;
     padding-right: 1rem;
     border-top: 1px dashed rgba($color-grey-light-4, 0.5);
 
@@ -280,6 +283,8 @@
     justify-content: space-between;
     align-items: center;
 
+    width: 100%;
+
     &:not(:last-child) {
       margin-bottom: 2rem;
     }
@@ -294,12 +299,13 @@
     }
 
     &-info {
-      width: 40rem;
+      width: 36rem;
+      word-break: break-word;
+      text-align: left;
+
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-
-      text-align: left;
 
       margin-left: 1rem;
     }
@@ -319,22 +325,16 @@
       font-size: 1.6rem;
       font-weight: 600;
       color: $color-primary;
-
-      margin-right: 3rem;
-
-      @include respond(only-tablet) {
-        margin-right: 2rem;
-      }
-
-      @include respond(land-phone) {
-        margin-right: 1rem;
-      }
     }
   }
 
   &-btn {
-    margin-left: auto;
+    margin-left: 2rem;
     font-size: 1.4rem;
+
+    &:hover {
+      box-shadow: none;
+    }
   }
 }
 

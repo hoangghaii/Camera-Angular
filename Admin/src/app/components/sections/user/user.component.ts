@@ -30,8 +30,6 @@ export class UserComponent implements OnInit {
   public productTypeId: number = 0;
   public productVal: any;
 
-  @ViewChild('pdf') pdf!: ElementRef;
-
   constructor(
     private fb: FormBuilder,
     private productTypeService: ProductTypeService,
@@ -166,10 +164,23 @@ export class UserComponent implements OnInit {
     this.totalPrice += Number(product.originalPrice);
   }
 
+  /**
+   * Generate PDF
+   */
   exportPDF() {
     let data: any[][] = [];
     let head = [
       ['STT', 'San Pham', 'Loai San Pham', 'So Luong', 'Gia Goc', 'Tong Cong'],
+    ];
+    let foot = [
+      [
+        '',
+        'Tong Cong:',
+        '',
+        '',
+        '',
+        this.helper.formatCurrency(Number(this.totalPrice)),
+      ],
     ];
 
     this.productVal = this.listProductTypeForm.getRawValue();
@@ -187,18 +198,41 @@ export class UserComponent implements OnInit {
       ];
       data.push(val);
     });
-    // data.push(this.helper.formatCurrency(Number(this.totalPrice)))
+
     const doc = new jsPDF();
 
-    doc.setFontSize(16);
-    doc.text('Chi Tiet Hoa Don - Ngay tao: ', 50, 30);
-    doc.setFontSize(11);
-    doc.setTextColor('#b6b6b6');
+    const img = new Image();
+    img.src = './assets/images/logo.jpg';
+    doc.addImage(img, 'jpg', 90, 10, 20, 20);
+
+    const myFont = './assets/fonts/Montserrat-Regular.ttf';
+    doc.addFileToVFS('Montserrat-Regular.ttf', myFont);
+    doc.addFont('Montserrat-Regular.ttf', 'Montserrat', 'normal');
+    doc.setFont('Montserrat');
+
+    doc.setFontSize(13);
+    doc.setTextColor(48, 57, 85);
+    doc.text('RongBayCamera', 80, 40);
+
+    const date = new Date();
+    doc.setTextColor(48, 57, 85);
+    doc.setFontSize(13);
+    doc.text(
+      `Ngay tao: ${date.getDate()}-${
+        date.getMonth() + 1
+      }-${date.getFullYear()}`,
+      145,
+      50
+    );
+
+    doc.setFontSize(13);
+    doc.setTextColor(48, 57, 85);
+    doc.text('Chi Tiet Hoa Don', 25, 60);
 
     autoTable(doc, {
       head: head,
       body: data,
-      // footer:this.helper.formatCurrency(Number(this.totalPrice)),
+      foot: foot,
       theme: 'striped',
       headStyles: {
         halign: 'center',
@@ -227,7 +261,10 @@ export class UserComponent implements OnInit {
           halign: 'right',
         },
       },
-      margin: { top: 40 },
+      footStyles: {
+        halign: 'right',
+      },
+      margin: { top: 63 },
     });
 
     // doc.save('table.pdf');

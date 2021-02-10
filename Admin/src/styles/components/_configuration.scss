@@ -184,8 +184,10 @@
     font-size: 1.7rem;
     font-weight: 600;
     color: $color-primary;
+    text-align: center;
 
-    margin: 0 4rem;
+    width: 14rem;
+    margin: 0 2.5rem;
 
     @include respond(only-tablet) {
       margin: 0 2rem;
