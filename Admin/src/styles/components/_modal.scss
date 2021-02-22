@@ -105,6 +105,10 @@
     width: 80rem;
 
     @extend %show;
+
+    @include respond(land-phone) {
+      width: 95%;
+    }
   }
 
   &__header {
@@ -263,6 +267,10 @@
       flex: 1;
       justify-content: flex-end;
     }
+
+    @include respond(port-phone) {
+      width: 100%;
+    }
   }
 
   &__product-list {
@@ -285,6 +293,10 @@
 
     width: 100%;
 
+    @include respond(port-phone) {
+      flex-direction: column;
+    }
+
     &:not(:last-child) {
       margin-bottom: 2rem;
     }
@@ -299,7 +311,8 @@
     }
 
     &-info {
-      width: 36rem;
+      max-width: 36rem;
+      width: auto;
       word-break: break-word;
       text-align: left;
 

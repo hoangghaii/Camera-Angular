@@ -13,11 +13,26 @@
     padding-bottom: 3rem;
     border-bottom: 1px solid $color-grey-light-3;
 
-    // height: 15rem;
+    @include respond(port-phone) {
+      flex-direction: column;
+      align-items: inherit;
+    }
   }
 
   &__list {
     display: flex;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: baseline;
+    }
+
+    @include respond(port-phone) {
+      flex-direction: row;
+      justify-content: space-around;
+
+      margin-bottom: 2rem;
+    }
   }
 
   &__item {
@@ -29,6 +44,12 @@
     cursor: pointer;
 
     transition: all 0.25s;
+
+    @media screen and (max-width: 768px) {
+      &:nth-child(2) {
+        margin: 1rem 0;
+      }
+    }
 
     &:focus {
       outline: none;
@@ -107,6 +128,10 @@
 
   transition: all 0.25s;
 
+  @include respond(port-phone) {
+    flex-wrap: wrap;
+  }
+
   &:hover {
     box-shadow: 0 0.5rem 1.5rem rgba($color-black, 0.5);
   }
@@ -121,6 +146,10 @@
     width: 10rem;
 
     word-break: break-word;
+
+    @include respond(port-phone) {
+      word-break: normal;
+    }
   }
 
   &__img {
@@ -137,6 +166,11 @@
       margin-left: 1rem;
     }
 
+    @include respond(port-phone) {
+      margin-left: 0;
+      margin-top: 1rem;
+    }
+
     img {
       height: 100%;
     }
@@ -145,6 +179,7 @@
   &__content {
     display: flex;
     flex-direction: column;
+    width: 100%;
     max-width: 35rem;
 
     margin-right: auto;
@@ -178,6 +213,45 @@
   &__group {
     display: flex;
     align-items: center;
+
+    &-1 {
+      @include respond(port-phone) {
+        flex-direction: column;
+      }
+    }
+
+    &-2 {
+      @media only screen and (max-width: 900px) {
+        flex-direction: column;
+
+        & > *:first-child {
+          margin-bottom: 0.5rem;
+        }
+
+        & > *:last-child {
+          margin-top: 0.5rem;
+        }
+      }
+
+      @include respond(port-phone) {
+        & > * {
+          margin-left: 0 !important;
+        }
+      }
+    }
+
+    &-3 {
+      @include respond(port-phone) {
+        width: auto;
+        justify-content: space-between;
+      }
+    }
+
+    &-4 {
+      @include respond(port-phone) {
+        margin-bottom: 1.5rem;
+      }
+    }
   }
 
   &__price {
