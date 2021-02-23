@@ -60,7 +60,7 @@
 
         <div
           class="accessories__group accessories__group-3"
-          [ngStyle]="item.count && { width: '100%' }"
+          [ngClass]="{ 'accessories__group-3_1': item.count }"
         >
           <div class="accessories__group accessories__group-2">
             <div class="form__number" *ngIf="item.count > 0">

@@ -156,7 +156,7 @@
     width: 10rem;
     height: 10rem;
 
-    margin-left: 4rem;
+    margin-left: 2rem;
 
     @include respond(only-tablet) {
       margin-left: 2rem;
@@ -184,7 +184,7 @@
 
     margin-right: auto;
 
-    margin-left: 4rem;
+    margin-left: 2rem;
 
     @include respond(only-tablet) {
       margin-left: 2rem;
@@ -215,6 +215,7 @@
     align-items: center;
 
     &-1 {
+      width: fit-content;
       @include respond(port-phone) {
         flex-direction: column;
       }
@@ -234,16 +235,42 @@
       }
 
       @include respond(port-phone) {
-        & > * {
-          margin-left: 0 !important;
+        flex-direction: row;
+
+        & > *:first-child {
+          margin-right: 1rem;
+        }
+
+        & > *:last-child {
+          margin: 0 !important;
+        }
+      }
+
+      @media only screen and (max-width: 420px) {
+        flex-direction: column;
+
+        & > *:first-child {
+          margin-bottom: 0.5rem;
+        }
+
+        & > *:last-child {
+          margin-top: 0.5rem;
         }
       }
     }
 
     &-3 {
+      width: fit-content;
       @include respond(port-phone) {
         width: auto;
         justify-content: space-between;
+      }
+
+      &_1 {
+        width: fit-content;
+        @include respond(port-phone) {
+          width: 100%;
+        }
       }
     }
 
