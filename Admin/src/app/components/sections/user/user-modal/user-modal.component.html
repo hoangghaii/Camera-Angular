@@ -23,7 +23,7 @@
     <div class="configuration-modal__filter">
       <div
         class="configuration-modal__filter-list"
-        *ngFor="let item of filterTypeList"
+        *ngFor="let item of listFilterTypeByProductType"
       >
         <span class="configuration-modal__filter-list--heading">
           {{ item.name }}
@@ -31,9 +31,10 @@
 
         <div
           class="configuration-modal__filter-item"
-          *ngFor="let i of filterItemsOfType(item.id)"
+        
         >
           <span
+          *ngFor="let i of item.filter"
             class="configuration-modal__filter-item--list"
             (click)="handleChooseFilterType(i.name)"
           >
@@ -50,6 +51,7 @@
         placeholder="Tìm kiếm sản phẩm"
         aria-describedby="search-text"
         [(ngModel)]="searchText"
+        (ngModelChange) = "searchByText()"
         autofocus
       />
       <button class="search__button">
@@ -60,7 +62,7 @@
     <div class="configuration-modal__product-list">
       <div
         class="configuration-modal__product"
-        *ngFor="let item of productList?.product | filter: searchText"
+        *ngFor="let item of productListToFilter"
       >
         <div class="configuration-modal-group">
           <div class="configuration-modal__product-img">
@@ -68,8 +70,8 @@
           </div>
           <div class="configuration-modal__product-info">
             <div class="configuration-modal__product-name">{{ item.name }}</div>
-            <div class="configuration-modal__product-note">
-              {{ item.description }}
+            <div class="configuration-modal__product-note" *ngIf="item.code">
+              {{ item.code}}
             </div>
           </div>
         </div>

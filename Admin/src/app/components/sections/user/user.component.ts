@@ -1,9 +1,6 @@
 import {
   Component,
-  ElementRef,
   OnInit,
-  SimpleChanges,
-  ViewChild,
 } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { ProductTypeService } from 'src/app/services/apis';
@@ -12,6 +9,7 @@ import { CommonService } from 'src/app/services';
 import { jsPDF } from 'jspdf';
 import 'jspdf-autotable';
 import autoTable from 'jspdf-autotable';
+
 
 @Component({
   selector: 'app-user',
@@ -41,9 +39,7 @@ export class UserComponent implements OnInit {
     this.listProductTypes = await this.productTypeService
       .getProductTypeList()
       .toPromise();
-    console.log(this.listProductTypes);
     this.setForm();
-    console.log(this.listProductTypeForm);
   }
 
   setForm() {
@@ -69,9 +65,7 @@ export class UserComponent implements OnInit {
   // }
 
   calculatorTotalPrice() {
-    // console.log(this.totalPrice);
     for (const element of this.listProductTypeForm.value) {
-      console.log(element.price);
     }
   }
 
@@ -89,7 +83,6 @@ export class UserComponent implements OnInit {
     this.index = i;
     this.isOpen = true;
     this.productTypeId = productTypeId;
-    console.log(this.isOpen);
   }
 
   addFormProductType(item: any) {
@@ -107,7 +100,6 @@ export class UserComponent implements OnInit {
   closeModal(event: any): void {
     this.isOpen = event.isOpen;
     if (event.product) {
-      console.log(event.product);
       this.listProductTypeForm.at(event.index).patchValue({
         count: 1,
         nameProduct: event.product.name,
@@ -160,7 +152,6 @@ export class UserComponent implements OnInit {
     this.listProductTypeForm.controls[index].patchValue({
       price: count * Number(product.originalPrice),
     });
-    console.log(this.listProductTypeForm.controls[index].value.price);
     this.totalPrice += Number(product.originalPrice);
   }
 
@@ -200,7 +191,7 @@ export class UserComponent implements OnInit {
     });
 
     const doc = new jsPDF();
-
+    doc.getFontList()
     const img = new Image();
     img.src = './assets/images/logo.jpg';
     doc.addImage(img, 'jpg', 90, 10, 20, 20);
@@ -217,6 +208,8 @@ export class UserComponent implements OnInit {
     const date = new Date();
     doc.setTextColor(48, 57, 85);
     doc.setFontSize(13);
+
+    doc.setLanguage("vi");
     doc.text(
       `Ngay tao: ${date.getDate()}-${
         date.getMonth() + 1

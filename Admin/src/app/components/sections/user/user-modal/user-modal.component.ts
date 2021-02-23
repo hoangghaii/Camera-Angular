@@ -26,7 +26,7 @@ import { Helper } from 'src/app/utils/helper';
 })
 export class UserModalComponent implements OnInit, OnChanges {
   public searchText = '';
-
+  public listSearch:String[] = [];
   public submitted: boolean = false;
   public pageOfItems!: Array<any>;
   public productList: any;
@@ -35,6 +35,8 @@ export class UserModalComponent implements OnInit, OnChanges {
   public filterProductList: any;
   public filterList: any;
   public chooseList: any = [];
+  public  productListToFilter:any =[];
+  public  listFilterTypeByProductType:any =[];
   public helper = Helper;
 
   @Input() open!: boolean;
@@ -56,7 +58,10 @@ export class UserModalComponent implements OnInit, OnChanges {
   async ngOnChanges(): Promise<void> {
     if (this.open && this.productTypeId) {
       this.productList = await this.getProductByType();
-      console.log(this.productList.product);
+      this.productListToFilter = this.productList.product;
+      this.listFilterTypeByProductType = await this.configurationSettingsService.getConfigurationSettingsById(
+                                                    this.productTypeId.toString()
+                                                    ).toPromise()                                          
     }
   }
 
@@ -75,12 +80,13 @@ export class UserModalComponent implements OnInit, OnChanges {
   closeModal(): void {
     this.submitted = false;
     // this.productTypeForm.reset();
+    this.searchText='';
     this.confirm.emit({ open: false });
     this.chooseList = [];
   }
   selectProduct(item: any): void {
     this.submitted = false;
-    // this.productTypeForm.reset();
+    this.searchText='';
     this.confirm.emit({ open: false, product: item, index: this.index });
     this.chooseList = [];
   }
@@ -110,14 +116,21 @@ export class UserModalComponent implements OnInit, OnChanges {
         return;
       }
     }
+    this.listSearch.push(item);
     this.chooseList.push(item);
+    this.filterProductBySearch();
   }
 
   handleDeleteFilterTypeChoose(item: any) {
     let index = this.chooseList.indexOf(item);
+    let i = this.listSearch.indexOf(item);
     if (index > -1) {
       this.chooseList.splice(index, 1);
+      if(i>-1){
+        this.listSearch.splice(i, 1);
+      }
     }
+    this.filterProductBySearch();
   }
 
   /**
@@ -127,5 +140,32 @@ export class UserModalComponent implements OnInit, OnChanges {
   onChangePage(pageOfItems: Array<any>) {
     // update current page of items
     this.pageOfItems = pageOfItems;
+  }
+
+  public filterProductBySearch(){
+    if(this.productList.product.length > 0 && this.listSearch.length > 0){
+      let list = this.productList.product;
+      this.listSearch.forEach(element=>{
+        list = list.filter((product:any)=>{
+          return product.name.toLowerCase().indexOf(element.toLowerCase()) !== -1
+        })
+      });
+      this.productListToFilter = list;
+      console.log( this.productListToFilter)
+    }
+    else{
+      this.productListToFilter = this.productList.product;
+    }
+  }
+  searchByText(){
+    this.filterProductBySearch();
+    if(this.searchText!=''){
+      let list =  this.productListToFilter;
+      list = list.filter((product:any)=>{
+          return product.name.toLowerCase().indexOf(this.searchText.toLowerCase()) !== Number(-1)
+        })
+      this.productListToFilter = list;
+      console.log(list)
+    }
   }
 }
