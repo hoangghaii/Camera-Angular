@@ -151,7 +151,6 @@ export class UserModalComponent implements OnInit, OnChanges {
         })
       });
       this.productListToFilter = list;
-      console.log( this.productListToFilter)
     }
     else{
       this.productListToFilter = this.productList.product;
@@ -165,7 +164,6 @@ export class UserModalComponent implements OnInit, OnChanges {
           return product.name.toLowerCase().indexOf(this.searchText.toLowerCase()) !== Number(-1)
         })
       this.productListToFilter = list;
-      console.log(list)
     }
   }
 }

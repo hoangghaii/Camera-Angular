@@ -14,7 +14,7 @@ export class ConfigurationContentBComponent implements OnInit {
 
   openModal(): void {
     this.isOpen = true;
-    console.log(this.isOpen);
+
   }
 
   closeModal(event: any): void {

@@ -70,8 +70,11 @@
           </div>
           <div class="configuration-modal__product-info">
             <div class="configuration-modal__product-name">{{ item.name }}</div>
-            <div class="configuration-modal__product-note" *ngIf="item.code">
+            <div class="configuration-modal__product-note" *ngIf="item.code!='null'">
               {{ item.code}}
+            </div>
+            <div class="configuration-modal__product-note" *ngIf="item.code=='null'">
+              Sản phẩm thuộc shop RongBay
             </div>
           </div>
         </div>

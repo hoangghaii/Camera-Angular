@@ -30,7 +30,7 @@ export class FilterComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.filterList = await this.getFilterList();
     this.filterTypeList = await this.getFilterTypeList();
-    console.log( this.filterList)
+  
   }
 
   openModal(status?: string, type?: string): void {
