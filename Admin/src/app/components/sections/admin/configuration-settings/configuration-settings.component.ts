@@ -45,7 +45,8 @@ export class ConfigurationSettingsComponent implements OnInit {
     this.filterTypeList = await this.getFilterTypeList();
     this.productList = await this.getProductList();
     this.productTypeList = await this.getProductTypeList();
-    this.getFilterProductTypeList();
+    await this.getFilterProductTypeList();
+    console.log(this.filterProductList)
   }
 
   initForm(): void {

@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared.module';
 import { LoaderInterceptor, RequestInterceptor } from './interceptors';
+import {  HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,10 @@ import { LoaderInterceptor, RequestInterceptor } from './interceptors';
     SharedModule,
   ],
   providers: [
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: RequestInterceptor,

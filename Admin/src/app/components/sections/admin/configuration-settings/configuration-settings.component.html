@@ -122,13 +122,14 @@
         <td class="table-content__item">{{ i + 1 }}</td>
         <td class="table-content__item">
           <span class="cs-configed__heading">
-            {{ filterProductTypeById(item.category_product_id) }}
+            {{item.category_product.name}}
           </span>
         </td>
         <td class="table-content__item">
           <ul class="cs-configed">
-            <li *ngFor="let i of item.list" class="cs-configed__item">
-              {{ filterTypeById(i) }}
+            <li *ngFor="let subItem of item.list" class="cs-configed__item">
+              <!-- {{ filterTypeById(i) }} -->
+              {{subItem.name}}
             </li>
           </ul>
         </td>
@@ -153,7 +154,7 @@
           <span class="cs-list__heading">{{ item.name }}</span>
           <select class="cs__select">
             <option>---Danh sách sản phẩm---</option>
-            <option *ngFor="let i of filterProductItemsOfType(item.id)">
+            <option *ngFor="let i of item.product">
               {{ i.name }}
             </option>
           </select>
@@ -168,7 +169,7 @@
           <span class="cs-list__heading">{{ item.name }}</span>
           <select class="cs__select">
             <option>---Danh sách bộ lọc---</option>
-            <option *ngFor="let i of filterItemsOfType(item.id)">
+            <option *ngFor="let i of item.filter">
               {{ i.name }}
             </option>
           </select>
