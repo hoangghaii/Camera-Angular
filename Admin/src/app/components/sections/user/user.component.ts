@@ -11,6 +11,7 @@ import 'jspdf-autotable';
 import autoTable from 'jspdf-autotable';
 
 
+
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
@@ -100,6 +101,7 @@ export class UserComponent implements OnInit {
   closeModal(event: any): void {
     this.isOpen = event.isOpen;
     if (event.product) {
+      this.totalPrice = 0;
       this.listProductTypeForm.at(event.index).patchValue({
         count: 1,
         nameProduct: event.product.name,
@@ -107,7 +109,15 @@ export class UserComponent implements OnInit {
         image: event.product.file,
         description: event.product.description,
       });
-      this.totalPrice += Number(event.product.price);
+      let values = this.listProductTypeForm.value;
+      console.log(this.totalPrice)
+      values.forEach((item :any)=>{
+        if(item.originalPrice&&Number(item.originalPrice)>0){
+          console.log(item)
+          this.totalPrice+=Number(item.originalPrice);
+        }
+      })
+      console.log(this.totalPrice)
     }
   }
 

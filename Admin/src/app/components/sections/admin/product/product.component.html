@@ -56,7 +56,7 @@
                 {{ item.name }}
               </a>
             </td>
-            <td class="table-content__item">{{ item.price }}</td>
+            <td class="table-content__item">{{ helper.formatCurrency(item.price) }}</td>
             <td class="table-content__item">
                {{ item.category_product.name }}
             </td>
