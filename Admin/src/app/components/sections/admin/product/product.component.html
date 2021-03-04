@@ -44,21 +44,29 @@
             <th class="table-heading__item">Hành động</th>
           </tr>
         </thead>
-  
+
         <tbody>
           <tr class="table-body" *ngFor="let item of pageOfItems; index as i">
             <td class="table-content__item">{{ i + 1 }}</td>
             <td class="table-content__item">
-              <a
+              <textarea
+                class="table-content__area"
+                (click)="selectedRowProduct(item, 'modalAdd')"
+              >
+              {{ item.name }} 
+              </textarea>
+              <!-- <a
                 class="table-content__link"
                 (click)="selectedRowProduct(item, 'modalAdd')"
               >
                 {{ item.name }}
-              </a>
+              </a> -->
             </td>
-            <td class="table-content__item">{{ helper.formatCurrency(item.price) }}</td>
             <td class="table-content__item">
-               {{ item.category_product.name }}
+              {{ helper.formatCurrency(item.price) }}
+            </td>
+            <td class="table-content__item">
+              {{ item.category_product.name }}
             </td>
             <td class="table-content__item">
               {{ helper.formatDate(item.created_at) }}

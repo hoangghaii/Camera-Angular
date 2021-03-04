@@ -189,7 +189,7 @@
     position: relative;
 
     // width: fit-content;
-    max-width: 15rem;
+    // max-width: 15rem;
     white-space: nowrap;
     overflow: hidden !important;
     text-overflow: ellipsis;
@@ -214,5 +214,12 @@
     &:hover::after {
       width: 100%;
     }
+  }
+
+  &-content__area {
+    outline: none;
+    border: none;
+    width: 100%;
+    padding: 0;
   }
 }
