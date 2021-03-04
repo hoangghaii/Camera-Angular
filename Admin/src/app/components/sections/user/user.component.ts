@@ -74,7 +74,7 @@ export class UserComponent implements OnInit {
     let product = this.listProductTypeForm.controls[index].value;
     this.totalPrice -= Number(product.originalPrice);
     this.listProductTypeForm.at(index).patchValue({
-      image: './assets/images/100x100.png',
+      image: './assets/images/default_camera.png',
       nameProduct: '',
       count: 0,
       originalPrice:0,
@@ -141,7 +141,7 @@ export class UserComponent implements OnInit {
     }
     if (count == 0) {
       this.listProductTypeForm.controls[index].patchValue({
-        image: './assets/images/100x100.png',
+        image: './assets/images/default_camera.png',
         price : 0,
         originalPrice : 0
       });
