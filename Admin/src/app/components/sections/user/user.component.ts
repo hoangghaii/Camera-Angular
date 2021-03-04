@@ -77,6 +77,8 @@ export class UserComponent implements OnInit {
       image: './assets/images/100x100.png',
       nameProduct: '',
       count: 0,
+      originalPrice:0,
+      price : 0
     });
   }
 
@@ -110,14 +112,11 @@ export class UserComponent implements OnInit {
         description: event.product.description,
       });
       let values = this.listProductTypeForm.value;
-      console.log(this.totalPrice)
       values.forEach((item :any)=>{
-        if(item.originalPrice&&Number(item.originalPrice)>0){
-          console.log(item)
+        if(item.originalPrice&&Number(item.originalPrice)>0&&item.nameProduct){
           this.totalPrice+=Number(item.originalPrice);
         }
       })
-      console.log(this.totalPrice)
     }
   }
 
@@ -143,6 +142,8 @@ export class UserComponent implements OnInit {
     if (count == 0) {
       this.listProductTypeForm.controls[index].patchValue({
         image: './assets/images/100x100.png',
+        price : 0,
+        originalPrice : 0
       });
     }
   }
